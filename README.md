@@ -8,12 +8,14 @@
                                                                                   \ \____/      
                                                                                    \/___/
                                                                                
-Underscore.js is a utility-belt library for JavaScript that provides 
-support for the usual functional suspects (each, map, reduce, filter...) 
-without extending any core JavaScript objects.
+Underscore.js 是一个JavaScript实用库, 提供了常用的功能函数 (each, map, reduce, filter...)
+而不继承任何JavaScript内置对象。
 
-For Docs, License, Tests, and pre-packed downloads, see:
+中文版的文档请前往
+http://learning.github.com/underscore/
+
+英文原版官方网站请到
 http://documentcloud.github.com/underscore/
 
-Many thanks to our contributors:
+感谢所有的贡献者:
 https://github.com/documentcloud/underscore/contributors
