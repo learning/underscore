@@ -291,7 +291,7 @@
     </ul>
 
     <a class="toc_title" href="#chaining">
-      链式(Chaining)
+      链式语法(Chaining)
     </a>
     <ul class="toc_section">
       <li>- <a href="#chain">chain</a></li>
@@ -320,7 +320,7 @@
     
     <p>
       <a href="http://github.com/documentcloud/underscore/">Underscore</a> 是一个JavaScript实用库,提供了类似<a href="http://prototypejs.org/api">Prototype.js</a>
-      (或 <a href="http://www.ruby-doc.org/core/classes/Enumerable.html">Ruby</a>)的一些功能,但是没有继承任何JavaScript内置对象。它增强了部分<a href="http://docs.jquery.com">jQuery</a>没有实现的功能,同时又是<a href="http://backbonejs.org">Backbone.js</a>必不可少的部分。
+      (或 <a href="http://www.ruby-doc.org/core/classes/Enumerable.html">Ruby</a>)的一些功能,但是没有继承任何JavaScript内置对象。它弥补了部分<a href="http://docs.jquery.com">jQuery</a>没有实现的功能,同时又是<a href="http://backbonejs.org">Backbone.js</a>必不可少的部分。
     </p>
 
     <p>
@@ -1410,11 +1410,11 @@ _.template("<%= data.hasWith %>", {hasWith: 'no'}, {variable: 'data'});
 =&gt; "no"</pre>
 
       <p>
-        Precompiling your templates can be a big help when debugging errors you can't
-        reproduce.  This is because precompiled templates can provide line numbers and
-        a stack trace, something that is not possible when compiling templates on the client.
-        The <b>source</b> property is available on the compiled template
-        function for easy precompilation.
+        预编译模板对调试不可重现的错误很有帮助.
+        这是因为预编译的模板可以提供错误的代码行号和堆栈跟踪,
+        有些模板在客户端(浏览器)上是不能通过编译的
+        在编译好的模板函数上, 有 <b>source</b> 
+        属性可以提供简单的预编译功能.
       </p>
 
       <pre>&lt;script&gt;
@@ -1422,12 +1422,12 @@ _.template("<%= data.hasWith %>", {hasWith: 'no'}, {variable: 'data'});
 &lt;/script&gt;</pre>
 
 
-      <h2 id="chaining">Chaining</h2>
+      <h2 id="chaining">链式语法</h2>
 
       <p>
-        You can use Underscore in either an object-oriented or a functional style,
-        depending on your preference. The following two lines of code are
-        identical ways to double a list of numbers.
+        您可以在面向对象或者函数的风格下使用Underscore,
+        这取决于您的个人偏好. 以下两行代码都可以
+        把一个数组里的所有数字乘以2.
       </p>
 
     <pre>
@@ -1435,11 +1435,11 @@ _.map([1, 2, 3], function(n){ return n * 2; });
 _([1, 2, 3]).map(function(n){ return n * 2; });</pre>
 
       <p>
-        Calling <tt>chain</tt> on a wrapped object will cause all future method calls to
-        return wrapped objects as well. When you've finished the computation,
-        use <tt>value</tt> to retrieve the final value. Here's an example of chaining
-        together a <b>map/flatten/reduce</b>, in order to get the word count of
-        every word in a song.
+        对一个对象使用 <tt>chain</tt> 方法, 会把这个对象封装并
+        让以后每次方法的调用结束后都返回这个封装的对象, 当您完成了计算,
+        可以使用 <tt>value</tt> 函数来取得最终的值. 
+        以下是一个同时使用了 <b>map/flatten/reduce</b> 
+        的链式语法例子, 目的是计算一首歌的歌词里每一个单词出现的次数.
       </p>
 
 <pre>
@@ -1461,18 +1461,17 @@ _.chain(lyrics)
 =&gt; {lumberjack : 2, all : 4, night : 2 ... }</pre>
 
       <p>
-        In addition, the
-        <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/prototype">Array prototype's methods</a>
-        are proxied through the chained Underscore object, so you can slip a
-        <tt>reverse</tt> or a <tt>push</tt> into your chain, and continue to
-        modify the array.
+        此外, <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/prototype">数组原型方法</a>
+        也通过代理加入到了链式封装的Underscore对象, 所以您可以
+        在链式语法中直接使用 <tt>reverse</tt> 或 <tt>push</tt> 方法,
+        然后再接着其他的语句.
       </p>
 
       <p id="chain">
         <b class="header">chain</b><code>_.chain(obj)</code>
         <br />
-        Returns a wrapped object. Calling methods on this object will continue
-        to return wrapped objects until <tt>value</tt> is used.
+        返回一个封装的对象. 在封装的对象上调用方法会返回封装的对象本身,
+        知道 <tt>value</tt> 方法调用为止.
       </p>
       <pre>
 var stooges = [{name : 'curly', age : 25}, {name : 'moe', age : 21}, {name : 'larry', age : 23}];
@@ -1487,67 +1486,65 @@ var youngest = _.chain(stooges)
       <p id="value">
         <b class="header">value</b><code>_(obj).value()</code>
         <br />
-        Extracts the value of a wrapped object.
+        提取封装对象的最终值.
       </p>
       <pre>
 _([1, 2, 3]).value();
 =&gt; [1, 2, 3]
 </pre>
 
-      <h2 id="links">Links &amp; Suggested Reading</h2>
+      <h2 id="links">更多链接 &amp; 推荐阅读</h2>
 
       <p>
         <a href="http://mirven.github.com/underscore.lua/">Underscore.lua</a>,
-        a Lua port of the functions that are applicable in both languages.
-        Includes OOP-wrapping and chaining.
-        The <a href="http://github.com/mirven/underscore.lua">source</a> is
-        available on GitHub.
+        一个Lua版本的Underscore, 函数都通用.
+        包含面向对象封装和链式语法.
+        <a href="http://github.com/mirven/underscore.lua">源代码</a> 可以从Github上下找到.
       </p>
 
       <p>
         <a href="http://brianhaveri.github.com/Underscore.php/">Underscore.php</a>,
-        a PHP port of the functions that are applicable in both languages.
-        Includes OOP-wrapping and chaining.
-        The <a href="http://github.com/brianhaveri/Underscore.php">source</a> is
-        available on GitHub.
+        一个PHP版本的Underscore, 函数都通用.
+        包含面向对象封装和链式语法.
+        <a href="http://github.com/brianhaveri/Underscore.php">源代码</a> 可以从Github上找到.
       </p>
 
       <p>
         <a href="http://vti.github.com/underscore-perl/">Underscore-perl</a>,
-        a Perl port of many of the Underscore.js functions,
-        aimed at on Perl hashes and arrays, also
-        <a href="https://github.com/vti/underscore-perl/">available on GitHub</a>.
+        一个Perl版本的Underscore, 实现了大部分功能,
+        主要针对于Perl的哈希表和数组, 
+        <a href="https://github.com/vti/underscore-perl/">也可以在GitHub上找到</a>.
       </p>
 
       <p>
         <a href="https://github.com/edtsech/underscore.string">Underscore.string</a>,
-        an Underscore extension that adds functions for string-manipulation:
+        一个Underscore的扩展, 添加了多个字符串操作的函数, 如:
         <tt>trim</tt>, <tt>startsWith</tt>, <tt>contains</tt>, <tt>capitalize</tt>,
-        <tt>reverse</tt>, <tt>sprintf</tt>, and more.
+        <tt>reverse</tt>, <tt>sprintf</tt>, 还有更多.
       </p>
 
       <p>
-        Ruby's <a href="http://ruby-doc.org/core/classes/Enumerable.html">Enumerable</a> module.
+        Ruby的 <a href="http://ruby-doc.org/core/classes/Enumerable.html">枚举</a> 模块.
       </p>
 
       <p>
-        <a href="http://www.prototypejs.org/">Prototype.js</a>, which provides
-        JavaScript with collection functions in the manner closest to Ruby's Enumerable.
+        <a href="http://www.prototypejs.org/">Prototype.js</a>, 
+        提供类似于Ruby枚举方式的JavaScript集合函数.
       </p>
 
       <p>
-        Oliver Steele's
+        Oliver Steele的
         <a href="http://osteele.com/sources/javascript/functional/">Functional JavaScript</a>,
-        which includes comprehensive higher-order function support as well as string lambdas.
+        包含全面的高阶函数支持以及字符串的匿名函数.
       </p>
 
       <p>
-        Michael Aufreiter's <a href="http://substance.io/#michael/data-js">Data.js</a>,
-        a data manipulation + persistence library for JavaScript.
+        Michael Aufreiter的 <a href="http://substance.io/#michael/data-js">Data.js</a>,
+        一个JavaScript的数据操作和持久化的类库.
       </p>
 
       <p>
-        Python's <a href="http://docs.python.org/library/itertools.html">itertools</a>.
+        Pythond的 <a href="http://docs.python.org/library/itertools.html">迭代工具</a>.
       </p>
 
       <h2 id="changelog">Change Log</h2>
@@ -2030,26 +2027,25 @@ _([1, 2, 3]).value();
 
       <p>
         <b class="header">0.3.2</b><br />
-        Now runs on stock <a href="http://www.mozilla.org/rhino/">Rhino</a>
-        interpreters with: <tt>load("underscore.js")</tt>.
-        Added <a href="#identity"><tt>identity</tt></a> as a utility function.
+        可以在 <a href="http://www.mozilla.org/rhino/">Rhino</a> 上运行了.
+        只要在编译器里输入: <tt>load("underscore.js")</tt>.
+        增加功能函数 <a href="#identity"><tt>identity</tt></a>.
       </p>
 
       <p>
         <b class="header">0.3.1</b><br />
-        All iterators are now passed in the original collection as their third
-        argument, the same as JavaScript 1.6's <b>forEach</b>. Iterating over
-        objects is now called with <tt>(value, key, collection)</tt>, for details
-        see <a href="#each"><tt>_.each</tt></a>.
+        所有迭代器在原始集合里现在都作为第三个参数传入,
+        和JavaScript 1.6的 <b>forEach</b> 一致.
+        迭代一个对象现在会以 <tt>(value, key, collection)</tt> 来调用, 更多详情, 请查看 <a href="#each"><tt>_.each</tt></a>.
       </p>
 
       <p>
         <b class="header">0.3.0</b><br />
-        Added <a href="http://github.com/dmitryBaranovskiy">Dmitry Baranovskiy</a>'s
-        comprehensive optimizations, merged in
-        <a href="http://github.com/kriskowal/">Kris Kowal</a>'s patches to make Underscore
-        <a href="http://wiki.commonjs.org/wiki/CommonJS">CommonJS</a> and
-        <a href="http://narwhaljs.org/">Narwhal</a> compliant.
+        增加 <a href="http://github.com/dmitryBaranovskiy">Dmitry Baranovskiy</a>的
+        综合优化, 合并
+        <a href="http://github.com/kriskowal/">Kris Kowal</a>的 补丁让Underscore符合
+        <a href="http://wiki.commonjs.org/wiki/CommonJS">CommonJS</a> 标准,并和
+        <a href="http://narwhaljs.org/">Narwhal</a> 兼容.
       </p>
 
       <p>
