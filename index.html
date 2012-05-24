@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width" />
   <link rel="canonical" href="http://underscorejs.org" />
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-  <title>Underscore.js</title>
+  <title>Underscore.js 中文站</title>
   <style>
     body {
       font-size: 14px;
@@ -1946,7 +1946,7 @@ _([1, 2, 3]).value();
 
       <p>
         <b class="header">0.5.0</b><br />
-        <b>[API Changes]</b> <tt>_.bindAll</tt> now takes the context object as
+        <b>[API变更]</b> <tt>_.bindAll</tt> now takes the context object as
         its first parameter. If no method names are passed, all of the context
         object's methods are bound to it, enabling chaining and easier binding.
         <tt>_.functions</tt> now takes a single argument and returns the names
@@ -1985,44 +1985,42 @@ _([1, 2, 3]).value();
 
       <p>
         <b class="header">0.4.4</b><br />
-        Added <tt>isString</tt>, and <tt>isNumber</tt>, for consistency. Fixed
+        增加 <tt>isString</tt>, 和 <tt>isNumber</tt>, for consistency. Fixed
         <tt>_.isEqual(NaN, NaN)</tt> to return <i>true</i> (which is debatable).
       </p>
 
       <p>
         <b class="header">0.4.3</b><br />
-        Started using the native <tt>StopIteration</tt> object in browsers that support it.
-        Fixed Underscore setup for CommonJS environments.
+        开始使用原生的 <tt>StopIteration</tt> 浏览器对象(如果浏览器支持).
+        修复Underscore在CommonJS环境上的安装.
       </p>
 
       <p>
         <b class="header">0.4.2</b><br />
-        Renamed the unwrapping function to <tt>value</tt>, for clarity.
+        把解除封装的函数unwrapping改名为<tt>value</tt>, 更清晰.
       </p>
 
       <p>
         <b class="header">0.4.1</b><br />
-        Chained Underscore objects now support the Array prototype methods, so
-        that you can perform the full range of operations on a wrapped array
-        without having to break your chain. Added a <tt>breakLoop</tt> method
-        to <b>break</b> in the middle of any Underscore iteration. Added an
-        <tt>isEmpty</tt> function that works on arrays and objects.
+        链式语法封装的Underscore对象支持函数原型方法的调用,
+        您可以在封装的数组上连续调用任意函数.
+        增加 <tt>breakLoop</tt> 方法, 可以随时在Underscore的迭代中
+        <b>中断</b> 并跳出迭代. 增加 <tt>isEmpty</tt> 函数, 在数组和对象上都有用.
       </p>
 
       <p>
         <b class="header">0.4.0</b><br />
-        All Underscore functions can now be called in an object-oriented style,
-        like so: <tt>_([1, 2, 3]).map(...);</tt>. Original patch provided by
-        <a href="http://macournoyer.com/">Marc-André Cournoyer</a>.
-        Wrapped objects can be chained through multiple
-        method invocations. A <a href="#object-functions"><tt>functions</tt></a> method
-        was added, providing a sorted list of all the functions in Underscore.
+        现在所有的Underscore函数都可以用面向对象的风格来调用了,
+        比如: <tt>_([1, 2, 3]).map(...);</tt>. 
+        <a href="http://macournoyer.com/">Marc-André Cournoyer</a> 提供了原始补丁.
+        封装对象可以用链式语法连续调用函数. 添加了 <a href="#object-functions"><tt>functions</tt></a> 方法,
+        能以正序方式列出所有的Underscore函数.
       </p>
 
       <p>
         <b class="header">0.3.3</b><br />
-        Added the JavaScript 1.8 function <tt>reduceRight</tt>. Aliased it
-        as <tt>foldr</tt>, and aliased <tt>reduce</tt> as <tt>foldl</tt>.
+        增加JavaScript 1.8的函数 <tt>reduceRight</tt>. 别名为
+        <tt>foldr</tt>, 另外 <tt>reduce</tt> 的别名为 <tt>foldl</tt>.
       </p>
 
       <p>
@@ -2075,7 +2073,7 @@ _([1, 2, 3]).value();
 
   </div>
 
-  <!-- Include Underscore, so you can play with it in the console. -->
+  <!-- 引入Underscore, 这样您就可以在控制台里把玩了. -->
   <script type="text/javascript" src="underscore.js"></script>
 
 </body>
