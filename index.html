@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width" />
   <link rel="canonical" href="http://underscorejs.org" />
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-  <title>Underscore.js 中文站</title>
+  <title>Underscore.js 中文文档</title>
   <style>
     body {
       font-size: 14px;
@@ -1544,13 +1544,13 @@ _([1, 2, 3]).value();
       </p>
 
       <p>
-        Pythond的 <a href="http://docs.python.org/library/itertools.html">迭代工具</a>.
+        Python的 <a href="http://docs.python.org/library/itertools.html">迭代工具</a>.
       </p>
 
-      <h2 id="changelog">Change Log</h2>
+      <h2 id="changelog">更新日志</h2>
       
       <p>
-        <b class="header">1.3.3</b> &mdash; <small><i>April 10, 2012</i></small><br />
+        <b class="header">1.3.3</b> &mdash; <small><i>2012年4月10日</i></small><br />
         <ul>
           <li>
             Many improvements to <tt>_.template</tt>, which now provides the 
@@ -1612,7 +1612,7 @@ _([1, 2, 3]).value();
       </p>
 
       <p>
-        <b class="header">1.3.0</b> &mdash; <small><i>Jan. 11, 2012</i></small><br />
+        <b class="header">1.3.0</b> &mdash; <small><i>2012年1月11日</i></small><br />
         <ul>
           <li>
             Removed AMD (RequireJS) support from Underscore. If you'd like to use
@@ -1857,136 +1857,121 @@ _([1, 2, 3]).value();
 
       <p>
         <b class="header">1.0.2</b><br />
-        Fixes <tt>_.isArguments</tt> in recent versions of Opera, which have
-        arguments objects as real Arrays.
+        修复 <tt>_.isArguments</tt> 在新版本Opera浏览器里的bug, 
+        Opera里会把arguments对象当作数组.
       </p>
 
       <p>
         <b class="header">1.0.1</b><br />
-        Bugfix for <tt>_.isEqual</tt>, when comparing two objects with the same
-        number of undefined keys, but with different names.
+        修复了 <tt>_.isEqual</tt> 函数的bug: 
+        这个bug出现在当对比特定因素两个对象时, 
+        这两个对象有着相同个数的值为undefined的key, 但不同名.
       </p>
 
       <p>
         <b class="header">1.0.0</b><br />
-        Things have been stable for many months now, so Underscore is now
-        considered to be out of beta, at <b>1.0</b>. Improvements since <b>0.6</b>
-        include <tt>_.isBoolean</tt>, and the ability to have <tt>_.extend</tt>
-        take multiple source objects.
+        Underscore在这几个月里算是相对稳定了, 所以现在打算出测试版, 版本号为<b>1.0</b>.
+        从<b>0.6</b>版本开始进行改进, 包括<tt>_.isBoolean</tt>的改进,
+        和<tt>_.extend</tt>允许传多个source对象.
       </p>
 
       <p>
         <b class="header">0.6.0</b><br />
-        Major release. Incorporates a number of
-        <a href="http://github.com/ratbeard">Mile Frawley's</a> refactors for
-        safer duck-typing on collection functions, and cleaner internals. A new
-        <tt>_.mixin</tt> method that allows you to extend Underscore with utility
-        functions of your own. Added <tt>_.times</tt>, which works the same as in
-        Ruby or Prototype.js. Native support for ECMAScript 5's <tt>Array.isArray</tt>,
-        and <tt>Object.keys</tt>.
+        主要版本, 整合了一系列的功能函数, 包括
+        <a href="http://github.com/ratbeard">Mile Frawley</a>写的在保留援用功能的基础上, 对集合函数进行重构, 内部代码更加简洁.
+        新的 <tt>_.mixin</tt> 函数, 允许您自己的功能函数继承Underscore对象.
+        增加 <tt>_.times</tt> 函数, 跟Ruby或Prototype.js里的times的功能一样.
+        对ECMAScript 5的 <tt>Array.isArray</tt>函数提供原生支持, 还有<tt>Object.keys</tt>.
       </p>
 
       <p>
         <b class="header">0.5.8</b><br />
-        Fixed Underscore's collection functions to work on
-        <a href="https://developer.mozilla.org/En/DOM/NodeList">NodeLists</a> and
-        <a href="https://developer.mozilla.org/En/DOM/HTMLCollection">HTMLCollections</a>
-        once more, thanks to
+        修复了Underscore的集合函数, 以便可以用于DOM的
+        <a href="https://developer.mozilla.org/En/DOM/NodeList">节点列表(NodeList)</a> 和
+        <a href="https://developer.mozilla.org/En/DOM/HTMLCollection">HTML集合(HTMLCollection)</a>
+        再一次地感谢
         <a href="http://github.com/jmtulloss">Justin Tulloss</a>.
       </p>
 
       <p>
         <b class="header">0.5.7</b><br />
-        A safer implementation of <tt>_.isArguments</tt>, and a
-        faster <tt>_.isNumber</tt>,<br />thanks to
+        修改 <tt>_.isArguments</tt> 函数, 使用了更安全的实现方式, 还有
+        加快了 <tt>_.isNumber</tt> 的运行速度,<br /> 感谢
         <a href="http://jedschmidt.com/">Jed Schmidt</a>.
       </p>
 
       <p>
         <b class="header">0.5.6</b><br />
-        Customizable delimiters for <tt>_.template</tt>, contributed by
-        <a href="http://github.com/iamnoah">Noah Sloan</a>.
+        增加了 <tt>_.template</tt> 对自定义分隔符的支持, 由
+        <a href="http://github.com/iamnoah">Noah Sloan</a>提供.
       </p>
 
       <p>
         <b class="header">0.5.5</b><br />
-        Fix for a bug in MobileSafari's OOP-wrapper, with the arguments object.
+        修复了一个在移动版Safari里关于arguments对象的面向对象封装的bug.
       </p>
 
       <p>
         <b class="header">0.5.4</b><br />
-        Fix for multiple single quotes within a template string for
-        <tt>_.template</tt>. See:
-        <a href="http://www.west-wind.com/Weblog/posts/509108.aspx">Rick Strahl's blog post</a>.
+        修复了<tt>_.template</tt>函数里多个单引号在模板里造成的错误. 了解更多请阅读:
+        <a href="http://www.west-wind.com/Weblog/posts/509108.aspx">Rick Strahl的博客文章</a>.
       </p>
 
       <p>
         <b class="header">0.5.2</b><br />
-        New implementations of <tt>isArray</tt>, <tt>isDate</tt>, <tt>isFunction</tt>,
-        <tt>isNumber</tt>, <tt>isRegExp</tt>, and <tt>isString</tt>, thanks to
-        a suggestion from
-        <a href="http://www.broofa.com/">Robert Kieffer</a>.
-        Instead of doing <tt>Object#toString</tt>
-        comparisons, they now check for expected properties, which is less safe,
-        but more than an order of magnitude faster. Most other Underscore
-        functions saw minor speed improvements as a result.
-        <a href="http://dolzhenko.org/">Evgeniy Dolzhenko</a>
-        contributed <tt>_.tap</tt>,
-        <a href="http://ruby-doc.org/core-1.9/classes/Object.html#M000191">similar to Ruby 1.9's</a>,
-        which is handy for injecting side effects (like logging) into chained calls.
+        几个函数的重写: <tt>isArray</tt>, <tt>isDate</tt>, <tt>isFunction</tt>,
+        <tt>isNumber</tt>, <tt>isRegExp</tt>, 和 <tt>isString</tt>, 
+        感谢<a href="http://www.broofa.com/">Robert Kieffer</a>提供的建议.
+        取代了 <tt>Object#toString</tt> 的对比方式, 现在以属性来进行对比, 
+        虽然说安全性有所降低, 但是速度比以前快了有一个数量级. 
+        因此其他大多数的Underscore函数也有小幅度的速度提升.
+        增加了 <tt>_.tap</tt> 函数, 由<a href="http://dolzhenko.org/">Evgeniy Dolzhenko</a> 提供, 与<a href="http://ruby-doc.org/core-1.9.3/Object.html#method-i-tap">Ruby 1.9</a>的tap方法相似,
+        对链式语法里嵌入其他功能(如登录)很方便.
       </p>
 
       <p>
         <b class="header">0.5.1</b><br />
-        Added an <tt>_.isArguments</tt> function. Lots of little safety checks
-        and optimizations contributed by
-        <a href="http://github.com/iamnoah/">Noah Sloan</a> and
-        <a href="http://themoell.com/">Andri Möll</a>.
+        增加了 <tt>_.isArguments</tt> 函数. 许多小的安全检查和优化由
+        <a href="http://github.com/iamnoah/">Noah Sloan</a> 和
+        <a href="http://themoell.com/">Andri Möll</a>提供.
       </p>
 
       <p>
         <b class="header">0.5.0</b><br />
-        <b>[API变更]</b> <tt>_.bindAll</tt> now takes the context object as
-        its first parameter. If no method names are passed, all of the context
-        object's methods are bound to it, enabling chaining and easier binding.
-        <tt>_.functions</tt> now takes a single argument and returns the names
-        of its Function properties. Calling <tt>_.functions(_)</tt> will get you
-        the previous behavior.
-        Added <tt>_.isRegExp</tt> so that <tt>isEqual</tt> can now test for RegExp equality.
-        All of the "is" functions have been shrunk down into a single definition.
-        <a href="http://github.com/grayrest/">Karl Guertin</a> contributed patches.
+        <b>[API变更]</b> <tt>_.bindAll</tt> 现在会将context对象作为第一个参数.
+        如果不传方法名, context对象的所有方法都会绑定到context, 支持链式语法和简易绑定.
+        <tt>_.functions</tt> 现在只要一个参数, 然后返回所有的方法名(类型为Function的属性).
+        调用 <tt>_.functions(_)</tt> 会列出所有的Underscore函数.
+        增加 <tt>_.isRegExp</tt> 函数, <tt>isEqual</tt> 现在也可以检测两个RegExp对象是否相等了.
+        所有以"is"开头的函数已经缩减到同一个定义里面, 由<a href="http://github.com/grayrest/">Karl Guertin</a> 提供的解决方案.
       </p>
 
       <p>
         <b class="header">0.4.7</b><br />
-        Added <tt>isDate</tt>, <tt>isNaN</tt>, and <tt>isNull</tt>, for completeness.
-        Optimizations for <tt>isEqual</tt> when checking equality between Arrays
-        or Dates. <tt>_.keys</tt> is now <small><i><b>25%&ndash;2X</b></i></small> faster (depending on your
-        browser) which speeds up the functions that rely on it, such as <tt>_.each</tt>.
+        增加 <tt>isDate</tt>, <tt>isNaN</tt>, 和 <tt>isNull</tt>.
+        优化 <tt>isEqual</tt> 函数对比两个数组或两个时间对象时的性能.
+        优化了 <tt>_.keys</tt> 函数, 现在的运行速度比以前加快了<small><i><b>25%&ndash;2倍</b></i></small> (取决于您所使用的浏览器)会加速其所依赖的函数, 如 <tt>_.each</tt>.
       </p>
 
       <p>
         <b class="header">0.4.6</b><br />
-        Added the <tt>range</tt> function, a port of the
-        <a href="http://docs.python.org/library/functions.html#range">Python
-        function of the same name</a>, for generating flexibly-numbered lists
-        of integers. Original patch contributed by
-        <a href="http://github.com/kylichuku">Kirill Ishanov</a>.
+        增加 <tt>range</tt> 函数, <a href="http://docs.python.org/library/functions.html#range">Python里同名函数range</a> 的移植版,
+        用于生成灵活的整型数组. 原始版由<a href="http://github.com/kylichuku">Kirill Ishanov</a>提供.
       </p>
 
       <p>
         <b class="header">0.4.5</b><br />
-        Added <tt>rest</tt> for Arrays and arguments objects, and aliased
-        <tt>first</tt> as <tt>head</tt>, and <tt>rest</tt> as <tt>tail</tt>,
-        thanks to <a href="http://github.com/lukesutton/">Luke Sutton</a>'s patches.
-        Added tests ensuring that all Underscore Array functions also work on
-        <i>arguments</i> objects.
+        增加 <tt>rest</tt> 函数, 可以对数组和arguments对象使用, 增加了两个函数的别名,
+        <tt>first</tt> 的别名为 <tt>head</tt>, 
+        还有 <tt>rest</tt> 的别名为 <tt>tail</tt>,
+        感谢 <a href="http://github.com/lukesutton/">Luke Sutton</a>的解决方案.
+        增加测试文件, 以确保所有Underscore的数组函数都可以在用在 <i>arguments</i> 对象上.
       </p>
 
       <p>
         <b class="header">0.4.4</b><br />
-        增加 <tt>isString</tt>, 和 <tt>isNumber</tt>, for consistency. Fixed
-        <tt>_.isEqual(NaN, NaN)</tt> to return <i>true</i> (which is debatable).
+        增加 <tt>isString</tt>, 和 <tt>isNumber</tt> 函数. 修复了
+        <tt>_.isEqual(NaN, NaN)</tt> 会返回 <i>true</i> 的问题.
       </p>
 
       <p>
@@ -2012,7 +1997,7 @@ _([1, 2, 3]).value();
         <b class="header">0.4.0</b><br />
         现在所有的Underscore函数都可以用面向对象的风格来调用了,
         比如: <tt>_([1, 2, 3]).map(...);</tt>. 
-        <a href="http://macournoyer.com/">Marc-André Cournoyer</a> 提供了原始补丁.
+        <a href="http://macournoyer.com/">Marc-André Cournoyer</a> 提供了原始的解决方案.
         封装对象可以用链式语法连续调用函数. 添加了 <a href="#object-functions"><tt>functions</tt></a> 方法,
         能以正序方式列出所有的Underscore函数.
       </p>
@@ -2041,7 +2026,7 @@ _([1, 2, 3]).value();
         <b class="header">0.3.0</b><br />
         增加 <a href="http://github.com/dmitryBaranovskiy">Dmitry Baranovskiy</a>的
         综合优化, 合并
-        <a href="http://github.com/kriskowal/">Kris Kowal</a>的 补丁让Underscore符合
+        <a href="http://github.com/kriskowal/">Kris Kowal</a>的解决方案让Underscore符合
         <a href="http://wiki.commonjs.org/wiki/CommonJS">CommonJS</a> 标准,并和
         <a href="http://narwhaljs.org/">Narwhal</a> 兼容.
       </p>
