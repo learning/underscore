@@ -1827,32 +1827,29 @@ _([1, 2, 3]).value();
 
       <p>
         <b class="header">1.1.1</b><br />
-        Improved the speed of <tt>_.template</tt>, and its handling of multiline
-        interpolations. Ryan Tenney contributed optimizations to many Underscore
-        functions. An annotated version of the source code is now available.
+        改进 <tt>_.template</tt> 函数的运行速度, 和处理多行插入值的性能.
+        Ryan Tenney 提供了许多Underscore函数的优化方案.
+        增加了带注释版本的源代码.
       </p>
 
       <p>
         <b class="header">1.1.0</b><br />
-        The method signature of <tt>_.reduce</tt> has been changed to match
-        the ECMAScript 5 signature, instead of the Ruby/Prototype.js version.
-        This is a backwards-incompatible change. <tt>_.template</tt> may now be
-        called with no arguments, and preserves whitespace. <tt>_.contains</tt>
-        is a new alias for <tt>_.include</tt>.
+        修改了 <tt>_.reduce</tt> 函数以符合ECMAScript 5规范, 
+        取代了之前Ruby/Prototype.js版本的 <tt>_.reduce</tt>.
+        这是一个不向下兼容的修改. <tt>_.template</tt> 函数现在可以不传参了, 并保留空格.
+        <tt>_.contains</tt> 是一个 <tt>_.include</tt> 函数新的别名.
       </p>
 
       <p>
         <b class="header">1.0.4</b><br />
-        <a href="http://themoell.com/">Andri Möll</a> contributed the <tt>_.memoize</tt>
-        function, which can be used to speed up expensive repeated computations
-        by caching the results.
+        <a href="http://themoell.com/">Andri Möll</a> 提供了 <tt>_.memoize</tt>函数, 
+        以缓存计算结果, 来优化的耗时较长的函数, 使得运行速度变快.
       </p>
 
       <p>
         <b class="header">1.0.3</b><br />
-        Patch that makes <tt>_.isEqual</tt> return <tt>false</tt> if any property
-        of the compared object has a <tt>NaN</tt> value. Technically the correct
-        thing to do, but of questionable semantics. Watch out for NaN comparisons.
+        修复了 <tt>_.isEqual</tt> 函数在对比包含 <tt>NaN</tt> 的对象时返回 <tt>false</tt> 的问题.
+        技术上改良后理论上是正确的, 但是语义上似乎有矛盾, 所以要注意避免对比含有NaN的对象.
       </p>
 
       <p>
