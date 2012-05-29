@@ -1750,79 +1750,75 @@ _([1, 2, 3]).value();
             N elements of the list.
           </li>
           <li>
-            A new <tt>_.initial</tt> function was added, as a mirror of <tt>_.rest</tt>,
-            which returns all the initial values of a list (except the last N).
+            增加了一个新函数 <tt>_.initial</tt>, 
+            与 <tt>_.rest</tt> 函数相对,
+            它会返回一个列表除了最后N个元素以外的所有元素.
           </li>
         </ul>
       </p>
 
       <p>
-        <b class="header">1.1.7</b> &mdash; <small><i>July 13, 2011</i></small><br />
-        Added <tt>_.groupBy</tt>, which aggregates a collection into groups of like items.
-        Added <tt>_.union</tt> and <tt>_.difference</tt>, to complement the
-        (re-named) <tt>_.intersection</tt>.
-        Various improvements for support of sparse arrays.
-        <tt>_.toArray</tt> now returns a clone, if directly passed an array.
-        <tt>_.functions</tt> now also returns the names of functions that are present
-        in the prototype chain.
+        <b class="header">1.1.7</b> &mdash; <small><i>2011年7月13日</i></small><br />
+        增加 <tt>_.groupBy</tt>, 它可以将一个集合里的元素进行分组.
+        增加 <tt>_.union</tt> 和 <tt>_.difference</tt>, 用来补充
+        (重命名过的) <tt>_.intersection</tt> 函数.
+        多方面的改进以支持稀疏数组. <tt>_.toArray</tt> 现在如果直接传数组时,
+        将会返回此数组的副本. 
+        <tt>_.functions</tt> 现在会返回存在于原型链中的函数名.
       </p>
 
       <p>
-        <b class="header">1.1.6</b> &mdash; <small><i>April 18, 2011</i></small><br />
-        Added <tt>_.after</tt>, which will return a function that only runs after
-        first being called a specified number of times.
-        <tt>_.invoke</tt> can now take a direct function reference.
-        <tt>_.every</tt> now requires an iterator function to be passed, which
-        mirrors the ECMA5 API.
-        <tt>_.extend</tt> no longer copies keys when the value is undefined.
-        <tt>_.bind</tt> now errors when trying to bind an undefined value.
+        <b class="header">1.1.6</b> &mdash; <small><i>2011年4月18日</i></small><br />
+        增加 <tt>_.after</tt> 函数, 被它改造过的函数只有在执行指定次数之后才会生效.
+        <tt>_.invoke</tt> 现在将使用函数的直接引用.
+        <tt>_.every</tt> 现在必须传如迭代器函数, 为了符合ECMAScript 5标准.
+        <tt>_.extend</tt> 当值为undefined的时候不再复制键值.
+        <tt>_.bind</tt> 现在如果试图绑定一个undefined值的时候将报错.
       </p>
 
       <p>
-        <b class="header">1.1.5</b> &mdash; <small><i>Mar 20, 2011</i></small><br />
-        Added an <tt>_.defaults</tt> function, for use merging together JS objects
-        representing default options.
-        Added an <tt>_.once</tt> function, for manufacturing functions that should
-        only ever execute a single time.
-        <tt>_.bind</tt> now delegates to the native ECMAScript 5 version,
-        where available.
-        <tt>_.keys</tt> now throws an error when used on non-Object values, as in
-        ECMAScript 5.
-        Fixed a bug with <tt>_.keys</tt> when used over sparse arrays.
+        <b class="header">1.1.5</b> &mdash; <small><i>2011年3月20日</i></small><br />
+        增加 <tt>_.defaults</tt> 函数, 用来合并JavaScript对象,
+        一般用来做生成默认值使用.
+        增加 <tt>_.once</tt> 函数, 用来把函数改造成只能运行一次的函数.
+        <tt>_.bind</tt> 函数现在委托原生的ECMAScript 5版本(如可用).
+        <tt>_.keys</tt> 现在传非对象的值时, 将会抛出一个错误, 
+        就和ECMAScript 5标准里的一样.
+        修复了 <tt>_.keys</tt> 函数在传入稀疏数组时的bug.
       </p>
 
       <p>
-        <b class="header">1.1.4</b> &mdash; <small><i>Jan 9, 2011</i></small><br />
-        Improved compliance with ES5's Array methods when passing <tt>null</tt>
-        as a value. <tt>_.wrap</tt> now correctly sets <tt>this</tt> for the
-        wrapped function. <tt>_.indexOf</tt> now takes an optional flag for
-        finding the insertion index in an array that is guaranteed to already
-        be sorted. Avoiding the use of <tt>.callee</tt>, to allow <tt>_.isArray</tt>
-        to work properly in ES5's strict mode.
+        <b class="header">1.1.4</b> &mdash; <small><i>2011年1月9日</i></small><br />
+        改进所有数组函数当传值 <tt>null</tt> 时候的行为, 
+        以符合ECMAScript 5标准. <tt>_.wrap</tt> 函数现在能正确地
+        给封装的函数设置 <tt>this</tt> 关键字了.
+        <tt>_.indexOf</tt> 函数增加了可选参数isSorted,
+        寻找索引的时候会将数组作为已排序处理, 将使用更快的二进制搜索.
+        避免使用 <tt>.callee</tt>, 保证 <tt>_.isArray</tt> 函数
+        在ECMAScript 5严格模式下能正常使用.
       </p>
 
       <p>
-        <b class="header">1.1.3</b> &mdash; <small><i>Dec 1, 2010</i></small><br />
-        In CommonJS, Underscore may now be required with just: <br />
+        <b class="header">1.1.3</b> &mdash; <small><i>2010年12月1日</i></small><br />
+        在CommonJS里, Underscore可以像这样引入: <br />
         <tt>var _ = require("underscore")</tt>.
-        Added <tt>_.throttle</tt> and <tt>_.debounce</tt> functions.
-        Removed <tt>_.breakLoop</tt>, in favor of an ECMA5-style un-<i>break</i>-able
-        each implementation &mdash; this removes the try/catch, and you'll now have
-        better stack traces for exceptions that are thrown within an Underscore iterator.
-        Improved the <b>isType</b> family of functions for better interoperability
-        with Internet Explorer host objects.
-        <tt>_.template</tt> now correctly escapes backslashes in templates.
-        Improved <tt>_.reduce</tt> compatibility with the ECMA5 version:
-        if you don't pass an initial value, the first item in the collection is used.
-        <tt>_.each</tt> no longer returns the iterated collection, for improved
-        consistency with ES5's <tt>forEach</tt>.
+        增加 <tt>_.throttle</tt> 和 <tt>_.debounce</tt> 函数.
+        移除 <tt>_.breakLoop</tt> 函数, 为了符合ECMAScript 5标准里所说的每一种实现形式都是不能<i>break</i>的
+        &mdash; 这将去掉try/catch块, 
+        现在, 您遇到Underscore迭代器的抛出的异常时,
+        将会有更完善的堆栈跟踪来检查错误所在之处.
+        改进 <b>isType</b> 一类函数, 以便更好地兼容Internet Explorer浏览器.
+        <tt>_.template</tt> 函数现在可以正确的反转义模板中的反斜杠了.
+        改进 <tt>_.reduce</tt> 函数以兼容ECMAScript 5标准:
+        如果您不传初始值, 将使用集合里的第一项作为初始值.
+        <tt>_.each</tt> 不再返回迭代后的集合, 为了与ECMAScript 5的 <tt>forEach</tt> 保持一致.
       </p>
 
       <p>
         <b class="header">1.1.2</b><br />
-        Fixed <tt>_.contains</tt>, which was mistakenly pointing at
-        <tt>_.intersect</tt> instead of <tt>_.include</tt>, like it should
-        have been. Added <tt>_.unique</tt> as an alias for <tt>_.uniq</tt>.
+        修复 <tt>_.contains</tt> 指向 <tt>_.intersect</tt> 函数的错误, 
+        应该是指向 <tt>_.include</tt> 函数(_.cotains应该是_.include的别名),
+        增加 <tt>_.unique</tt>, 作为 <tt>_.uniq</tt> 函数的别名.
       </p>
 
       <p>
