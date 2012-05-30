@@ -1708,46 +1708,42 @@ _([1, 2, 3]).value();
             and are rate-limited thereafter <small>(#170, #266)</small>.
           </li>
           <li>
-            Most of the <tt>_.is[Type]</tt> checks no longer ducktype.
+            大多数 <tt>_.is[类型]</tt> 函数不再使用ducktype写法(详见Ruby的duck type).
           </li>
           <li>
-            The <tt>_.bind</tt> function now also works on constructors, a-la
-            ES5 ... but you would never want to use <tt>_.bind</tt> on a
-            constructor function.
+            <tt>_.bind</tt> 函数现在在构造函数(constructor)也能用了, 兼容ECMAScript 5标准.
+            不过您可能永远也用不到 <tt>_.bind</tt> 来绑定一个构造函数.
           </li>
           <li>
-            <tt>_.clone</tt> no longer wraps non-object types in Objects.
+            <tt>_.clone</tt> 函数不再封装对象里的非对象属性.
           </li>
           <li>
-            <tt>_.find</tt> and <tt>_.filter</tt> are now the preferred names for
-            <tt>_.detect</tt> and <tt>_.select</tt>.
+            <tt>_.find</tt> 和 <tt>_.filter</tt> 现在作为
+            <tt>_.detect</tt> 和 <tt>_.select</tt> 的首选函数名.
           </li>
         </ul>
       </p>
 
       <p>
-        <b class="header">1.2.0</b> &mdash; <small><i>Oct. 5, 2011</i></small><br />
+        <b class="header">1.2.0</b> &mdash; <small><i>2011年10月5日</i></small><br />
         <ul>
           <li>
-            The <tt>_.isEqual</tt> function now
-            supports true deep equality comparisons, with checks for cyclic structures,
-            thanks to Kit Cambridge.
+            <tt>_.isEqual</tt> 函数现在支持深度相等性对比, 
+            检测循环结构, 感谢Kit Cambridge.
           </li>
           <li>
-            Underscore templates now support HTML escaping interpolations, using
-            <tt>&lt;%- ... %&gt;</tt> syntax.
+            Underscore模版现在支持嵌入HTML转义字符了, 使用
+            <tt>&lt;%- ... %&gt;</tt> 语句.
           </li>
           <li>
-            Ryan Tenney contributed <tt>_.shuffle</tt>, which uses a modified
-            Fisher-Yates to give you a shuffled copy of an array.
+            Ryan Tenney 提供了 <tt>_.shuffle</tt> 函数, 它使用
+            Fisher-Yates算法的修改版, 返回一个乱序后的数组副本.
           </li>
           <li>
-            <tt>_.uniq</tt> can now be passed an optional iterator, to determine by
-            what criteria an object should be considered unique.
+            <tt>_.uniq</tt> 现在可以传一个可选的迭代器iterator, 用来确定一个数组以什么样的标准来确定它是否唯一的.
           </li>
           <li>
-            <tt>_.last</tt> now takes an optional argument which will return the last
-            N elements of the list.
+            <tt>_.last</tt> 现在增加了一个可选参数, 可以设置返回集合里的最后N个元素.
           </li>
           <li>
             增加了一个新函数 <tt>_.initial</tt>, 
@@ -2053,6 +2049,16 @@ _([1, 2, 3]).value();
 
   <!-- 引入Underscore, 这样您就可以在控制台里把玩了. -->
   <script type="text/javascript" src="underscore.js"></script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32163560-1']);
+    _gaq.push(['_trackPageview']);
 
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
 </body>
 </html>
