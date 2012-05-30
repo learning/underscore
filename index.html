@@ -1646,66 +1646,64 @@ _([1, 2, 3]).value();
       </p>
 
       <p>
-        <b class="header">1.2.3</b> &mdash; <small><i>Dec. 7, 2011</i></small><br />
+        <b class="header">1.2.3</b> &mdash; <small><i>2011年12月7日</i></small><br />
         <ul>
           <li>
-            Dynamic scope is now preserved for compiled <tt>_.template</tt> functions,
-            so you can use the value of <tt>this</tt> if you like.
+            动态范围在已编译的 <tt>_.template</tt> 函数中保留,
+            所以您可以使用 <tt>this</tt> 属性, 如果您喜欢的话.
           </li>
           <li>
-            Sparse array support of <tt>_.indexOf</tt>, <tt>_.lastIndexOf</tt>.
+            <tt>_.indexOf</tt> 和 <tt>_.lastIndexOf</tt> 增加对稀疏数组的支持.
           </li>
           <li>
-            Both <tt>_.reduce</tt> and <tt>_.reduceRight</tt> can now be passed an
-            explicitly <tt>undefined</tt> value. (There's no reason why you'd
-            want to do this.)
+            <tt>_.reduce</tt> 和 <tt>_.reduceRight</tt> 现在都可以传一个明确的
+            <tt>undefined</tt> 值. (您为什么要这样做并没有任何原因)
           </li>
         </ul>
       </p>
 
       <p>
-        <b class="header">1.2.2</b> &mdash; <small><i>Nov. 14, 2011</i></small><br />
+        <b class="header">1.2.2</b> &mdash; <small><i>2011年11月14日</i></small><br />
         <ul>
           <li>
-            Continued tweaks to <tt>_.isEqual</tt> semantics. Now JS primitives are
-            considered equivalent to their wrapped versions, and arrays are compared
-            by their numeric properties only <small>(#351)</small>.
+            继续改进 <tt>_.isEqual</tt> , 要让它和语义上所说的一样. 
+            现在原生的JavaScript会一个对象与它的封装起来的对象视为相等的,
+            还有, 数组只会对比他们数字元素 <small>(#351)</small>.
           </li>
           <li>
-            <tt>_.escape</tt> no longer tries to be smart about not double-escaping
-            already-escaped HTML entities. Now it just escapes regardless <small>(#350)</small>.
+            <tt>_.escape</tt> 不再尝试在非双重转移的转移HTML实体上进行转换.
+            现在不管怎样只会反转义一次 <small>(#350)</small>.
           </li>
           <li>
-            In <tt>_.template</tt>, you may now leave semicolons out of evaluated
-            statements if you wish: <tt>&lt;% }) %&gt;</tt> <small>(#369)</small>.
+            在 <tt>_.template</tt> 里, 如果愿意的话您可以省略嵌入表达式后面的分号:
+            <tt>&lt;% }) %&gt;</tt> <small>(#369)</small>.
           </li>
           <li>
-            <tt>_.after(callback, 0)</tt> will now trigger the callback immediately,
-            making "after" easier to use with asynchronous APIs <small>(#366)</small>.
+            <tt>_.after(callback, 0)</tt> 现在会立即触发callback函数,
+            把"after"做得更易于使用在异步交互的API上 <small>(#366)</small>.
           </li>
         </ul>
       </p>
 
       <p>
-        <b class="header">1.2.1</b> &mdash; <small><i>Oct. 24, 2011</i></small><br />
+        <b class="header">1.2.1</b> &mdash; <small><i>2011年10月24日</i></small><br />
         <ul>
           <li>
-            Several important bug fixes for <tt>_.isEqual</tt>, which should now
-            do better on mutated Arrays, and on non-Array objects with
-            <tt>length</tt> properties. <small>(#329)</small>
+            <tt>_.isEqual</tt> 函数的几个重要bug修复, 
+            现在能更好地用在复杂的数组上, 和拥有 <tt>length</tt> 属性的非数组对象上了. <small>(#329)</small>
           </li>
           <li>
-            <b>jrburke</b> contributed Underscore exporting for AMD module loaders,
-            and <b>tonylukasavage</b> for Appcelerator Titanium.
+            <b>jrburke</b> 提供了导出Underscore以便AMD模块的加载器可以加载,
+            还有 <b>tonylukasavage</b> 提供了导出Underscore给Appcelerator Titanium使用.
             <small>(#335, #338)</small>
           </li>
           <li>
-            You can now <tt>_.groupBy(list, 'property')</tt> as a shortcut for
-            grouping values by a particular common property.
+            您现在可以使用 <tt>_.groupBy(list, 'property')</tt> 作为
+            以指定的共同属性来分组的快捷方法.
           </li>
           <li>
-            <tt>_.throttle</tt>'d functions now fire immediately upon invocation,
-            and are rate-limited thereafter <small>(#170, #266)</small>.
+            <tt>_.throttle</tt> 函数现在调用的时候会立即自行一次,
+            此后才是再每隔指定时间再执行一次 <small>(#170, #266)</small>.
           </li>
           <li>
             大多数 <tt>_.is[类型]</tt> 函数不再使用ducktype写法(详见Ruby的duck type).
