@@ -1553,60 +1553,55 @@ _([1, 2, 3]).value();
         <b class="header">1.3.3</b> &mdash; <small><i>2012年4月10日</i></small><br />
         <ul>
           <li>
-            Many improvements to <tt>_.template</tt>, which now provides the 
-            <tt>source</tt> of the template function as a property, for potentially
-            even more efficient pre-compilation on the server-side. You may now
-            also set the <tt>variable</tt> option when creating a template, 
-            which will cause your passed-in data to be made available under the 
-            variable you named, instead of using a <tt>with</tt> statement &mdash;
-            significantly improving the speed of rendering the template.
+            <tt>_.template</tt>的多处改进, 现在为潜在的更有效的服务器端预编译
+            提供模板的<tt>源(source)</tt>作为属性. 您现在也可以在创建模板的时候
+            设置 <tt>variable</tt> 选项, 之后可以通过这个变量名取到模板传入的数据,
+            取代了 <tt>with</tt> 语句 &mdash;
+            显著的改进了模板的渲染速度.
           </li>
           <li>
-            Added the <tt>pick</tt> function, which allows you to filter an 
-            object literal with a whitelist of allowed property names.
+            增加了 <tt>pick</tt> 函数, 它可以过滤不在所提供的白名单之内的其他属性.
           </li>
           <li>
-            Added the <tt>result</tt> function, for convenience when working
-            with APIs that allow either functions or raw properties.
+            增加 <tt>result</tt> 函数, 在与API工作时很方便,
+            允许函数属性或原始属性(非函数属性).
           </li>
           <li>
-            Added the <tt>isFinite</tt> function, because sometimes knowing that
-            a value is a number just ain't quite enough.
+            增加 <tt>isFinite</tt> 函数, 因为有时候仅仅知道某变量是一个
+            数的时候还不够, 还要知道它是否是有限的数.
           </li>
           <li>
-            The <tt>sortBy</tt> function may now also be passed the string name
-            of a property to use as the sort order on each object.
+            <tt>sortBy</tt> 函数现在可以传属性名作为对象的排序标准.
           </li>
           <li>
-            Fixed <tt>uniq</tt> to work with sparse arrays.
+            修复 <tt>uniq</tt> 函数, 现在可以在稀疏数组上使用了.
           </li>
           <li>
-            The <tt>difference</tt> function now performs a shallow flatten
-            instead of a deep one when computing array differences.
+            <tt>difference</tt> 函数现在在对比数组差异的时候只执行浅度的flatten,
+            取代之前的深度flatten.
           </li>
           <li>
-            The <tt>debounce</tt> function now takes an <tt>immediate</tt>
-            parameter, which will cause the callback to fire on the leading 
-            instead of the trailing edge.
+            <tt>debounce</tt> 函数现在多了一个参数 <tt>immediate</tt>,
+            会影响到达时间间隔后执行的是最先的函数调用还是最后的函数调用.
           </li>
         </ul>
       </p>
 
       <p>
-        <b class="header">1.3.1</b> &mdash; <small><i>Jan. 23, 2012</i></small><br />
+        <b class="header">1.3.1</b> &mdash; <small><i>2012年1月23日</i></small><br />
         <ul>
           <li>
-            Added an <tt>_.has</tt> function, as a safer way to use <tt>hasOwnProperty</tt>.
+            增加 <tt>_.has</tt> 函数, 作为 <tt>hasOwnProperty</tt> 更安全的版本.
           </li>
           <li>
-            Added <tt>_.collect</tt> as an alias for <tt>_.map</tt>. Smalltalkers, rejoice.
+            增加 <tt>_.collect</tt> , 作为 <tt>_.map</tt> 的别名. 
           </li>
           <li>
-            Reverted an old change so that <tt>_.extend</tt> will correctly copy
-            over keys with undefined values again.
+            恢复一个旧的修改, <tt>_.extend</tt> 将再次可以正确复制
+            拥有undefined值的属性.
           </li>
           <li>
-            Bugfix to stop escaping slashes within interpolations in <tt>_.template</tt>.
+            修复在 <tt>_.template</tt> 的嵌入语句里反转义斜杠的bug.
           </li>
         </ul>
       </p>
@@ -1615,9 +1610,9 @@ _([1, 2, 3]).value();
         <b class="header">1.3.0</b> &mdash; <small><i>2012年1月11日</i></small><br />
         <ul>
           <li>
-            Removed AMD (RequireJS) support from Underscore. If you'd like to use
-            Underscore with RequireJS, you can load it as a normal script, wrap
-            or patch your copy, or download a forked version.
+            移除Underscore对AMD(RequireJS)的支持. 如果您想继续在
+            RequireJS里使用Underscore, 可以作为一个普通的script加载,
+            封装或修改您的Underscore副本, 或者下载一个Underscore别的fork版本.
           </li>
         </ul>
       </p>
@@ -1626,21 +1621,20 @@ _([1, 2, 3]).value();
         <b class="header">1.2.4</b> &mdash; <small><i>Jan. 4, 2012</i></small><br />
         <ul>
           <li>
-            You now can (and probably should, as it's simpler) 
-            write <tt>_.chain(list)</tt> 
-            instead of <tt>_(list).chain()</tt>.
+            您现在可以写 (您应该会这样用, 因为这样更简单) 
+            <tt>_.chain(list)</tt> 
+            来代替 <tt>_(list).chain()</tt>.
           </li>
           <li>
-            Fix for escaped characters in Underscore templates, and for supporting
-            customizations of <tt>_.templateSettings</tt> that only define one or
-            two of the required regexes.
+            修复已反转义的字符在Underscore模板里的错误, 并增加了支持自定义支持,
+            使用<tt>_.templateSettings</tt>, 只需要定义一到两个必备的正则表达式.
           </li>
           <li>
-            Fix for passing an array as the first argument to an <tt>_.wrap</tt>'d function.
+            修复以数组作为第一参数传给<tt>_.wrap</tt>函数的错误.
           </li>
           <li>
-            Improved compatibility with ClojureScript, which adds a <tt>call</tt>
-            function to <tt>String.prototype</tt>.
+            改进与ClojureScript的兼容性, 增加<tt>call</tt>
+            函数到<tt>String.prototype</tt>里.
           </li>
         </ul>
       </p>
