@@ -1319,7 +1319,7 @@ _.uniqueId('contact_');
       <p id="escape">
         <b class="header">escape</b><code>_.escape(string)</code>
         <br />
-        转移HTML字符串, 替换
+        转义HTML字符串, 替换
         <tt>&amp;</tt>, <tt>&lt;</tt>, <tt>&gt;</tt>, <tt>&quot;</tt>, <tt>&#x27;</tt>, 和 <tt>&#x2F;</tt> 字符.
       </p>
       <pre>
@@ -1345,7 +1345,7 @@ _.result(object, 'stuff');
         将 JavaScript 模板编译为可以用于页面呈现的函数, 对于通过JSON数据源生成复杂的HTML并呈现出来的操作非常有用.
         模板函数可以通过以下两种方式插入到页面中, 使用
         <tt>&lt;%= &hellip; %&gt;</tt>, 也可以用<tt>&lt;% &hellip; %&gt;</tt>执行任意的 JavaScript 代码.
-        如果您希望插入一个值, 并让其进行HTML转移,
+        如果您希望插入一个值, 并让其进行HTML转义,
         当您使用创建一个模板时使用 <tt>&lt;%- &hellip; %&gt;</tt> , 传入一个含有与模板对应属性的对象 <b>data</b>.
         如果您要写一个一次性的, 您可以传对象 <b>data</b> 
         作为第二个参数给模板 <b>template</b> 来直接呈现,
@@ -1381,7 +1381,7 @@ compiled({epithet: "stooge"});
         您可以改变Underscore的模板设置, 
         使用别的符号来嵌入代码.
         定义一个 <b>interpolate</b> 正则表达式来逐字匹配
-        嵌入代码的语句, 如果想插入转移后的HTML代码
+        嵌入代码的语句, 如果想插入转义后的HTML代码
         则需要定义一个 <b>escape</b> 正则表达式来匹配,
         还有一个 <b>evaluate</b> 正则表达式来匹配
         您想要直接一次性执行程序而不需要任何返回值的语句.
@@ -1665,7 +1665,7 @@ _([1, 2, 3]).value();
             还有, 数组只会对比他们数字元素 <small>(#351)</small>.
           </li>
           <li>
-            <tt>_.escape</tt> 不再尝试在非双重转移的转移HTML实体上进行转换.
+            <tt>_.escape</tt> 不再尝试在非双重转义的转义HTML实体上进行转换.
             现在不管怎样只会反转义一次 <small>(#350)</small>.
           </li>
           <li>
