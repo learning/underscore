@@ -106,6 +106,11 @@
       td {
         padding: 2px 12px 2px 0;
       }
+      table .rule {
+        height: 1px;
+        background: #ccc;
+        margin: 5px 0;
+      }
     ul {
       list-style-type: circle;
       padding: 0 0 0 20px;
@@ -135,9 +140,9 @@
           border-left: 5px solid #bbb;
           margin: 0px 0 30px;
         }
-    @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
-          only screen and (-o-min-device-pixel-ratio: 3/2),
-          only screen and (min-device-pixel-ratio: 1.5) {
+    @media only screen and (-webkit-min-device-pixel-ratio: 1.5) and (max-width: 640px),
+          only screen and (-o-min-device-pixel-ratio: 3/2) and (max-width: 640px),
+          only screen and (min-device-pixel-ratio: 1.5) and (max-width: 640px) {
       img {
         max-width: 100%;
       }
@@ -174,7 +179,7 @@
   <div id="sidebar" class="interface">
 
     <a class="toc_title" href="#">
-      Underscore.js <span class="version">(1.3.3)</span>
+      Underscore.js <span class="version">(1.4.2)</span>
     </a>
 
     <a class="toc_title" href="#">
@@ -191,17 +196,18 @@
       <li>- <a href="#reduceRight">reduceRight</a></li>
       <li>- <a href="#find">find</a></li>
       <li>- <a href="#filter">filter</a></li>
+      <li>- <a href="#where">where</a></li>
       <li>- <a href="#reject">reject</a></li>
       <li>- <a href="#all">all</a></li>
       <li>- <a href="#any">any</a></li>
-      <li>- <a href="#include">include</a></li>
+      <li>- <a href="#contains">contains</a></li>
       <li>- <a href="#invoke">invoke</a></li>
       <li>- <a href="#pluck">pluck</a></li>
       <li>- <a href="#max">max</a></li>
       <li>- <a href="#min">min</a></li>
       <li>- <a href="#sortBy">sortBy</a></li>
       <li>- <a href="#groupBy">groupBy</a></li>
-      <li>- <a href="#sortedIndex">sortedIndex</a></li>
+      <li>- <a href="#countBy">countBy</a></li>
       <li>- <a href="#shuffle">shuffle</a></li>
       <li>- <a href="#toArray">toArray</a></li>
       <li>- <a href="#size">size</a></li>
@@ -223,8 +229,10 @@
       <li>- <a href="#difference">difference</a></li>
       <li>- <a href="#uniq">uniq</a></li>
       <li>- <a href="#zip">zip</a></li>
+      <li>- <a href="#object">object</a></li>
       <li>- <a href="#indexOf">indexOf</a></li>
       <li>- <a href="#lastIndexOf">lastIndexOf</a></li>
+      <li>- <a href="#sortedIndex">sortedIndex</a></li>
       <li>- <a href="#range">range</a></li>
     </ul>
 
@@ -251,9 +259,12 @@
     <ul class="toc_section">
       <li>- <a href="#keys">keys</a></li>
       <li>- <a href="#values">values</a></li>
+      <li>- <a href="#pairs">pairs</a></li>
+      <li>- <a href="#invert">invert</a></li>
       <li>- <a href="#object-functions">functions</a></li>
       <li>- <a href="#extend">extend</a></li>
       <li>- <a href="#pick">pick</a></li>
+      <li>- <a href="#omit">omit</a></li>
       <li>- <a href="#defaults">defaults</a></li>
       <li>- <a href="#clone">clone</a></li>
       <li>- <a href="#tap">tap</a></li>
@@ -283,6 +294,7 @@
       <li>- <a href="#noConflict">noConflict</a></li>
       <li>- <a href="#identity">identity</a></li>
       <li>- <a href="#times">times</a></li>
+      <li>- <a href="#random">random</a></li>
       <li>- <a href="#mixin">mixin</a></li>
       <li>- <a href="#uniqueId">uniqueId</a></li>
       <li>- <a href="#escape">escape</a></li>
@@ -317,14 +329,14 @@
     <p>
       <i>此版本由<a href="https://github.com/learning">Learning</a>翻译, 如有翻译不当或者更好的翻译建议, 欢迎大家到 <a href="https://github.com/learning/underscore/issues">问题反馈</a> 处提交.</i>
     </p>
-    
+
     <p>
       <a href="http://github.com/documentcloud/underscore/">Underscore</a> 是一个JavaScript实用库,提供了类似<a href="http://prototypejs.org/api">Prototype.js</a>
       (或 <a href="http://www.ruby-doc.org/core/classes/Enumerable.html">Ruby</a>)的一些功能,但是没有继承任何JavaScript内置对象。它弥补了部分<a href="http://docs.jquery.com">jQuery</a>没有实现的功能,同时又是<a href="http://backbonejs.org">Backbone.js</a>必不可少的部分。
     </p>
 
     <p>
-      Underscore提供了60多个函数,包括常用的: <b>map</b>, <b>select</b>, <b>invoke</b> &mdash; 当然还有更多专业的辅助函数,如:函数绑定, JavaScript模板功能, 强类型相等测试, 等等. 在新的浏览器中, 有许多函数如果浏览器本身直接支持,将会采用原生的,如 <b>forEach</b>, <b>map</b>, <b>reduce</b>,
+      Underscore提供了80多个函数,包括常用的: <b>map</b>, <b>select</b>, <b>invoke</b> &mdash; 当然还有更多专业的辅助函数,如:函数绑定, JavaScript模板功能, 强类型相等测试, 等等. 在新的浏览器中, 有许多函数如果浏览器本身直接支持,将会采用原生的,如 <b>forEach</b>, <b>map</b>, <b>reduce</b>,
       <b>filter</b>, <b>every</b>, <b>some</b> 和 <b>indexOf</b>.
     </p>
 
@@ -353,16 +365,21 @@
 
     <table>
       <tr>
-        <td><a href="underscore.js">开发版 (1.3.3)</a></td>
-        <td><i>37kb, 未压缩版, 含大量注释</i></td>
+        <td><a href="underscore.js">开发版 (1.4.2)</a></td>
+        <td><i>40kb, 未压缩版, 含大量注释</i></td>
       </tr>
       <tr>
-        <td><a href="underscore-min.js">发布版 (1.3.3)</a></td>
+        <td><a href="underscore-min.js">发布版 (1.4.2)</a></td>
         <td><i>4kb, 最简化并用Gzip压缩</i></td>
       </tr>
+      <tr>
+        <td colspan="2"><div class="rule"></div></td>
+      </tr>
+      <tr>
+        <td><a href="https://raw.github.com/documentcloud/underscore/master/underscore.js">不稳定版</a></td>
+        <td><i>未发布版本, 当前开发中的 <tt>master</tt> 分支, 如果您要使用, 请确保您知道自己在做什么.</i></td>
+      </tr>
     </table>
-
-    <div class="warning">升级警示: 1.3.0 以上版本去掉了对 AMD (RequireJS) 的支持.</div>
 
     <div id="documentation">
 
@@ -447,6 +464,18 @@ var evens = _.filter([1, 2, 3, 4, 5, 6], function(num){ return num % 2 == 0; });
 =&gt; [2, 4, 6]
 </pre>
 
+      <p id="where">
+        <b class="header">where</b><code>_.where(list, properties)</code>
+        <br />
+        遍历 <b>list</b> 里的每一个值, 返回包含 <b>properties</b> 里所有
+        key-value 组合的对象的数组.
+      </p>
+      <pre>
+_.where(listOfPlays, {author: "Shakespeare", year: 1611});
+=&gt; [{title: "Cymbeline", author: "Shakespeare", year: 1611},
+    {title: "The Tempest", author: "Shakespeare", year: 1611}]
+</pre>
+
       <p id="reject">
         <b class="header">reject</b><code>_.reject(list, iterator, [context])</code>
         <br />
@@ -481,15 +510,15 @@ _.any([null, 0, 'yes', false]);
 =&gt; true
 </pre>
 
-      <p id="include">
-        <b class="header">include</b><code>_.include(list, value)</code>
-        <span class="alias">别名: <b>contains</b></span>
+      <p id="contains">
+        <b class="header">contains</b><code>_.contains(list, value)</code>
+        <span class="alias">别名: <b>include</b></span>
         <br />
-        如果 <b>value</b> 存在与 <b>list</b> 里, 返回 <i>true</i>, 使用
-        <i>===</i> 来测试相等性. 如果 <b>list</b> 是一个数组, 内部会使用 <b>indexOf</b> 来代替.
+        如果 <b>value</b> 存在与 <b>list</b> 里, 返回 <i>true</i>.
+        如果 <b>list</b> 是一个数组, 内部会使用 <b>indexOf</b>.
       </p>
       <pre>
-_.include([1, 2, 3], 3);
+_.contains([1, 2, 3], 3);
 =&gt; true
 </pre>
 
@@ -519,7 +548,7 @@ _.pluck(stooges, 'name');
         <b class="header">max</b><code>_.max(list, [iterator], [context])</code>
         <br />
         返回 <b>list</b> 里最大的元素. 如果传入了 <b>iterator</b>,
-        它将用来获取要比较的值.
+        它将用来比较每个值.
       </p>
       <pre>
 var stooges = [{name : 'moe', age : 40}, {name : 'larry', age : 50}, {name : 'curly', age : 60}];
@@ -531,7 +560,7 @@ _.max(stooges, function(stooge){ return stooge.age; });
         <b class="header">min</b><code>_.min(list, [iterator], [context])</code>
         <br />
         返回 <b>list</b> 里最小的元素. 如果传入了 <b>iterator</b>,
-        它将用来获取要比较的值.
+        它将用来比较每个值.
       </p>
       <pre>
 var numbers = [10, 5, 100, 2, 1000];
@@ -564,16 +593,18 @@ _.groupBy(['one', 'two', 'three'], 'length');
 =&gt; {3: ["one", "two"], 5: ["three"]}
 </pre>
 
-      <p id="sortedIndex">
-        <b class="header">sortedIndex</b><code>_.sortedIndex(list, value, [iterator])</code>
+      <p id="countBy">
+        <b class="header">countBy</b><code>_.countBy(list, iterator)</code>
         <br />
-        为了保持 <b>list</b> 已经排好的顺序, 使用二进制搜索来检测 <b>value</b>
-        <i>应该</i> 插入到 <b>list</b> 里的所在位置的索引.
-        如果传入了一个 <b>iterator</b> , 它将用来计算每个值的排名.
+        把一个数组分组并返回每一组内对象个数.
+        与 <tt>groupBy</tt> 相似, 但不是返回一组值,
+        而是组内对象的个数.
       </p>
       <pre>
-_.sortedIndex([10, 20, 30, 40, 50], 35);
-=&gt; 3
+_.countBy([1, 2, 3, 4, 5], function(num) { 
+  return num % 2 == 0 ? 'even' : 'odd'; 
+});
+=&gt; {odd: 3, even: 2}
 </pre>
 
       <p id="shuffle">
@@ -610,7 +641,10 @@ _.size({one : 1, two : 2, three : 3});
       <h2 id="arrays">数组函数</h2>
 
       <p>
-        <i>注意: 所有数组函数都可以用在 <b>arguments</b> 对象上.</i>
+        <i>
+          注意: 所有数组函数都可以用在 <b>arguments</b> 对象上.
+          然而, Underscore 函数的设计并不只是针对稀疏数组的.
+        </i>
       </p>
 
       <p id="first">
@@ -649,7 +683,7 @@ _.last([5, 4, 3, 2, 1]);
 
       <p id="rest">
         <b class="header">rest</b><code>_.rest(array, [index])</code>
-        <span class="alias">别名: <b>tail</b></span>
+        <span class="alias">别名: <b>tail, drop</b></span>
         <br />
         返回一个数组里除了第一个以外 <b>剩余的</b> 所有元素. 传参 <b>index</b>
         将返回除了第 <b>index</b> 个元素以外剩余的所有元素.
@@ -689,7 +723,6 @@ _.flatten([1, [2], [3, [[4]]]], true);
         <b class="header">without</b><code>_.without(array, [*values])</code>
         <br />
         返回一个除去所有 <b>values</b> 后的 <b>array</b> 副本.
-        将使用 <i>===</i> 来做相等测试.
       </p>
       <pre>
 _.without([1, 2, 1, 0, 3, 1, 4], 0, 1);
@@ -754,12 +787,28 @@ _.zip(['moe', 'larry', 'curly'], [30, 40, 50], [true, false, false]);
 =&gt; [["moe", 30, true], ["larry", 40, false], ["curly", 50, false]]
 </pre>
 
+      <p id="object">
+        <b class="header">object</b><code>_.object(list, [values])</code>
+        <br />
+        把数组转换成对象. 传一个或多个
+        <tt>[key, value]</tt> 形式的数组,
+        或者一个包含key的数组和一个包含value的数组.
+      </p>
+      <pre>
+_.object(['moe', 'larry', 'curly'], [30, 40, 50]);
+=&gt; {moe: 30, larry: 40, curly: 50}
+
+_.object([['moe', 30], ['larry', 40], ['curly', 50]]);
+=&gt; {moe: 30, larry: 40, curly: 50}
+</pre>
+
       <p id="indexOf">
         <b class="header">indexOf</b><code>_.indexOf(array, value, [isSorted])</code>
         <br />
         返回元素 <b>value</b> 在数组 <b>array</b> 里的索引位置,
         如果元素没在数组 <b>array</b> 中, 将返回 <i>-1</i>. 此函数将使用原生的 <b>indexOf</b> 方法, 除非原生的方法无故消失或者被覆盖重写了, 才使用非原生的.
-        如果您要处理一个大型数组, 而且确定数组已经排序, 参数 <b>isSorted</b> 可以传 <tt>true</tt>, 函数将使用更快的二进制搜索来进行处理.
+        如果您要处理一个大型数组, 而且确定数组已经排序, 参数 <b>isSorted</b> 可以传 <tt>true</tt>, 函数将使用更快的二进制搜索来进行处理... 或者, 传一个数字作为
+        第三个参数, 以便于在指定索引之后开始寻找对应值.
       </p>
       <pre>
 _.indexOf([1, 2, 3], 2);
@@ -767,15 +816,27 @@ _.indexOf([1, 2, 3], 2);
 </pre>
 
       <p id="lastIndexOf">
-        <b class="header">lastIndexOf</b><code>_.lastIndexOf(array, value)</code>
+        <b class="header">lastIndexOf</b><code>_.lastIndexOf(array, value, [fromIndex])</code>
         <br />
         返回元素 <b>value</b> 在数组 <b>arrry</b> 里最后一次出现的索引位置,
         如果元素没在数组 <b>array</b> 中, 将返回 <i>-1</i>. 
-        如有可能, 此函数将使用原生的 <b>lastIndexOf</b> 方法.
+        如有可能, 此函数将使用原生的 <b>lastIndexOf</b> 方法. 传参 <b>fromIndex</b> 以便从指定索引开始寻找.
       </p>
       <pre>
 _.lastIndexOf([1, 2, 3, 1, 2, 3], 2);
 =&gt; 4
+</pre>
+
+      <p id="sortedIndex">
+        <b class="header">sortedIndex</b><code>_.sortedIndex(list, value, [iterator])</code>
+        <br />
+        为了保持 <b>list</b> 已经排好的顺序, 使用二进制搜索来检测 <b>value</b>
+        <i>应该</i> 插入到 <b>list</b> 里的所在位置的索引.
+        如果传入了一个 <b>iterator</b> , 它将用来计算每个值的排名, 包括所传的 <b>value</b> 参数.
+      </p>
+      <pre>
+_.sortedIndex([10, 20, 30, 40, 50], 35);
+=&gt; 3
 </pre>
 
       <p id="range">
@@ -875,8 +936,8 @@ _.defer(function(){ alert('deferred'); });
         <b class="header">throttle</b><code>_.throttle(function, wait)</code>
         <br />
         返回一个类似于节流阀一样的函数, 
-        对于高频率(高到您感觉不到)执行的函数非常有用.
-        当高频率的调用函数, 实际上会每隔 <b>wait</b> 毫秒才会调用一次. 
+        当高频率的调用函数, 实际上会每隔 <b>wait</b> 毫秒才会调用一次.
+        对于高到您感觉不到的高频率执行的函数时非常有用.
       </p>
       <pre>
 var throttled = _.throttle(updatePosition, 100);
@@ -899,7 +960,7 @@ $(window).scroll(throttled);
         触发最后的函数调用而不是最先的函数调用.
         在类似不小心点了提交按钮两下而提交了两次的情况下很有用.
       </p>
-      
+
       <pre>
 var lazyLayout = _.debounce(calculateLayout, 300);
 $(window).resize(lazyLayout);
@@ -989,9 +1050,30 @@ _.values({one : 1, two : 2, three : 3});
 =&gt; [1, 2, 3]
 </pre>
 
+      <p id="pairs">
+        <b class="header">pairs</b><code>_.pairs(object)</code>
+        <br />
+        把一个对象转换成一个 <tt>[key, value]</tt> 形式的数组.
+      </p>
+      <pre>
+_.pairs({one: 1, two: 2, three: 3});
+=&gt; [["one", 1], ["two", 2], ["three", 3]]
+</pre>
+
+      <p id="invert">
+        <b class="header">invert</b><code>_.invert(object)</code>
+        <br />
+        返回一个 <b>object</b> 的副本, 并且里面键和值是对调的.
+        要使之有效, 必须确保object里所有的值都是唯一的且可以序列号成字符串.
+      </p>
+      <pre>
+_.invert({Moe: "Moses", Larry: "Louis", Curly: "Jerome"});
+=&gt; {Moses: "Moe", Louis: "Larry", Jerome: "Curly"};
+</pre>
+
       <p id="object-functions">
         <b class="header">functions</b><code>_.functions(object)</code>
-        <span class="alias">别名: <b>methods</b></span>
+        <span class="alias">Alias: <b>methods</b></span>
         <br />
         返回一个对象里所有的方法名, 而且是已经排序的 &mdash;
         也就是说, 对象里每个方法(属性值是一个函数)的名称.
@@ -1006,7 +1088,7 @@ _.functions(_);
         <br />
         复制 <b>source</b> 对象的所有属性到
         <b>destination</b> 对象上, 然后返回 <b>destination</b> 对象.
-        复制是按顺序的, <b>*sources</b>后面的对象属性会把前面的对象属性覆盖掉(如果有重复).
+        复制是按顺序的, 所以后面的对象属性会把前面的对象属性覆盖掉(如果有重复).
       </p>
       <pre>
 _.extend({name : 'moe'}, {age : 50});
@@ -1021,6 +1103,17 @@ _.extend({name : 'moe'}, {age : 50});
       </p>
       <pre>
 _.pick({name : 'moe', age: 50, userid : 'moe1'}, 'name', 'age');
+=&gt; {name : 'moe', age : 50}
+</pre>
+
+      <p id="omit">
+        <b class="header">omit</b><code>_.omit(object, *keys)</code>
+        <br />
+        返回一个 <b>object</b> 对象的副本, 过滤掉了黑名单里的
+        <b>keys</b> (keys可以是单个key也可以是包含多个key的数组).
+      </p>
+      <pre>
+_.omit({name : 'moe', age : 50, userid : 'moe1'}, 'userid');
 =&gt; {name : 'moe', age : 50}
 </pre>
 
@@ -1250,7 +1343,7 @@ _.isNull(undefined);
 </pre>
 
       <p id="isUndefined">
-        <b class="header">isUndefined</b><code>_.isUndefined(variable)</code>
+        <b class="header">isUndefined</b><code>_.isUndefined(value)</code>
         <br />
         如果 <b>variable</b> 是 <i>undefined</i>, 将会返回 <i>true</i> .
       </p>
@@ -1285,9 +1378,21 @@ moe === _.identity(moe);
         <b class="header">times</b><code>_.times(n, iterator, [context])</code>
         <br />
         调用指定的 iterator 函数 <b>n</b> 次.
+        <b>iterator</b> 的每一次调用都带 <tt>index</tt> 参数.
       </p>
       <pre>
-_(3).times(function(){ genie.grantWish(); });</pre>
+_(3).times(function(n){ genie.grantWishNumber(n); });</pre>
+
+      <p id="random">
+        <b class="header">random</b><code>_.random(min, max)</code>
+        <br />
+        返回一个介于 <b>min</b> 和 <b>max</b> 之间(包含)的整数.
+        如果直传一个参数, 将会返回一个介于 <tt>0</tt>
+        和参数之间的整数.
+      </p>
+      <pre>
+_.random(0, 100);
+=&gt; 42</pre>
 
       <p id="mixin">
         <b class="header">mixin</b><code>_.mixin(object)</code>
@@ -1330,7 +1435,7 @@ _.escape('Curly, Larry &amp; Moe');
         <b class="header">result</b><code>_.result(object, property)</code>
         <br />
         如果对象 <b>object</b> 中的属性 <b>property</b> 是函数,
-        则调用它, 否则, 返回它
+        则调用它, 否则, 返回它.
       </p>
       <pre>
 var object = {cheese: 'crumpets', stuff: function(){ return 'nonsense'; }};
@@ -1406,8 +1511,8 @@ template({name : "Mustache"});
       </p>
 
       <pre>
-_.template("<%= data.hasWith %>", {hasWith: 'no'}, {variable: 'data'});
-=&gt; "no"</pre>
+_.template("Using 'with': <%= data.answer %>", {answer: 'no'}, {variable: 'data'});
+=&gt; "Using 'with': no"</pre>
 
       <p>
         预编译模板对调试不可重现的错误很有帮助.
@@ -1496,24 +1601,48 @@ _([1, 2, 3]).value();
       <h2 id="links">更多链接 &amp; 推荐阅读</h2>
 
       <p>
+        Underscore文档也有
+        <a href="http://learning.github.com/underscore/">简体中文</a> 版(其实您现在所看到的就是).
+      </p>
+
+      <p>
         <a href="http://mirven.github.com/underscore.lua/">Underscore.lua</a>,
         一个Lua版本的Underscore, 函数都通用.
         包含面向对象封装和链式语法.
-        <a href="http://github.com/mirven/underscore.lua">源代码</a> 可以从Github上下找到.
+        (<a href="http://github.com/mirven/underscore.lua">源码</a>)
+      </p>
+
+      <p>
+        <a href="http://underscorem.org">Underscore.m</a>, 一个 Objective-C 版本的
+        Underscore.js, 实现了大部分函数, 它的语法鼓励使用链式语法.
+        (<a href="https://github.com/robb/Underscore.m">源码</a>)
+      </p>
+
+      <p>
+        <a href="http://kmalakoff.github.com/_.m/">_.m</a>, 另一个
+        Objective-C 版本, 这个版本与原始的
+        Underscore.js API 比较相近.
+        (<a href="https://github.com/kmalakoff/_.m">源码</a>)
       </p>
 
       <p>
         <a href="http://brianhaveri.github.com/Underscore.php/">Underscore.php</a>,
         一个PHP版本的Underscore, 函数都通用.
         包含面向对象封装和链式语法.
-        <a href="http://github.com/brianhaveri/Underscore.php">源代码</a> 可以从Github上找到.
+        (<a href="http://github.com/brianhaveri/Underscore.php">源码</a>)
       </p>
 
       <p>
         <a href="http://vti.github.com/underscore-perl/">Underscore-perl</a>,
         一个Perl版本的Underscore, 实现了大部分功能,
-        主要针对于Perl的哈希表和数组, 
-        <a href="https://github.com/vti/underscore-perl/">也可以在GitHub上找到</a>.
+        主要针对于Perl的哈希表和数组.
+        (<a href="https://github.com/vti/underscore-perl/">源码</a>)
+      </p>
+
+      <p>
+        <a href="http://russplaysguitar.github.com/UnderscoreCF/">Underscore.cfc</a>,
+        一个 Coldfusion 版本的 Underscore.js, 实现了大部分函数.
+        (<a href="https://github.com/russplaysguitar/underscorecf">源码</a>)
       </p>
 
       <p>
@@ -1528,8 +1657,7 @@ _([1, 2, 3]).value();
       </p>
 
       <p>
-        <a href="http://www.prototypejs.org/">Prototype.js</a>, 
-        提供类似于Ruby枚举方式的JavaScript集合函数.
+        <a href="http://www.prototypejs.org/">Prototype.js</a>, 提供类似于Ruby枚举方式的JavaScript集合函数.
       </p>
 
       <p>
@@ -1539,7 +1667,7 @@ _([1, 2, 3]).value();
       </p>
 
       <p>
-        Michael Aufreiter的 <a href="http://substance.io/#michael/data-js">Data.js</a>,
+        Michael Aufreiter的 <a href="http://github.com/michael/data">Data.js</a>,
         一个JavaScript的数据操作和持久化的类库.
       </p>
 
@@ -1549,6 +1677,84 @@ _([1, 2, 3]).value();
 
       <h2 id="changelog">更新日志</h2>
       
+      <p>
+        <b class="header">1.4.2</b> &mdash; <small><i>2012年10月1日</i></small>  &mdash; <a href="https://github.com/documentcloud/underscore/compare/1.4.1...1.4.2">比较文件</a><br />
+        <ul>
+          <li>
+            为了保证向下兼容, 恢复了 1.4.0 候选版时的一些特性
+            当传 <tt>null</tt> 到迭代函数时. 现在又变回非可选参数了.
+          </li>
+        </ul>
+      </p>
+      
+      <p>
+        <b class="header">1.4.1</b> &mdash; <small><i>Oct. 1, 2012</i></small>  &mdash; <a href="https://github.com/documentcloud/underscore/compare/1.4.0...1.4.1">比较文件</a><br />
+        <ul>
+          <li>
+            修复 1.4.0 版本里 <tt>lastIndexOf</tt> 函数的退化.
+          </li>
+        </ul>
+      </p>
+      
+      <p>
+        <b class="header">1.4.0</b> &mdash; <small><i>Sept. 27, 2012</i></small>  &mdash; <a href="https://github.com/documentcloud/underscore/compare/1.3.3...1.4.0">比较文件</a><br />
+        <ul>
+          <li>
+            增加 <tt>pairs</tt> 函数, 把一个 JavaScript 对象转换成
+            <tt>[key, value]</tt> 的组合 ... 同样地, 也有 <tt>object</tt> 
+            函数, 把 <tt>[key, value]</tt> 的数组组合转换成对象.
+          </li>
+          <li>
+            增加 <tt>countBy</tt> 函数, 可以计算数组内符合条件的对象个数.
+          </li>
+          <li>
+            增加 <tt>invert</tt> 函数, 在对象里实现一个简单的键值对调.
+          </li>
+          <li>
+            增加 <tt>where</tt> 函数, 以便于筛选出一个数组里包含指定键值的对象数组.
+          </li>
+          <li>
+            增加 <tt>omit</tt> 函数, 可以过滤掉对象里的对应key的属性.
+          </li>
+          <li>
+            增加 <tt>random</tt> 函数, 生成指定范围内的随机数.
+          </li>
+          <li>
+            用 <tt>_.debounce</tt> 创建的函数现在会返回上一次更新后的值,
+            就像 <tt>_.throttle</tt> 加工过的函数一样.
+          </li>
+          <li>
+            <tt>sortBy</tt> 函数现在使用了稳定的排序算法.
+          </li>
+          <li>
+            增加可选参数 <tt>fromIndex</tt> 到 <tt>indexOf</tt> 和
+            <tt>lastIndexOf</tt> 函数里.
+          </li>
+          <li>
+            Underscore 的迭代函数里不再支持稀疏数组.
+            请使用 <tt>for</tt> 循环来代替 (或者会更好).
+          </li>
+          <li>
+            <tt>min</tt> 和 <tt>max</tt> 函数现在可以用在
+            <i>非常</i>大的数组上.
+          </li>
+          <li>
+            模板引擎里插入变量现在可以使用 <tt>null</tt> 和
+            <tt>undefined</tt> 作为空字符串.
+          </li>
+          <li>
+            <del>Underscore 的迭代函数不再接受 <tt>null</tt> 
+            作为非可选参数. 否则您将得到一个错误提示.</del>
+          </li>
+          <li>
+            一些小幅修复和调整, 可以在此查看与之前版本的
+            <a href="https://github.com/documentcloud/underscore/compare/1.3.3...1.4.0">比较</a>.
+            <b>1.4.0</b> 可能比较不向下兼容, 这取决于您怎么使用Underscore
+            &mdash; 请在升级后进行测试。
+          </li>
+        </ul>
+      </p>
+
       <p>
         <b class="header">1.3.3</b> &mdash; <small><i>2012年4月10日</i></small><br />
         <ul>
@@ -2052,5 +2258,6 @@ _([1, 2, 3]).value();
       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
   </script>
+
 </body>
 </html>
