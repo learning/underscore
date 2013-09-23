@@ -25,6 +25,20 @@ $(document).ready(function() {
     equal(_.identity(moe), moe, 'moe is the same as his identity');
   });
 
+  test("random", function() {
+    var array = _.range(1000);
+    var min = Math.pow(2, 31);
+    var max = Math.pow(2, 62);
+
+    ok(_.every(array, function() {
+      return _.random(min, max) >= min;
+    }), "should produce a random number greater than or equal to the minimum number");
+
+    ok(_.some(array, function() {
+      return _.random(Number.MAX_VALUE) > 0;
+    }), "should produce a random number when passed `Number.MAX_VALUE`");
+  });
+
   test("uniqueId", function() {
     var ids = [], i = 0;
     while(i++ < 100) ids.push(_.uniqueId());
@@ -37,8 +51,14 @@ $(document).ready(function() {
     ok(_.isEqual(vals, [0,1,2]), "is 0 indexed");
     //
     vals = [];
-    _(3).times(function (i) { vals.push(i); });
+    _(3).times(function(i) { vals.push(i); });
     ok(_.isEqual(vals, [0,1,2]), "works as a wrapper");
+    // collects return values
+    ok(_.isEqual([0, 1, 2], _.times(3, function(i) { return i; })), "collects return values");
+
+    deepEqual(_.times(0, _.identity), []);
+    deepEqual(_.times(-1, _.identity), []);
+    deepEqual(_.times(parseFloat('-Infinity'), _.identity), []);
   });
 
   test("mixin", function() {
@@ -53,6 +73,7 @@ $(document).ready(function() {
 
   test("_.escape", function() {
     equal(_.escape("Curly & Moe"), "Curly &amp; Moe");
+    equal(_.escape('<a href="http://moe.com">Curly & Moe\'s</a>'), '&lt;a href=&quot;http://moe.com&quot;&gt;Curly &amp; Moe&#x27;s&lt;/a&gt;');
     equal(_.escape("Curly &amp; Moe"), "Curly &amp;amp; Moe");
     equal(_.escape(null), '');
   });
@@ -60,6 +81,7 @@ $(document).ready(function() {
   test("_.unescape", function() {
     var string = "Curly & Moe";
     equal(_.unescape("Curly &amp; Moe"), string);
+    equal(_.unescape('&lt;a href=&quot;http://moe.com&quot;&gt;Curly &amp; Moe&#x27;s&lt;/a&gt;'), '<a href="http://moe.com">Curly & Moe\'s</a>');
     equal(_.unescape("Curly &amp;amp; Moe"), "Curly &amp; Moe");
     equal(_.unescape(null), '');
     equal(_.unescape(_.escape(string)), string);
@@ -80,7 +102,7 @@ $(document).ready(function() {
     equal(escapeTemplate({a: true}), 'checked="checked"', 'can handle slash escapes in interpolations.');
 
     var fancyTemplate = _.template("<ul><% \
-      for (key in people) { \
+      for (var key in people) { \
     %><li><%= people[key] %></li><% } %></ul>");
     result = fancyTemplate({people : {moe : "Moe", larry : "Larry", curly : "Curly"}});
     equal(result, "<ul><li>Moe</li><li>Larry</li><li>Curly</li></ul>", 'can run arbitrary javascript in templates');
@@ -135,7 +157,7 @@ $(document).ready(function() {
       interpolate : /\{\{=([\s\S]+?)\}\}/g
     };
 
-    var custom = _.template("<ul>{{ for (key in people) { }}<li>{{= people[key] }}</li>{{ } }}</ul>");
+    var custom = _.template("<ul>{{ for (var key in people) { }}<li>{{= people[key] }}</li>{{ } }}</ul>");
     result = custom({people : {moe : "Moe", larry : "Larry", curly : "Curly"}});
     equal(result, "<ul><li>Moe</li><li>Larry</li><li>Curly</li></ul>", 'can run arbitrary javascript in templates');
 
@@ -150,7 +172,7 @@ $(document).ready(function() {
       interpolate : /<\?=([\s\S]+?)\?>/g
     };
 
-    var customWithSpecialChars = _.template("<ul><? for (key in people) { ?><li><?= people[key] ?></li><? } ?></ul>");
+    var customWithSpecialChars = _.template("<ul><? for (var key in people) { ?><li><?= people[key] ?></li><? } ?></ul>");
     result = customWithSpecialChars({people : {moe : "Moe", larry : "Larry", curly : "Curly"}});
     equal(result, "<ul><li>Moe</li><li>Larry</li><li>Curly</li></ul>", 'can run arbitrary javascript in templates');
 
@@ -173,10 +195,11 @@ $(document).ready(function() {
 
   test('_.template provides the generated function source, when a SyntaxError occurs', function() {
     try {
-      _.template('<b><%= if %></b>');
-    } catch (e) {
-      ok(e.source.indexOf('( if )') > 0);
+      _.template('<b><%= if x %></b>');
+    } catch (ex) {
+      var source = ex.source;
     }
+    ok(/__p/.test(source));
   });
 
   test('_.template handles \\u2028 & \\u2029', function() {
@@ -190,7 +213,7 @@ $(document).ready(function() {
     strictEqual(_.result(obj, 'x'), 'x');
     strictEqual(_.result(obj, 'y'), 'x');
     strictEqual(_.result(obj, 'z'), undefined);
-    strictEqual(_.result(null, 'x'), null);
+    strictEqual(_.result(null, 'x'), undefined);
   });
 
   test('_.templateSettings.variable', function() {

@@ -46,13 +46,20 @@ $(document).ready(function() {
     var result;
     equal(_.extend({}, {a:'b'}).a, 'b', 'can extend an object with the attributes of another');
     equal(_.extend({a:'x'}, {a:'b'}).a, 'b', 'properties in source override destination');
-    equal(_.extend({x:'x'}, {a:'b'}).x, 'x', 'properties not in source dont get overriden');
+    equal(_.extend({x:'x'}, {a:'b'}).x, 'x', "properties not in source don't get overriden");
     result = _.extend({x:'x'}, {a:'a'}, {b:'b'});
     ok(_.isEqual(result, {x:'x', a:'a', b:'b'}), 'can extend from multiple source objects');
     result = _.extend({x:'x'}, {a:'a', x:2}, {a:'b'});
     ok(_.isEqual(result, {x:2, a:'b'}), 'extending from multiple source objects last property trumps');
     result = _.extend({}, {a: void 0, b: null});
-    equal(_.keys(result).join(''), 'ab', 'extend does not copy undefined values');
+    equal(_.keys(result).join(''), 'ab', 'extend copies undefined values');
+
+    try {
+      result = {};
+      _.extend(result, null, undefined, {a:1});
+    } catch(ex) {}
+
+    equal(result.a, 1, 'should not error on `null` or `undefined` sources');
   });
 
   test("pick", function() {
@@ -85,17 +92,25 @@ $(document).ready(function() {
 
   test("defaults", function() {
     var result;
-    var options = {zero: 0, one: 1, empty: "", nan: NaN, string: "string"};
+    var options = {zero: 0, one: 1, empty: "", nan: NaN, nothing: null};
 
-    _.defaults(options, {zero: 1, one: 10, twenty: 20});
+    _.defaults(options, {zero: 1, one: 10, twenty: 20, nothing: 'str'});
     equal(options.zero, 0, 'value exists');
     equal(options.one, 1, 'value exists');
     equal(options.twenty, 20, 'default applied');
+    equal(options.nothing, null, "null isn't overridden");
 
     _.defaults(options, {empty: "full"}, {nan: "nan"}, {word: "word"}, {word: "dog"});
     equal(options.empty, "", 'value exists');
     ok(_.isNaN(options.nan), "NaN isn't overridden");
     equal(options.word, "word", 'new value is added, first one wins');
+
+    try {
+      options = {};
+      _.defaults(options, null, undefined, {a:1});
+    } catch(ex) {}
+
+    equal(options.a, 1, 'should not error on `null` or `undefined` sources');
   });
 
   test("clone", function() {
@@ -337,16 +352,10 @@ $(document).ready(function() {
 
     // Chaining.
     ok(!_.isEqual(_({x: 1, y: undefined}).chain(), _({x: 1, z: 2}).chain()), 'Chained objects containing different values are not equal');
-    equal(_({x: 1, y: 2}).chain().isEqual(_({x: 1, y: 2}).chain()).value(), true, '`isEqual` can be chained');
 
-    // Custom `isEqual` methods.
-    var isEqualObj = {isEqual: function (o) { return o.isEqual == this.isEqual; }, unique: {}};
-    var isEqualObjClone = {isEqual: isEqualObj.isEqual, unique: {}};
-
-    ok(_.isEqual(isEqualObj, isEqualObjClone), 'Both objects implement identical `isEqual` methods');
-    ok(_.isEqual(isEqualObjClone, isEqualObj), 'Commutative equality is implemented for objects with custom `isEqual` methods');
-    ok(!_.isEqual(isEqualObj, {}), 'Objects that do not implement equivalent `isEqual` methods are not equal');
-    ok(!_.isEqual({}, isEqualObj), 'Commutative equality is implemented for objects with different `isEqual` methods');
+    a = _({x: 1, y: 2}).chain();
+    b = _({x: 1, y: 2}).chain();
+    equal(_.isEqual(a.isEqual(b), _(true)), true, '`isEqual` can be chained');
 
     // Objects from another frame.
     ok(_.isEqual({}, iObject));
@@ -423,15 +432,19 @@ $(document).ready(function() {
   });
 
   test("isArray", function() {
+    ok(!_.isArray(undefined), 'undefined vars are not arrays');
     ok(!_.isArray(arguments), 'the arguments object is not an array');
     ok(_.isArray([1, 2, 3]), 'but arrays are');
     ok(_.isArray(iArray), 'even from another frame');
   });
 
   test("isString", function() {
+    var obj = new String("I am a string object");
     ok(!_.isString(document.body), 'the document body is not a string');
     ok(_.isString([1, 2, 3].join(', ')), 'but strings are');
     ok(_.isString(iString), 'even from another frame');
+    ok(_.isString("I am a string literal"), 'string literals are');
+    ok(_.isString(obj), 'so are String objects');
   });
 
   test("isNumber", function() {
@@ -460,10 +473,12 @@ $(document).ready(function() {
   });
 
   test("isFunction", function() {
+    ok(!_.isFunction(undefined), 'undefined vars are not functions');
     ok(!_.isFunction([1, 2, 3]), 'arrays are not functions');
     ok(!_.isFunction('moe'), 'strings are not functions');
     ok(_.isFunction(_.isFunction), 'but functions are');
     ok(_.isFunction(iFunction), 'even from another frame');
+    ok(_.isFunction(function(){}), 'even anonymous ones');
   });
 
   test("isDate", function() {
@@ -485,7 +500,9 @@ $(document).ready(function() {
     ok(!_.isFinite(NaN), 'NaN is not Finite');
     ok(!_.isFinite(Infinity), 'Infinity is not Finite');
     ok(!_.isFinite(-Infinity), '-Infinity is not Finite');
-    ok(!_.isFinite('12'), 'Strings are not numbers');
+    ok(_.isFinite('12'), 'Numeric strings are numbers');
+    ok(!_.isFinite('1a'), 'Non numeric strings are not numbers');
+    ok(!_.isFinite(''), 'Empty strings are not numbers');
     var obj = new Number(5);
     ok(_.isFinite(obj), 'Number instances can be finite');
     ok(_.isFinite(0), '0 is Finite');
@@ -544,5 +561,17 @@ $(document).ready(function() {
       tap(interceptor).
       value();
     ok(returned == 6 && intercepted == 6, 'can use tapped objects in a chain');
+  });
+
+  test("has", function () {
+     var obj = {foo: "bar", func: function () {} };
+     ok (_.has(obj, "foo"), "has() checks that the object has a property.");
+     ok (_.has(obj, "baz") == false, "has() returns false if the object doesn't have the property.");
+     ok (_.has(obj, "func"), "has() works for functions too.");
+     obj.hasOwnProperty = null;
+     ok (_.has(obj, "foo"), "has() works even when the hasOwnProperty method is deleted.");
+     var child = {};
+     child.prototype = obj;
+     ok (_.has(child, "foo") == false, "has() does not check the prototype chain for a property.")
   });
 });
