@@ -1403,7 +1403,7 @@ _.object([['moe', 30], ['larry', 40], ['curly', 50]]);
         <br />
         返回元素 <b>value</b> 在数组 <b>array</b> 里的索引位置,
         如果元素没在数组 <b>array</b> 中, 将返回 <i>-1</i>. 此函数将使用原生的 <b>indexOf</b> 方法, 除非原生的方法无故消失或者被覆盖重写了, 才使用非原生的.
-        如果您要处理一个大型数组, 而且确定数组已经排序, 参数 <b>isSorted</b> 可以传 <tt>true</tt>, 函数将使用更快的二进制搜索来进行处理... 或者, 传一个数字作为
+        如果您要处理一个大型数组, 而且确定数组已经排序, 参数 <b>isSorted</b> 可以传 <tt>true</tt>, 函数将使用更快的二分搜索来进行处理... 或者, 传一个数字作为
         第三个参数, 以便于在指定索引之后开始寻找对应值.
       </p>
       <pre>
@@ -1447,7 +1447,7 @@ _.lastIndexOf([1, 2, 3, 1, 2, 3], 2);
       <p id="sortedIndex">
         <b class="header">sortedIndex</b><code>_.sortedIndex(list, value, [iterator])</code>
         <br />
-        为了保持 <b>list</b> 已经排好的顺序, 使用二进制搜索来检测 <b>value</b>
+        为了保持 <b>list</b> 已经排好的顺序, 使用二分搜索来检测 <b>value</b>
         <i>应该</i> 插入到 <b>list</b> 里的所在位置的索引.
         如果传入了一个 <b>iterator</b> , 它将用来计算每个值的排名, 包括所传的 <b>value</b> 参数.
       </p>
@@ -1633,6 +1633,7 @@ _.delay(log, 1000, 'logged later');
 var log = _.bind(console.log, console);
 _.delay(log, 1000, 'logged later');
 =&gt; 'logged later' // 一秒钟后显示.
+</pre>
 
 <!--
       <p id="defer">
@@ -2613,15 +2614,7 @@ _.result(object, 'stuff');
       <p id="template">
         <b class="header">template</b><code>_.template(templateString, [data], [settings])</code>
         <br />
-        将 JavaScript 模板编译为可以用于页面呈现的函数, 对于通过JSON数据源生成复杂的HTML并呈现出来的操作非常有用.
-        模板函数可以通过以下两种方式插入到页面中, 使用
-        <tt>&lt;%= &hellip; %&gt;</tt>, 也可以用<tt>&lt;% &hellip; %&gt;</tt>执行任意的 JavaScript 代码.
-        如果您希望插入一个值, 并让其进行HTML转义,
-        当您使用创建一个模板时使用 <tt>&lt;%- &hellip; %&gt;</tt> , 传入一个含有与模板对应属性的对象 <b>data</b>.
-        如果您要写一个一次性的, 您可以传对象 <b>data</b> 
-        作为第二个参数给模板 <b>template</b> 来直接呈现,
-        这样页面会立即呈现而不是返回一个模板函数.
-        参数 <b>settings</b> 是一个哈希表包含任何可以覆盖的设置 <tt>_.templateSettings</tt>.
+        将Javascript模板编译为可以用于描绘页面的函数。在从JSON数据源中描绘出一些复杂的HTML时十分有用。模板函数中既可以使用“<tt>&lt;%= &hellip; %&gt;</tt>”插入变量，也可以使用“<tt>&lt;% &hellip; %&gt;</tt>”来执行任意的Javascript代码。如果你想插入一个经过HTML转义处理的值，可以使用“<tt>&lt;%- &hellip; %&gt;</tt>”。当你使用模板函数时，传入一个<b>data</b>对象，这个<b>data</b>对象应当拥有对应于模板中的各个自由变量的属性成员。如果你只是想写一个一次性的代码段，你可以将<b>data</b>对象作为<b>template</b>的第二个参数传入以便立即进行描绘，而非返回一个模板函数。<b>setting</b>参数应当是一个哈希表，包含任何应当被覆盖的<tt>_.templateSetting</tt>的值。
       </p>
 
       <pre>
@@ -2644,8 +2637,7 @@ template({value: '&lt;script&gt;'});
       </p>
 -->
       <p>
-        您也可以在JavaScript代码中使用 <tt>print</tt>.  
-        有时候这会比使用 <tt>&lt;%= ... %&gt;</tt> 更方便.
+        你也可以在模板的Javascript中使用<tt>print</tt>。这有时比使用“<tt>&lt;%= ... %&gt;</tt>”更方便。
       </p>
 
       <pre>
@@ -2668,18 +2660,7 @@ compiled({epithet: "stooge"});
       </p>
 -->
       <p>
-        如果ERB式的分隔符您不喜欢, 
-        您可以改变Underscore的模板设置, 
-        使用别的符号来嵌入代码.
-        定义一个 <b>interpolate</b> 正则表达式来逐字匹配
-        嵌入代码的语句, 如果想插入转义后的HTML代码
-        则需要定义一个 <b>escape</b> 正则表达式来匹配,
-        还有一个 <b>evaluate</b> 正则表达式来匹配
-        您想要直接一次性执行程序而不需要任何返回值的语句.
-        您可以定义或省略这三个的任意一个.
-        例如, 要执行
-        <a href="http://github.com/janl/mustache.js#readme">Mustache.js</a>
-        类型的模板:
+        如果你不喜欢ERB式的分隔符，你可以更改以下Underscore的模板设定来使用不同的符号来标识插入的代码：一个名为<b>interpolate</b>正则表达式来匹配那些应当被作为插入部分的字符，一个名为<b>escape</b>正则表达式来匹配那些应当经过HTML转义处理后被插入的表达式，以及一个名为<b>evaluate</b>正则表达式来匹配那些应当被执行但不插入最终的结果字符串的表达式。你可以定义或忽略这三个正则表达式的任意组合。比如，如果要实施<a href="http://github.com/janl/mustache.js#readme">Mustache.js</a>式的模板的话：
       </p>
 
       <pre>
@@ -2700,8 +2681,7 @@ template({name: "Mustache"});
       </p>
 -->
       <p>
-        默认的, <b>template</b> 通过 <tt>with</tt> 语句
-        来取得 data 所有的值.  当然, 您也可以在 <b>variable</b> 设置里指定一个变量名. 这样能显著提升模板的渲染速度.
+        默认情况下，<b>template</b>通过<tt>with</tt>语句在本地作用域的数据中定位值。不过，你可以用<b>variable</b>设定来设定一个单独的变量名。这可以显著提高一个可以被描绘的模板的速度。
       </p>
 
       <pre>
@@ -2718,11 +2698,7 @@ _.template("Using 'with': <%= data.answer %>", {answer: 'no'}, {variable: 'data'
       </p>
 -->
       <p>
-        预编译模板对调试不可重现的错误很有帮助.
-        这是因为预编译的模板可以提供错误的代码行号和堆栈跟踪,
-        有些模板在客户端(浏览器)上是不能通过编译的
-        在编译好的模板函数上, 有 <b>source</b> 
-        属性可以提供简单的预编译功能.
+        在对一个你不能再现的错误进行调试时，预编译你的模板非常有帮助。因为预编译模板可以提供行号和调用栈轨迹，这是在客户端进行编译时不可能得到的。在已经编译的模函数上，有一个<b>source</b>属性用来简单地进行预编译。
       </p>
 
       <pre>&lt;script&gt;
@@ -2816,7 +2792,7 @@ _.chain(lyrics)
         <b class="header">chain</b><code>_.chain(obj)</code>
         <br />
         返回一个封装的对象. 在封装的对象上调用方法会返回封装的对象本身,
-        知道 <tt>value</tt> 方法调用为止.
+        直到 <tt>value</tt> 方法调用为止.
       </p>
       <pre>
 var stooges = [{name: 'curly', age: 25}, {name: 'moe', age: 21}, {name: 'larry', age: 23}];
@@ -3905,7 +3881,7 @@ _([1, 2, 3]).value();
         以符合ECMAScript 5标准. <tt>_.wrap</tt> 函数现在能正确地
         给封装的函数设置 <tt>this</tt> 关键字了.
         <tt>_.indexOf</tt> 函数增加了可选参数isSorted,
-        寻找索引的时候会将数组作为已排序处理, 将使用更快的二进制搜索.
+        寻找索引的时候会将数组作为已排序处理, 将使用更快的二分搜索.
         避免使用 <tt>.callee</tt>, 保证 <tt>_.isArray</tt> 函数
         在ECMAScript 5严格模式下能正常使用.
       </p>
