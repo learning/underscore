@@ -569,13 +569,10 @@ _.each({one: 1, two: 2, three: 3}, alert);
           a numeric <tt>length</tt> property.
         </i>
       </p>
-未翻译-->
+-->
       <p>
         <i>
-          Note: Collection functions work on arrays, objects, and
-          array-like objects such as</i> <tt>arguments</tt>, <tt>NodeList</tt><i>
-          and similar. But it works by duck-typing, so avoid passing objects with
-          a numeric <tt>length</tt> property.
+          注意：集合函数对于数组、对象、以及</i><tt>arguments</tt>，<tt>NodeList</tt><i>等类似数组的对象都有用。但是对鸭子类型对象也有用，所以请避免传入拥有<tt>length</tt>属性的对象。
         </i>
       </p>
 
@@ -667,13 +664,12 @@ var flat = _.reduceRight(list, function(a, b) { return a.concat(b); }, []);
         soon as it finds an acceptable element, and doesn't traverse the
         entire list.
       </p>
-未翻译-->
+-->
       <p id="find">
         <b class="header">find</b><code>_.find(list, iterator, [context])</code>
         <span class="alias">别名: <b>detect</b></span>
         <br />
-        在 <b>list</b> 里的每一项进行查找, 返回第一个符合
-        测试(<b>iterator</b>)条件的元素. 此函数只返回第一个符合条件的元素, 并不会遍历整个list.
+        从<b>list</b>里进行逐项查找，返回第一个符合测试(<b>iterator</b>)条件的元素，如果没有的话则返回<code>undefined</code>。 此函数只返回第一个符合条件的元素，并不会遍历整个<b>list</b>。
       </p>
       <pre>
 var even = _.find([1, 2, 3, 4, 5, 6], function(num){ return num % 2 == 0; });
@@ -732,16 +728,14 @@ _.where(listOfPlays, {author: "Shakespeare", year: 1611});
         If no match is found, or if <b>list</b> is empty, <i>undefined</i> will be
         returned.
       </p>
-未翻译-->
+-->
       <p id="findWhere">
         <b class="header">findWhere</b><code>_.findWhere(list, properties)</code>
         <br />
-        Looks through the <b>list</b> and returns the <i>first</i> value that matches
-        all of the key-value pairs listed in <b>properties</b>.
+        从<b>list</b>里进行逐项查找，返回<i>第一个</i>符合<b>properties</b>里键值对的元素，如果没有的话则返回<code>undefined</code>。
       </p>
       <p>
-        If no match is found, or if <b>list</b> is empty, <i>undefined</i> will be
-        returned.
+        如果没有找到符合的元素，或者<b>list</b>为空，将会返回<i>undefined</i>。
       </p>
       <pre>
 _.findWhere(publicServicePulitzers, {newsroom: "The New York Times"});
