@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "name": "underscore",
   "description": "JavaScript's functional programming helper library.",
   "homepage": "http://underscorejs.org",
@@ -26,6 +27,21 @@
     "test": "phantomjs test/vendor/runner.js test/index.html?noglobals=true && eslint underscore.js test/*.js test/vendor/runner.js",
     "build": "uglifyjs underscore.js -c \"evaluate=false\" --comments \"/    .*/\" -m --source-map underscore-min.map -o underscore-min.js",
     "doc": "docco underscore.js"
+=======
+  "name"          : "underscore",
+  "description"   : "JavaScript's functional programming helper library.",
+  "homepage"      : "http://underscorejs.org",
+  "keywords"      : ["util", "functional", "server", "client", "browser"],
+  "author"        : "Jeremy Ashkenas <jeremy@documentcloud.org>",
+  "repository"    : {"type": "git", "url": "git://github.com/jashkenas/underscore.git"},
+  "main"          : "underscore.js",
+  "version"       : "1.5.2",
+  "devDependencies": {
+    "phantomjs": "1.9.0-1"
+  },
+  "scripts": {
+    "test": "phantomjs test/vendor/runner.js test/index.html?noglobals=true"
+>>>>>>> 59d7d5f698d7c96fdd9a8d7031a4d9fbd70c07d4
   },
   "licenses": [
     {
@@ -33,9 +49,13 @@
       "url": "https://raw.github.com/jashkenas/underscore/master/LICENSE"
     }
   ],
+<<<<<<< HEAD
   "files": [
     "underscore.js",
     "underscore-min.js",
     "LICENSE"
   ]
+=======
+  "files"         : ["underscore.js", "underscore-min.js", "LICENSE"]
+>>>>>>> 59d7d5f698d7c96fdd9a8d7031a4d9fbd70c07d4
 }

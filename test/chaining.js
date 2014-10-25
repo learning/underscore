@@ -17,8 +17,12 @@
         hash[l]++;
         return hash;
     }, {}).value();
+<<<<<<< HEAD
     equal(counts.a, 16, 'counted all the letters in the song');
     equal(counts.e, 10, 'counted all the letters in the song');
+=======
+    ok(counts.a == 16 && counts.e == 10, 'counted all the letters in the song');
+>>>>>>> 59d7d5f698d7c96fdd9a8d7031a4d9fbd70c07d4
   });
 
   test('select/reject/sortBy', function() {
@@ -57,10 +61,18 @@
     deepEqual(numbers, [34, 10, 8, 6, 4, 2, 10, 10], 'can chain together array functions.');
   });
 
+<<<<<<< HEAD
   test('chaining works in small stages', function() {
+=======
+  test("chaining works in small stages", function() {
+>>>>>>> 59d7d5f698d7c96fdd9a8d7031a4d9fbd70c07d4
     var o = _([1, 2, 3, 4]).chain();
     deepEqual(o.filter(function(i) { return i < 3; }).value(), [1, 2]);
     deepEqual(o.filter(function(i) { return i > 2; }).value(), [3, 4]);
   });
 
+<<<<<<< HEAD
 }());
+=======
+});
+>>>>>>> 59d7d5f698d7c96fdd9a8d7031a4d9fbd70c07d4

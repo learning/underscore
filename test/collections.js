@@ -110,9 +110,19 @@
     var prod = _.reduce([1, 2, 3, 4], function(prod, num){ return prod * num; });
     equal(prod, 24, 'can reduce via multiplication');
 
+<<<<<<< HEAD
     ok(_.reduce(null, _.noop, 138) === 138, 'handles a null (with initial value) properly');
     equal(_.reduce([], _.noop, undefined), undefined, 'undefined can be passed as a special case');
     equal(_.reduce([_], _.noop), _, 'collection of length one with no initial value returns the first item');
+=======
+    var ifnull;
+    try {
+      _.reduce(null, function(){});
+    } catch (ex) {
+      ifnull = ex;
+    }
+    ok(ifnull instanceof TypeError, 'handles a null (without initial value) properly');
+>>>>>>> 59d7d5f698d7c96fdd9a8d7031a4d9fbd70c07d4
 
     raises(function() { _.reduce([], _.noop); }, TypeError, 'throws an error for empty arrays with no initial value');
     raises(function() {_.reduce(null, _.noop);}, TypeError, 'handles a null (without initial value) properly');
@@ -129,6 +139,17 @@
     list = _.reduceRight(['foo', 'bar', 'baz'], function(memo, str){ return memo + str; });
     equal(list, 'bazbarfoo', 'default initial value');
 
+<<<<<<< HEAD
+=======
+    var ifnull;
+    try {
+      _.reduceRight(null, function(){});
+    } catch (ex) {
+      ifnull = ex;
+    }
+    ok(ifnull instanceof TypeError, 'handles a null (without initial value) properly');
+
+>>>>>>> 59d7d5f698d7c96fdd9a8d7031a4d9fbd70c07d4
     var sum = _.reduceRight({a: 1, b: 2, c: 3}, function(sum, num){ return sum + num; });
     equal(sum, 6, 'default initial value on object');
 
@@ -224,6 +245,7 @@
   });
 
   test('reject', function() {
+<<<<<<< HEAD
     var odds = _.reject([1, 2, 3, 4, 5, 6], function(num){ return num % 2 === 0; });
     deepEqual(odds, [1, 3, 5], 'rejected each even number');
 
@@ -267,6 +289,18 @@
     ok(!_.every({a: 1, b: 2, c: 3, d: 4}, _.isObject), 'takes objects');
     ok(_.every(['a', 'b', 'c', 'd'], _.hasOwnProperty, {a: 1, b: 2, c: 3, d: 4}), 'context works');
     ok(!_.every(['a', 'b', 'c', 'd', 'f'], _.hasOwnProperty, {a: 1, b: 2, c: 3, d: 4}), 'context works');
+=======
+    var odds = _.reject([1, 2, 3, 4, 5, 6], function(num){ return num % 2 == 0; });
+    equal(odds.join(', '), '1, 3, 5', 'rejected each even number');
+
+    var context = "obj";
+
+    var evens = _.reject([1, 2, 3, 4, 5, 6], function(num){
+      equal(context, "obj");
+      return num % 2 != 0;
+    }, context);
+    equal(evens.join(', '), '2, 4, 6', 'rejected each odd number');
+>>>>>>> 59d7d5f698d7c96fdd9a8d7031a4d9fbd70c07d4
   });
 
   test('all', function() {
@@ -358,12 +392,20 @@
     result = _.where(list, {b: 2});
     equal(result.length, 2);
     equal(result[0].a, 1);
+<<<<<<< HEAD
     result = _.where(list, {});
     equal(result.length, list.length);
 
     function test() {}
     test.map = _.map;
     deepEqual(_.where([_, {a: 1, b: 2}, _], test), [_, _], 'checks properties given function');
+=======
+
+    result = _.where(list, {a: 1}, true);
+    equal(result.b, 2, "Only get the first object matched.")
+    result = _.where(list, {a: 1}, false);
+    equal(result.length, 3);
+>>>>>>> 59d7d5f698d7c96fdd9a8d7031a4d9fbd70c07d4
   });
 
   test('findWhere', function() {
@@ -373,6 +415,7 @@
     result = _.findWhere(list, {b: 4});
     deepEqual(result, {a: 1, b: 4});
 
+<<<<<<< HEAD
     result = _.findWhere(list, {c: 1});
     ok(_.isUndefined(result), 'undefined when not found');
 
@@ -389,6 +432,13 @@
     }
     var expect = {c: 1, x: 'foo', y: 5};
     deepEqual(_.findWhere([{y: 5, b: 6}, expect], new TestClass()), expect, 'uses class instance properties');
+=======
+    result = _.findWhere(list, {c:1})
+    ok(_.isUndefined(result), "undefined when not found");
+
+    result = _.findWhere([], {c:1});
+    ok(_.isUndefined(result), "undefined when searching empty list");
+>>>>>>> 59d7d5f698d7c96fdd9a8d7031a4d9fbd70c07d4
   });
 
   test('max', function() {
@@ -404,6 +454,7 @@
     equal(-Infinity, _.max({}), 'Maximum value of an empty object');
     equal(-Infinity, _.max([]), 'Maximum value of an empty array');
     equal(_.max({'a': 'a'}), -Infinity, 'Maximum value of a non-numeric collection');
+<<<<<<< HEAD
 
     equal(299999, _.max(_.range(1, 300000)), 'Maximum value of a too-big array');
 
@@ -416,6 +467,8 @@
     equal(_.max([a, b], iterator), a, 'Respects iterator return value of -Infinity');
 
     deepEqual(_.max([{'a': 1}, {'a': 0, 'b': 3}, {'a': 4}, {'a': 2}], 'a'), {'a': 4}, 'String keys use property iterator');
+=======
+>>>>>>> 59d7d5f698d7c96fdd9a8d7031a4d9fbd70c07d4
 
     deepEqual(_.max([0, 2], function(a){ return a * this.x; }, {x: 1}), 2, 'Iterator context');
     deepEqual(_.max([[1], [2, 3], [-1, 4], [5]], 0), [5], 'Lookup falsy iterator');
@@ -521,12 +574,18 @@
     var array = [{}];
     _.groupBy(array, function(value, index, obj){ ok(obj === array); });
 
+<<<<<<< HEAD
     array = [1, 2, 1, 2, 3];
     grouped = _.groupBy(array);
+=======
+    var array = [1, 2, 1, 2, 3];
+    var grouped = _.groupBy(array);
+>>>>>>> 59d7d5f698d7c96fdd9a8d7031a4d9fbd70c07d4
     equal(grouped['1'].length, 2);
     equal(grouped['3'].length, 1);
 
     var matrix = [
+<<<<<<< HEAD
       [1, 2],
       [1, 3],
       [2, 3]
@@ -541,13 +600,33 @@
     equal(parity.false, 5);
 
     var list = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'];
+=======
+      [1,2],
+      [1,3],
+      [2,3]
+    ];
+    deepEqual(_.groupBy(matrix, 0), {1: [[1,2], [1,3]], 2: [[2,3]]})
+    deepEqual(_.groupBy(matrix, 1), {2: [[1,2]], 3: [[1,3], [2,3]]})
+  });
+
+  test('indexBy', function() {
+    var parity = _.indexBy([1, 2, 3, 4, 5], function(num){ return num % 2 == 0; });
+    equal(parity['true'], 4);
+    equal(parity['false'], 5);
+
+    var list = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"];
+>>>>>>> 59d7d5f698d7c96fdd9a8d7031a4d9fbd70c07d4
     var grouped = _.indexBy(list, 'length');
     equal(grouped['3'], 'ten');
     equal(grouped['4'], 'nine');
     equal(grouped['5'], 'eight');
 
     var array = [1, 2, 1, 2, 3];
+<<<<<<< HEAD
     grouped = _.indexBy(array);
+=======
+    var grouped = _.indexBy(array);
+>>>>>>> 59d7d5f698d7c96fdd9a8d7031a4d9fbd70c07d4
     equal(grouped['1'], 1);
     equal(grouped['2'], 2);
     equal(grouped['3'], 3);
@@ -576,8 +655,13 @@
     var array = [{}];
     _.countBy(array, function(value, index, obj){ ok(obj === array); });
 
+<<<<<<< HEAD
     array = [1, 2, 1, 2, 3];
     grouped = _.countBy(array);
+=======
+    var array = [1, 2, 1, 2, 3];
+    var grouped = _.countBy(array);
+>>>>>>> 59d7d5f698d7c96fdd9a8d7031a4d9fbd70c07d4
     equal(grouped['1'], 2);
     equal(grouped['3'], 1);
   });
@@ -627,6 +711,19 @@
     ok(_.contains([1, 2, 3], _.sample({a: 1, b: 2, c: 3})), 'sample one value from an object');
   });
 
+  test('sample', function() {
+    var numbers = _.range(10);
+    var all_sampled = _.sample(numbers, 10).sort();
+    equal(all_sampled.join(','), numbers.join(','), 'contains the same members before and after sample');
+    all_sampled = _.sample(numbers, 20).sort();
+    equal(all_sampled.join(','), numbers.join(','), 'also works when sampling more objects than are present');
+    ok(_.contains(numbers, _.sample(numbers)), 'sampling a single element returns something from the array');
+    strictEqual(_.sample([]), undefined, 'sampling empty array with no number returns undefined');
+    notStrictEqual(_.sample([], 5), [], 'sampling empty array with a number returns an empty array');
+    notStrictEqual(_.sample([1, 2, 3], 0), [], 'sampling an array with 0 picks returns an empty array');
+    deepEqual(_.sample([1, 2], -1), [], 'sampling a negative number of picks returns an empty array');
+  });
+
   test('toArray', function() {
     ok(!_.isArray(arguments), 'arguments object is not an array');
     ok(_.isArray(_.toArray(arguments)), 'arguments object converted into array');
@@ -635,7 +732,11 @@
     deepEqual(_.toArray(a), [1, 2, 3], 'cloned array contains same elements');
 
     var numbers = _.toArray({one : 1, two : 2, three : 3});
+<<<<<<< HEAD
     deepEqual(numbers, [1, 2, 3], 'object flattened into array');
+=======
+    equal(numbers.join(', '), '1, 2, 3', 'object flattened into array');
+>>>>>>> 59d7d5f698d7c96fdd9a8d7031a4d9fbd70c07d4
 
     // test in IE < 9
     try {
@@ -648,7 +749,11 @@
   test('size', function() {
     equal(_.size({one : 1, two : 2, three : 3}), 3, 'can compute the size of an object');
     equal(_.size([1, 2, 3]), 3, 'can compute the size of an array');
+<<<<<<< HEAD
     equal(_.size({length: 3, 0: 0, 1: 0, 2: 0}), 3, 'can compute the size of Array-likes');
+=======
+    equal(_.size($('<div>').add('<span>').add('<span>')), 3, 'can compute the size of jQuery objects');
+>>>>>>> 59d7d5f698d7c96fdd9a8d7031a4d9fbd70c07d4
 
     var func = function() {
       return _.size(arguments);
@@ -660,6 +765,7 @@
     equal(_.size(new String('hello')), 5, 'can compute the size of string object');
 
     equal(_.size(null), 0, 'handles nulls');
+<<<<<<< HEAD
   });
 
   test('partition', function() {
@@ -691,6 +797,8 @@
       equal(obj, object);
       equal(this, predicate);
     }, predicate);
+=======
+>>>>>>> 59d7d5f698d7c96fdd9a8d7031a4d9fbd70c07d4
   });
 
 }());

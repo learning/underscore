@@ -25,6 +25,7 @@
     equal(_.identity(moe), moe, 'moe is the same as his identity');
   });
 
+<<<<<<< HEAD
   test('constant', function() {
     var moe = {name : 'moe'};
     equal(_.constant(moe)(), moe, 'should create a function that returns moe');
@@ -40,12 +41,16 @@
   });
 
   test('random', function() {
+=======
+  test("random", function() {
+>>>>>>> 59d7d5f698d7c96fdd9a8d7031a4d9fbd70c07d4
     var array = _.range(1000);
     var min = Math.pow(2, 31);
     var max = Math.pow(2, 62);
 
     ok(_.every(array, function() {
       return _.random(min, max) >= min;
+<<<<<<< HEAD
     }), 'should produce a random number greater than or equal to the minimum number');
 
     ok(_.some(array, function() {
@@ -59,6 +64,16 @@
   });
 
   test('uniqueId', function() {
+=======
+    }), "should produce a random number greater than or equal to the minimum number");
+
+    ok(_.some(array, function() {
+      return _.random(Number.MAX_VALUE) > 0;
+    }), "should produce a random number when passed `Number.MAX_VALUE`");
+  });
+
+  test("uniqueId", function() {
+>>>>>>> 59d7d5f698d7c96fdd9a8d7031a4d9fbd70c07d4
     var ids = [], i = 0;
     while (i++ < 100) ids.push(_.uniqueId());
     equal(_.uniq(ids).length, ids.length, 'can generate a globally-unique stream of ids');
@@ -71,9 +86,15 @@
     //
     vals = [];
     _(3).times(function(i) { vals.push(i); });
+<<<<<<< HEAD
     deepEqual(vals, [0, 1, 2], 'works as a wrapper');
     // collects return values
     deepEqual([0, 1, 2], _.times(3, function(i) { return i; }), 'collects return values');
+=======
+    ok(_.isEqual(vals, [0,1,2]), "works as a wrapper");
+    // collects return values
+    ok(_.isEqual([0, 1, 2], _.times(3, function(i) { return i; })), "collects return values");
+>>>>>>> 59d7d5f698d7c96fdd9a8d7031a4d9fbd70c07d4
 
     deepEqual(_.times(0, _.identity), []);
     deepEqual(_.times(-1, _.identity), []);
@@ -90,12 +111,27 @@
     equal(_('champ').myReverse(), 'pmahc', 'mixed in a function to the OOP wrapper');
   });
 
+<<<<<<< HEAD
   test('_.escape', function() {
     equal(_.escape(null), '');
   });
 
   test('_.unescape', function() {
     var string = 'Curly & Moe';
+=======
+  test("_.escape", function() {
+    equal(_.escape("Curly & Moe"), "Curly &amp; Moe");
+    equal(_.escape('<a href="http://moe.com">Curly & Moe\'s</a>'), '&lt;a href=&quot;http://moe.com&quot;&gt;Curly &amp; Moe&#x27;s&lt;/a&gt;');
+    equal(_.escape("Curly &amp; Moe"), "Curly &amp;amp; Moe");
+    equal(_.escape(null), '');
+  });
+
+  test("_.unescape", function() {
+    var string = "Curly & Moe";
+    equal(_.unescape("Curly &amp; Moe"), string);
+    equal(_.unescape('&lt;a href=&quot;http://moe.com&quot;&gt;Curly &amp; Moe&#x27;s&lt;/a&gt;'), '<a href="http://moe.com">Curly & Moe\'s</a>');
+    equal(_.unescape("Curly &amp;amp; Moe"), "Curly &amp; Moe");
+>>>>>>> 59d7d5f698d7c96fdd9a8d7031a4d9fbd70c07d4
     equal(_.unescape(null), '');
     equal(_.unescape(_.escape(string)), string);
     equal(_.unescape(string), string, 'don\'t unescape unnecessarily');
@@ -150,11 +186,19 @@
     var escapeTemplate = _.template('<%= a ? "checked=\\"checked\\"" : "" %>');
     equal(escapeTemplate({a: true}), 'checked="checked"', 'can handle slash escapes in interpolations.');
 
+<<<<<<< HEAD
     var fancyTemplate = _.template('<ul><% ' +
     '  for (var key in people) { ' +
     '%><li><%= people[key] %></li><% } %></ul>');
     result = fancyTemplate({people : {moe : 'Moe', larry : 'Larry', curly : 'Curly'}});
     equal(result, '<ul><li>Moe</li><li>Larry</li><li>Curly</li></ul>', 'can run arbitrary javascript in templates');
+=======
+    var fancyTemplate = _.template("<ul><% \
+      for (var key in people) { \
+    %><li><%= people[key] %></li><% } %></ul>");
+    result = fancyTemplate({people : {moe : "Moe", larry : "Larry", curly : "Curly"}});
+    equal(result, "<ul><li>Moe</li><li>Larry</li><li>Curly</li></ul>", 'can run arbitrary javascript in templates');
+>>>>>>> 59d7d5f698d7c96fdd9a8d7031a4d9fbd70c07d4
 
     var escapedCharsInJavascriptTemplate = _.template('<ul><% _.each(numbers.split("\\n"), function(item) { %><li><%= item %></li><% }) %></ul>');
     result = escapedCharsInJavascriptTemplate({numbers: 'one\ntwo\nthree\nfour'});
@@ -209,9 +253,15 @@
       interpolate : /\{\{=([\s\S]+?)\}\}/g
     };
 
+<<<<<<< HEAD
     var custom = _.template('<ul>{{ for (var key in people) { }}<li>{{= people[key] }}</li>{{ } }}</ul>');
     result = custom({people : {moe : 'Moe', larry : 'Larry', curly : 'Curly'}});
     equal(result, '<ul><li>Moe</li><li>Larry</li><li>Curly</li></ul>', 'can run arbitrary javascript in templates');
+=======
+    var custom = _.template("<ul>{{ for (var key in people) { }}<li>{{= people[key] }}</li>{{ } }}</ul>");
+    result = custom({people : {moe : "Moe", larry : "Larry", curly : "Curly"}});
+    equal(result, "<ul><li>Moe</li><li>Larry</li><li>Curly</li></ul>", 'can run arbitrary javascript in templates');
+>>>>>>> 59d7d5f698d7c96fdd9a8d7031a4d9fbd70c07d4
 
     var customQuote = _.template("It's its, not it's");
     equal(customQuote({}), "It's its, not it's");
@@ -224,9 +274,15 @@
       interpolate : /<\?=([\s\S]+?)\?>/g
     };
 
+<<<<<<< HEAD
     var customWithSpecialChars = _.template('<ul><? for (var key in people) { ?><li><?= people[key] ?></li><? } ?></ul>');
     result = customWithSpecialChars({people : {moe : 'Moe', larry : 'Larry', curly : 'Curly'}});
     equal(result, '<ul><li>Moe</li><li>Larry</li><li>Curly</li></ul>', 'can run arbitrary javascript in templates');
+=======
+    var customWithSpecialChars = _.template("<ul><? for (var key in people) { ?><li><?= people[key] ?></li><? } ?></ul>");
+    result = customWithSpecialChars({people : {moe : "Moe", larry : "Larry", curly : "Curly"}});
+    equal(result, "<ul><li>Moe</li><li>Larry</li><li>Curly</li></ul>", 'can run arbitrary javascript in templates');
+>>>>>>> 59d7d5f698d7c96fdd9a8d7031a4d9fbd70c07d4
 
     var customWithSpecialCharsQuote = _.template("It's its, not it's");
     equal(customWithSpecialCharsQuote({}), "It's its, not it's");
