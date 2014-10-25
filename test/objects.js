@@ -49,7 +49,6 @@
 
   test('extend', function() {
     var result;
-<<<<<<< HEAD
     equal(_.extend({}, {a: 'b'}).a, 'b', 'can extend an object with the attributes of another');
     equal(_.extend({a: 'x'}, {a: 'b'}).a, 'b', 'properties in source override destination');
     equal(_.extend({x: 'x'}, {a: 'b'}).x, 'x', "properties not in source don't get overriden");
@@ -75,24 +74,6 @@
 
     strictEqual(_.extend(null, {a: 1}), null, 'extending null results in null');
     strictEqual(_.extend(undefined, {a: 1}), undefined, 'extending undefined results in undefined');
-=======
-    equal(_.extend({}, {a:'b'}).a, 'b', 'can extend an object with the attributes of another');
-    equal(_.extend({a:'x'}, {a:'b'}).a, 'b', 'properties in source override destination');
-    equal(_.extend({x:'x'}, {a:'b'}).x, 'x', "properties not in source don't get overriden");
-    result = _.extend({x:'x'}, {a:'a'}, {b:'b'});
-    ok(_.isEqual(result, {x:'x', a:'a', b:'b'}), 'can extend from multiple source objects');
-    result = _.extend({x:'x'}, {a:'a', x:2}, {a:'b'});
-    ok(_.isEqual(result, {x:2, a:'b'}), 'extending from multiple source objects last property trumps');
-    result = _.extend({}, {a: void 0, b: null});
-    equal(_.keys(result).join(''), 'ab', 'extend copies undefined values');
-
-    try {
-      result = {};
-      _.extend(result, null, undefined, {a:1});
-    } catch(ex) {}
-
-    equal(result.a, 1, 'should not error on `null` or `undefined` sources');
->>>>>>> 59d7d5f698d7c96fdd9a8d7031a4d9fbd70c07d4
   });
 
   test('pick', function() {
@@ -163,14 +144,8 @@
     }, instance), {a: 1, b: 2}, 'function is given context');
   });
 
-<<<<<<< HEAD
   test('defaults', function() {
     var options = {zero: 0, one: 1, empty: '', nan: NaN, nothing: null};
-=======
-  test("defaults", function() {
-    var result;
-    var options = {zero: 0, one: 1, empty: "", nan: NaN, nothing: null};
->>>>>>> 59d7d5f698d7c96fdd9a8d7031a4d9fbd70c07d4
 
     _.defaults(options, {zero: 1, one: 10, twenty: 20, nothing: 'str'});
     equal(options.zero, 0, 'value exists');
@@ -181,7 +156,6 @@
     _.defaults(options, {empty: 'full'}, {nan: 'nan'}, {word: 'word'}, {word: 'dog'});
     equal(options.empty, '', 'value exists');
     ok(_.isNaN(options.nan), "NaN isn't overridden");
-<<<<<<< HEAD
     equal(options.word, 'word', 'new value is added, first one wins');
 
     try {
@@ -193,16 +167,6 @@
 
     strictEqual(_.defaults(null, {a: 1}), null, 'result is null if destination is null');
     strictEqual(_.defaults(undefined, {a: 1}), undefined, 'result is undefined if destination is undefined');
-=======
-    equal(options.word, "word", 'new value is added, first one wins');
-
-    try {
-      options = {};
-      _.defaults(options, null, undefined, {a:1});
-    } catch(ex) {}
-
-    equal(options.a, 1, 'should not error on `null` or `undefined` sources');
->>>>>>> 59d7d5f698d7c96fdd9a8d7031a4d9fbd70c07d4
   });
 
   test('clone', function() {
@@ -547,32 +511,19 @@
     ok(_.isObject(new String('string')), 'but new String()');
   });
 
-<<<<<<< HEAD
   test('isArray', function() {
-=======
-  test("isArray", function() {
->>>>>>> 59d7d5f698d7c96fdd9a8d7031a4d9fbd70c07d4
     ok(!_.isArray(undefined), 'undefined vars are not arrays');
     ok(!_.isArray(arguments), 'the arguments object is not an array');
     ok(_.isArray([1, 2, 3]), 'but arrays are');
     ok(_.isArray(iArray), 'even from another frame');
   });
 
-<<<<<<< HEAD
   test('isString', function() {
     var obj = new String('I am a string object');
     ok(!_.isString(document.body), 'the document body is not a string');
     ok(_.isString([1, 2, 3].join(', ')), 'but strings are');
     ok(_.isString(iString), 'even from another frame');
     ok(_.isString('I am a string literal'), 'string literals are');
-=======
-  test("isString", function() {
-    var obj = new String("I am a string object");
-    ok(!_.isString(document.body), 'the document body is not a string');
-    ok(_.isString([1, 2, 3].join(', ')), 'but strings are');
-    ok(_.isString(iString), 'even from another frame');
-    ok(_.isString("I am a string literal"), 'string literals are');
->>>>>>> 59d7d5f698d7c96fdd9a8d7031a4d9fbd70c07d4
     ok(_.isString(obj), 'so are String objects');
   });
 
@@ -601,11 +552,7 @@
     ok(_.isBoolean(iBoolean), 'even from another frame');
   });
 
-<<<<<<< HEAD
   test('isFunction', function() {
-=======
-  test("isFunction", function() {
->>>>>>> 59d7d5f698d7c96fdd9a8d7031a4d9fbd70c07d4
     ok(!_.isFunction(undefined), 'undefined vars are not functions');
     ok(!_.isFunction([1, 2, 3]), 'arrays are not functions');
     ok(!_.isFunction('moe'), 'strings are not functions');
@@ -627,21 +574,12 @@
     ok(_.isRegExp(iRegExp), 'even from another frame');
   });
 
-<<<<<<< HEAD
   test('isFinite', function() {
     ok(!_.isFinite(undefined), 'undefined is not finite');
     ok(!_.isFinite(null), 'null is not finite');
     ok(!_.isFinite(NaN), 'NaN is not finite');
     ok(!_.isFinite(Infinity), 'Infinity is not finite');
     ok(!_.isFinite(-Infinity), '-Infinity is not finite');
-=======
-  test("isFinite", function() {
-    ok(!_.isFinite(undefined), 'undefined is not Finite');
-    ok(!_.isFinite(null), 'null is not Finite');
-    ok(!_.isFinite(NaN), 'NaN is not Finite');
-    ok(!_.isFinite(Infinity), 'Infinity is not Finite');
-    ok(!_.isFinite(-Infinity), '-Infinity is not Finite');
->>>>>>> 59d7d5f698d7c96fdd9a8d7031a4d9fbd70c07d4
     ok(_.isFinite('12'), 'Numeric strings are numbers');
     ok(!_.isFinite('1a'), 'Non numeric strings are not numbers');
     ok(!_.isFinite(''), 'Empty strings are not numbers');
@@ -706,7 +644,6 @@
     equal(intercepted, returned, 'can use tapped objects in a chain');
   });
 
-<<<<<<< HEAD
   test('has', function () {
     var obj = {foo: 'bar', func: function(){}};
     ok(_.has(obj, 'foo'), 'has() checks that the object has a property.');
@@ -779,17 +716,3 @@
   });
 
 }());
-=======
-  test("has", function () {
-     var obj = {foo: "bar", func: function () {} };
-     ok (_.has(obj, "foo"), "has() checks that the object has a property.");
-     ok (_.has(obj, "baz") == false, "has() returns false if the object doesn't have the property.");
-     ok (_.has(obj, "func"), "has() works for functions too.");
-     obj.hasOwnProperty = null;
-     ok (_.has(obj, "foo"), "has() works even when the hasOwnProperty method is deleted.");
-     var child = {};
-     child.prototype = obj;
-     ok (_.has(child, "foo") == false, "has() does not check the prototype chain for a property.")
-  });
-});
->>>>>>> 59d7d5f698d7c96fdd9a8d7031a4d9fbd70c07d4

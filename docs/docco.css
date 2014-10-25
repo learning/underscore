@@ -49,7 +49,6 @@ a {
 b, strong {
   font-weight: normal;
   font-family: "aller-bold";
-<<<<<<< HEAD
 }
 
 p {
@@ -63,13 +62,6 @@ p {
       line-height: 18px;
       margin: 10px 0;
     }
-=======
-}
-
-p, ul, ol {
-  margin: 15px 0 0px;
-}
->>>>>>> 59d7d5f698d7c96fdd9a8d7031a4d9fbd70c07d4
 
 h1, h2, h3, h4, h5, h6 {
   color: #112233;
@@ -86,11 +78,7 @@ h1 {
 
 hr {
   border: 0;
-<<<<<<< HEAD
   background: 1px #ddd;
-=======
-  background: 1px solid #ddd;
->>>>>>> 59d7d5f698d7c96fdd9a8d7031a4d9fbd70c07d4
   height: 1px;
   margin: 20px 0;
 }
@@ -134,7 +122,6 @@ ul.sections {
   list-style: none;
   padding:0 0 5px 0;;
   margin:0;
-<<<<<<< HEAD
 }
 
 /*
@@ -151,24 +138,6 @@ ul.sections > li > div {
   box-sizing: border-box;         /* css3 */
 }
 
-=======
-}
-
-/*
-  Force border-box so that % widths fit the parent
-  container without overlap because of margin/padding.
-
-  More Info : http://www.quirksmode.org/css/box.html
-*/
-ul.sections > li > div {
-  -moz-box-sizing: border-box;    /* firefox */
-  -ms-box-sizing: border-box;     /* ie */
-  -webkit-box-sizing: border-box; /* webkit */
-  -khtml-box-sizing: border-box;  /* konqueror */
-  box-sizing: border-box;         /* css3 */
-}
-
->>>>>>> 59d7d5f698d7c96fdd9a8d7031a4d9fbd70c07d4
 
 /*---------------------- Jump Page -----------------------------*/
 #jump_to, #jump_page {
@@ -188,21 +157,12 @@ ul.sections > li > div {
 
 #jump_to a.large {
   display: none;
-<<<<<<< HEAD
 }
 #jump_to a.small {
   font-size: 22px;
   font-weight: bold;
   color: #676767;
 }
-=======
-}
-#jump_to a.small {
-  font-size: 22px;
-  font-weight: bold;
-  color: #676767;
-}
->>>>>>> 59d7d5f698d7c96fdd9a8d7031a4d9fbd70c07d4
 
 #jump_to, #jump_wrapper {
   position: fixed;
@@ -220,7 +180,6 @@ ul.sections > li > div {
   display: block;
 }
 
-<<<<<<< HEAD
 #jump_page_wrapper{
   position: fixed;
   right: 0;
@@ -284,63 +243,6 @@ ul.sections > li > div {
   }
 }
 
-=======
-#jump_page {
-  padding: 5px 0 3px;
-  margin: 0 0 25px 25px;
-}
-
-#jump_page .source {
-  display: block;
-  padding: 15px;
-  text-decoration: none;
-  border-top: 1px solid #eee;
-}
-
-#jump_page .source:hover {
-  background: #f5f5ff;
-}
-
-#jump_page .source:first-child {
-}
-
-/*---------------------- Low resolutions (> 320px) ---------------------*/
-@media only screen and (min-width: 320px) {
-  .pilwrap { display: none; }
-
-  ul.sections > li > div {
-    display: block;
-    padding:5px 10px 0 10px;
-  }
-
-  ul.sections > li > div.annotation ul, ul.sections > li > div.annotation ol {
-    padding-left: 30px;
-  }
-
-  ul.sections > li > div.content {
-    background: #f5f5ff;
-    overflow-x:auto;
-    -webkit-box-shadow: inset 0 0 5px #e5e5ee;
-    box-shadow: inset 0 0 5px #e5e5ee;
-    border: 1px solid #dedede;
-    margin:5px 10px 5px 10px;
-    padding-bottom: 5px;
-  }
-
-  ul.sections > li > div.annotation pre {
-    margin: 7px 0 7px;
-    padding-left: 15px;
-  }
-
-  ul.sections > li > div.annotation p tt, .annotation code {
-    background: #f8f8ff;
-    border: 1px solid #dedede;
-    font-size: 12px;
-    padding: 0 0.2em;
-  }
-}
-
->>>>>>> 59d7d5f698d7c96fdd9a8d7031a4d9fbd70c07d4
 /*----------------------  (> 481px) ---------------------*/
 @media only screen and (min-width: 481px) {
   #container {
@@ -420,31 +322,6 @@ ul.sections > li > div {
   ul.sections > li > div.content {
     padding: 13px;
     vertical-align: top;
-<<<<<<< HEAD
-    border: none;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-  }
-
-  .pilwrap {
-    position: relative;
-    display: inline;
-  }
-
-  .pilcrow {
-    font: 12px Arial;
-    text-decoration: none;
-    color: #454545;
-    position: absolute;
-    top: 3px; left: -20px;
-    padding: 1px 2px;
-    opacity: 0;
-    -webkit-transition: opacity 0.2s linear;
-  }
-    .for-h1 .pilcrow {
-      top: 47px;
-=======
-    background: #f5f5ff;
     border: none;
     -webkit-box-shadow: none;
     box-shadow: none;
@@ -470,10 +347,6 @@ ul.sections > li > div {
     }
     .for-h2 .pilcrow, .for-h3 .pilcrow, .for-h4 .pilcrow {
       top: 35px;
->>>>>>> 59d7d5f698d7c96fdd9a8d7031a4d9fbd70c07d4
-    }
-    .for-h2 .pilcrow, .for-h3 .pilcrow, .for-h4 .pilcrow {
-      top: 35px;
     }
 
   ul.sections > li > div.annotation:hover .pilcrow {
@@ -484,17 +357,6 @@ ul.sections > li > div {
 /*---------------------- (> 1025px) ---------------------*/
 @media only screen and (min-width: 1025px) {
 
-<<<<<<< HEAD
-=======
-  ul.sections > li > div.annotation:hover .pilcrow {
-    opacity: 1;
-  }
-}
-
-/*---------------------- (> 1025px) ---------------------*/
-@media only screen and (min-width: 1025px) {
-
->>>>>>> 59d7d5f698d7c96fdd9a8d7031a4d9fbd70c07d4
   body {
     font-size: 16px;
     line-height: 24px;
@@ -529,22 +391,14 @@ pre code {
   background: #f8f8ff
 }
 
-<<<<<<< HEAD
 pre .hljs-comment,
 pre .hljs-template_comment,
 pre .hljs-diff .hljs-header,
 pre .hljs-javadoc {
-=======
-pre .comment,
-pre .template_comment,
-pre .diff .header,
-pre .javadoc {
->>>>>>> 59d7d5f698d7c96fdd9a8d7031a4d9fbd70c07d4
   color: #408080;
   font-style: italic
 }
 
-<<<<<<< HEAD
 pre .hljs-keyword,
 pre .hljs-assignment,
 pre .hljs-literal,
@@ -553,21 +407,10 @@ pre .hljs-winutils,
 pre .hljs-javascript .hljs-title,
 pre .hljs-lisp .hljs-title,
 pre .hljs-subst {
-=======
-pre .keyword,
-pre .assignment,
-pre .literal,
-pre .css .rule .keyword,
-pre .winutils,
-pre .javascript .title,
-pre .lisp .title,
-pre .subst {
->>>>>>> 59d7d5f698d7c96fdd9a8d7031a4d9fbd70c07d4
   color: #954121;
   /*font-weight: bold*/
 }
 
-<<<<<<< HEAD
 pre .hljs-number,
 pre .hljs-hexcolor {
   color: #40a070
@@ -597,57 +440,18 @@ pre .hljs-subst {
 pre .hljs-class .hljs-title,
 pre .hljs-haskell .hljs-label,
 pre .hljs-tex .hljs-command {
-=======
-pre .number,
-pre .hexcolor {
-  color: #40a070
-}
-
-pre .string,
-pre .tag .value,
-pre .phpdoc,
-pre .tex .formula {
-  color: #219161;
-}
-
-pre .title,
-pre .id {
-  color: #19469D;
-}
-pre .params {
-  color: #00F;
-}
-
-pre .javascript .title,
-pre .lisp .title,
-pre .subst {
-  font-weight: normal
-}
-
-pre .class .title,
-pre .haskell .label,
-pre .tex .command {
->>>>>>> 59d7d5f698d7c96fdd9a8d7031a4d9fbd70c07d4
   color: #458;
   font-weight: bold
 }
 
-<<<<<<< HEAD
 pre .hljs-tag,
 pre .hljs-tag .hljs-title,
 pre .hljs-rules .hljs-property,
 pre .hljs-django .hljs-tag .hljs-keyword {
-=======
-pre .tag,
-pre .tag .title,
-pre .rules .property,
-pre .django .tag .keyword {
->>>>>>> 59d7d5f698d7c96fdd9a8d7031a4d9fbd70c07d4
   color: #000080;
   font-weight: normal
 }
 
-<<<<<<< HEAD
 pre .hljs-attribute,
 pre .hljs-variable,
 pre .hljs-instancevar,
@@ -660,25 +464,10 @@ pre .hljs-regexp {
 }
 
 pre .hljs-class {
-=======
-pre .attribute,
-pre .variable,
-pre .instancevar,
-pre .lisp .body {
-  color: #008080
-}
-
-pre .regexp {
-  color: #B68
-}
-
-pre .class {
->>>>>>> 59d7d5f698d7c96fdd9a8d7031a4d9fbd70c07d4
   color: #458;
   font-weight: bold
 }
 
-<<<<<<< HEAD
 pre .hljs-symbol,
 pre .hljs-ruby .hljs-symbol .hljs-string,
 pre .hljs-ruby .hljs-symbol .hljs-keyword,
@@ -701,35 +490,10 @@ pre .hljs-pi,
 pre .hljs-doctype,
 pre .hljs-shebang,
 pre .hljs-cdata {
-=======
-pre .symbol,
-pre .ruby .symbol .string,
-pre .ruby .symbol .keyword,
-pre .ruby .symbol .keymethods,
-pre .lisp .keyword,
-pre .tex .special,
-pre .input_number {
-  color: #990073
-}
-
-pre .builtin,
-pre .constructor,
-pre .built_in,
-pre .lisp .title {
-  color: #0086b3
-}
-
-pre .preprocessor,
-pre .pi,
-pre .doctype,
-pre .shebang,
-pre .cdata {
->>>>>>> 59d7d5f698d7c96fdd9a8d7031a4d9fbd70c07d4
   color: #999;
   font-weight: bold
 }
 
-<<<<<<< HEAD
 pre .hljs-deletion {
   background: #fdd
 }
@@ -747,24 +511,5 @@ pre .hljs-chunk {
 }
 
 pre .hljs-tex .hljs-formula {
-=======
-pre .deletion {
-  background: #fdd
-}
-
-pre .addition {
-  background: #dfd
-}
-
-pre .diff .change {
-  background: #0086b3
-}
-
-pre .chunk {
-  color: #aaa
-}
-
-pre .tex .formula {
->>>>>>> 59d7d5f698d7c96fdd9a8d7031a4d9fbd70c07d4
   opacity: 0.5;
 }

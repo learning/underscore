@@ -28,55 +28,9 @@
 	var url = args[1],
 		page = require('webpage').create();
 
-<<<<<<< HEAD
 	function addLogging() {
 		window.document.addEventListener('DOMContentLoaded', function() {
 			var currentTestAssertions = [];
-=======
-	// Route `console.log()` calls from within the Page context to the main Phantom context (i.e. current `this`)
-	page.onConsoleMessage = function(msg) {
-		console.log(msg);
-	};
-
-	page.onInitialized = function() {
-		page.evaluate(addLogging);
-	};
-
-	page.onCallback = function(message) {
-		var result,
-			failed;
-
-		if (message) {
-			if (message.name === 'QUnit.done') {
-				result = message.data;
-				failed = !result || result.failed;
-
-				phantom.exit(failed ? 1 : 0);
-			}
-		}
-	};
-
-	page.open(url, function(status) {
-		if (status !== 'success') {
-			console.error('Unable to access network: ' + status);
-			phantom.exit(1);
-		} else {
-			// Cannot do this verification with the 'DOMContentLoaded' handler because it
-			// will be too late to attach it if a page does not have any script tags.
-			var qunitMissing = page.evaluate(function() { return (typeof QUnit === 'undefined' || !QUnit); });
-			if (qunitMissing) {
-				console.error('The `QUnit` object is not present on this page.');
-				phantom.exit(1);
-			}
-
-			// Do nothing... the callback mechanism will handle everything!
-		}
-	});
-
-	function addLogging() {
-		window.document.addEventListener('DOMContentLoaded', function() {
-			var current_test_assertions = [];
->>>>>>> 59d7d5f698d7c96fdd9a8d7031a4d9fbd70c07d4
 
 			QUnit.log(function(details) {
 				var response;
@@ -95,19 +49,11 @@
 
 					response += 'expected: ' + details.expected + ', but was: ' + details.actual;
 					if (details.source) {
-<<<<<<< HEAD
 						response += '\n' + details.source;
 					}
 				}
 
 				currentTestAssertions.push('Failed assertion: ' + response);
-=======
-						response += "\n" + details.source;
-					}
-				}
-
-				current_test_assertions.push('Failed assertion: ' + response);
->>>>>>> 59d7d5f698d7c96fdd9a8d7031a4d9fbd70c07d4
 			});
 
 			QUnit.testDone(function(result) {
@@ -118,21 +64,12 @@
 				if (result.failed) {
 					console.log('Test failed: ' + name);
 
-<<<<<<< HEAD
 					for (i = 0, len = currentTestAssertions.length; i < len; i++) {
 						console.log('    ' + currentTestAssertions[i]);
 					}
 				}
 
 				currentTestAssertions.length = 0;
-=======
-					for (i = 0, len = current_test_assertions.length; i < len; i++) {
-						console.log('    ' + current_test_assertions[i]);
-					}
-				}
-
-				current_test_assertions.length = 0;
->>>>>>> 59d7d5f698d7c96fdd9a8d7031a4d9fbd70c07d4
 			});
 
 			QUnit.done(function(result) {
@@ -147,7 +84,6 @@
 			});
 		}, false);
 	}
-<<<<<<< HEAD
 
 	// Route `console.log()` calls from within the Page context to the main Phantom context (i.e. current `this`)
 	page.onConsoleMessage = function(msg) {
@@ -192,6 +128,3 @@
 	});
 
 }());
-=======
-})();
->>>>>>> 59d7d5f698d7c96fdd9a8d7031a4d9fbd70c07d4
