@@ -1,0 +1,2266 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+  <meta name="viewport" content="width=device-width" />
+  <meta name="description" content="Underscore.js 中文文档 (1.4.2) Underscore 是一个JavaScript实用库,提供了类似Prototype.js (或 Ruby)的一些功能,但是没有继承任何JavaScript内置对象。它弥补了部分jQuery没有实现的功能,同时又是Backbone.js必不可少的部分。">
+  <meta name="keywords" content="underscore, 1.4.2, 中文, underscore 1.4.2 中文, underscore 1.4.2 中文版, underscore 1.4.2 中文文档, underscorejs, underscore中文版, 中文版, underscore中文文档, 中文文档, underscorejs中文, underscorejs中文文档, underscorejs中文版, underscore.js中文, underscore.js中文版, underscore.js中文文档"/>
+  <meta name="author" content="Learning"/>
+  <link rel="canonical" href="http://learningcn.com/underscore" />
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+  <title>Underscore.js 中文文档 (1.4.2)</title>
+  <style>
+    body {
+      font-size: 14px;
+      line-height: 22px;
+      background: #f4f4f4 url(docs/images/background.png);
+      color: #000;
+      font-family: Helvetica Neue, Helvetica, Arial;
+    }
+    .interface {
+      font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, sans-serif !important;
+    }
+    div#sidebar {
+      background: #fff;
+      position: fixed;
+      top: 0; left: 0; bottom: 0;
+      width: 200px;
+      overflow-y: auto;
+      overflow-x: hidden;
+      -webkit-overflow-scrolling: touch;
+      padding: 15px 0 30px 30px;
+      border-right: 1px solid #bbb;
+      box-shadow: 0 0 20px #ccc; -webkit-box-shadow: 0 0 20px #ccc; -moz-box-shadow: 0 0 20px #ccc;
+    }
+    a.toc_title, a.toc_title:visited {
+      display: block;
+      color: black;
+      font-weight: bold;
+      margin-top: 15px;
+    }
+      a.toc_title:hover {
+        text-decoration: underline;
+      }
+      #sidebar .version {
+        font-size: 10px;
+        font-weight: normal;
+      }
+    ul.toc_section {
+      font-size: 11px;
+      line-height: 14px;
+      margin: 5px 0 0 0;
+      padding-left: 0px;
+      list-style-type: none;
+      font-family: Lucida Grande;
+    }
+      .toc_section li {
+        cursor: pointer;
+        margin: 0 0 3px 0;
+      }
+        .toc_section li a {
+          text-decoration: none;
+          color: black;
+        }
+          .toc_section li a:hover {
+            text-decoration: underline;
+          }
+    div.container {
+      width: 550px;
+      margin: 40px 0 50px 260px;
+    }
+    img#logo {
+      width: 396px;
+      height: 69px;
+    }
+    div.warning {
+      margin-top: 15px;
+      font: bold 11px Arial;
+      color: #770000;
+    }
+    p {
+      margin: 20px 0;
+      width: 550px;
+    }
+    a, a:visited {
+      color: #444;
+    }
+    a:active, a:hover {
+      color: #000;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      padding-top: 20px;
+    }
+      h2 {
+        font-size: 20px;
+      }
+    b.header {
+      font-size: 16px;
+      line-height: 30px;
+    }
+    span.alias {
+      font-size: 14px;
+      font-style: italic;
+      margin-left: 20px;
+    }
+    table, tr, td {
+      margin: 0; padding: 0;
+    }
+      td {
+        padding: 2px 12px 2px 0;
+      }
+      table .rule {
+        height: 1px;
+        background: #ccc;
+        margin: 5px 0;
+      }
+    ul {
+      list-style-type: circle;
+      padding: 0 0 0 20px;
+    }
+      li {
+        width: 500px;
+        margin-bottom: 10px;
+      }
+      code, pre, tt {
+        font-family: Monaco, Consolas, "Lucida Console", monospace;
+        font-size: 12px;
+        line-height: 18px;
+        font-style: normal;
+      }
+        tt {
+          padding: 0px 3px;
+          background: #fff;
+          border: 1px solid #ddd;
+          zoom: 1;
+        }
+        code {
+          margin-left: 20px;
+        }
+        pre {
+          font-size: 12px;
+          padding: 2px 0 2px 15px;
+          border-left: 5px solid #bbb;
+          margin: 0px 0 30px;
+        }
+    @media only screen and (-webkit-min-device-pixel-ratio: 1.5) and (max-width: 640px),
+          only screen and (-o-min-device-pixel-ratio: 3/2) and (max-width: 640px),
+          only screen and (min-device-pixel-ratio: 1.5) and (max-width: 640px) {
+      img {
+        max-width: 100%;
+      }
+      div#sidebar {
+        -webkit-overflow-scrolling: initial;
+        position: relative;
+        width: 90%;
+        height: 120px;
+        left: 0;
+        top: -7px;
+        padding: 10px 0 10px 30px;
+        border: 0;
+      }
+      img#logo {
+        width: auto;
+        height: auto;
+      }
+      div.container {
+        margin: 0;
+        width: 100%;
+      }
+      p, div.container ul {
+        max-width: 98%;
+        overflow-x: scroll;
+      }
+      pre {
+        overflow: scroll;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="sidebar" class="interface">
+
+    <a class="toc_title" href="#">
+      Underscore.js <span class="version">(1.4.2)</span>
+    </a>
+
+    <a class="toc_title" href="#">
+      介绍
+    </a>
+
+    <a class="toc_title" href="#collections">
+      集合(Collections)
+    </a>
+    <ul class="toc_section">
+      <li>- <a href="#each">each</a></li>
+      <li>- <a href="#map">map</a></li>
+      <li>- <a href="#reduce">reduce</a></li>
+      <li>- <a href="#reduceRight">reduceRight</a></li>
+      <li>- <a href="#find">find</a></li>
+      <li>- <a href="#filter">filter</a></li>
+      <li>- <a href="#where">where</a></li>
+      <li>- <a href="#reject">reject</a></li>
+      <li>- <a href="#all">all</a></li>
+      <li>- <a href="#any">any</a></li>
+      <li>- <a href="#contains">contains</a></li>
+      <li>- <a href="#invoke">invoke</a></li>
+      <li>- <a href="#pluck">pluck</a></li>
+      <li>- <a href="#max">max</a></li>
+      <li>- <a href="#min">min</a></li>
+      <li>- <a href="#sortBy">sortBy</a></li>
+      <li>- <a href="#groupBy">groupBy</a></li>
+      <li>- <a href="#countBy">countBy</a></li>
+      <li>- <a href="#shuffle">shuffle</a></li>
+      <li>- <a href="#toArray">toArray</a></li>
+      <li>- <a href="#size">size</a></li>
+    </ul>
+
+    <a class="toc_title" href="#arrays">
+      数组(Arrays)
+    </a>
+    <ul class="toc_section">
+      <li>- <a href="#first">first</a></li>
+      <li>- <a href="#initial">initial</a></li>
+      <li>- <a href="#last">last</a></li>
+      <li>- <a href="#rest">rest</a></li>
+      <li>- <a href="#compact">compact</a></li>
+      <li>- <a href="#flatten">flatten</a></li>
+      <li>- <a href="#without">without</a></li>
+      <li>- <a href="#union">union</a></li>
+      <li>- <a href="#intersection">intersection</a></li>
+      <li>- <a href="#difference">difference</a></li>
+      <li>- <a href="#uniq">uniq</a></li>
+      <li>- <a href="#zip">zip</a></li>
+      <li>- <a href="#object">object</a></li>
+      <li>- <a href="#indexOf">indexOf</a></li>
+      <li>- <a href="#lastIndexOf">lastIndexOf</a></li>
+      <li>- <a href="#sortedIndex">sortedIndex</a></li>
+      <li>- <a href="#range">range</a></li>
+    </ul>
+
+    <a class="toc_title" href="#functions">
+      函数(Functions)
+    </a>
+    <ul class="toc_section">
+      <li>- <a href="#bind">bind</a></li>
+      <li>- <a href="#bindAll">bindAll</a></li>
+      <li>- <a href="#memoize">memoize</a></li>
+      <li>- <a href="#delay">delay</a></li>
+      <li>- <a href="#defer">defer</a></li>
+      <li>- <a href="#throttle">throttle</a></li>
+      <li>- <a href="#debounce">debounce</a></li>
+      <li>- <a href="#once">once</a></li>
+      <li>- <a href="#after">after</a></li>
+      <li>- <a href="#wrap">wrap</a></li>
+      <li>- <a href="#compose">compose</a></li>
+    </ul>
+
+    <a class="toc_title" href="#objects">
+      对象(Objects)
+    </a>
+    <ul class="toc_section">
+      <li>- <a href="#keys">keys</a></li>
+      <li>- <a href="#values">values</a></li>
+      <li>- <a href="#pairs">pairs</a></li>
+      <li>- <a href="#invert">invert</a></li>
+      <li>- <a href="#object-functions">functions</a></li>
+      <li>- <a href="#extend">extend</a></li>
+      <li>- <a href="#pick">pick</a></li>
+      <li>- <a href="#omit">omit</a></li>
+      <li>- <a href="#defaults">defaults</a></li>
+      <li>- <a href="#clone">clone</a></li>
+      <li>- <a href="#tap">tap</a></li>
+      <li>- <a href="#has">has</a></li>
+      <li>- <a href="#isEqual">isEqual</a></li>
+      <li>- <a href="#isEmpty">isEmpty</a></li>
+      <li>- <a href="#isElement">isElement</a></li>
+      <li>- <a href="#isArray">isArray</a></li>
+      <li>- <a href="#isObject">isObject</a></li>
+      <li>- <a href="#isArguments">isArguments</a></li>
+      <li>- <a href="#isFunction">isFunction</a></li>
+      <li>- <a href="#isString">isString</a></li>
+      <li>- <a href="#isNumber">isNumber</a></li>
+      <li>- <a href="#isFinite">isFinite</a></li>
+      <li>- <a href="#isBoolean">isBoolean</a></li>
+      <li>- <a href="#isDate">isDate</a></li>
+      <li>- <a href="#isRegExp">isRegExp</a></li>
+      <li>- <a href="#isNaN">isNaN</a></li>
+      <li>- <a href="#isNull">isNull</a></li>
+      <li>- <a href="#isUndefined">isUndefined</a></li>
+    </ul>
+
+    <a class="toc_title" href="#utility">
+      实用功能(Utility)
+    </a>
+    <ul class="toc_section">
+      <li>- <a href="#noConflict">noConflict</a></li>
+      <li>- <a href="#identity">identity</a></li>
+      <li>- <a href="#times">times</a></li>
+      <li>- <a href="#random">random</a></li>
+      <li>- <a href="#mixin">mixin</a></li>
+      <li>- <a href="#uniqueId">uniqueId</a></li>
+      <li>- <a href="#escape">escape</a></li>
+      <li>- <a href="#result">result</a></li>
+      <li>- <a href="#template">template</a></li>
+    </ul>
+
+    <a class="toc_title" href="#chaining">
+      链式语法(Chaining)
+    </a>
+    <ul class="toc_section">
+      <li>- <a href="#chain">chain</a></li>
+      <li>- <a href="#value">value</a></li>
+    </ul>
+
+    <a class="toc_title" href="#links">
+      更多链接
+    </a>
+
+    <a class="toc_title" href="#changelog">
+      更新日志
+    </a>
+
+  </div>
+
+  <div class="container">
+
+    <p id="introduction">
+      <img id="logo" src="docs/images/underscore.png" alt="Underscore.js" />
+    </p>
+
+    <p>
+      <i>此版本由<a href="https://github.com/learning">Learning</a>翻译, 如有翻译不当或者更好的翻译建议, 欢迎大家到 <a href="https://github.com/learning/underscore/issues">问题反馈</a> 处提交.</i>
+    </p>
+
+    <p>
+      <a href="http://github.com/documentcloud/underscore/">Underscore</a> 是一个JavaScript实用库,提供了类似<a href="http://prototypejs.org/api">Prototype.js</a>
+      (或 <a href="http://www.ruby-doc.org/core/classes/Enumerable.html">Ruby</a>)的一些功能,但是没有继承任何JavaScript内置对象。它弥补了部分<a href="http://docs.jquery.com">jQuery</a>没有实现的功能,同时又是<a href="http://backbonejs.org">Backbone.js</a>必不可少的部分。
+    </p>
+
+    <p>
+      Underscore提供了80多个函数,包括常用的: <b>map</b>, <b>select</b>, <b>invoke</b> &mdash; 当然还有更多专业的辅助函数,如:函数绑定, JavaScript模板功能, 强类型相等测试, 等等. 在新的浏览器中, 有许多函数如果浏览器本身直接支持,将会采用原生的,如 <b>forEach</b>, <b>map</b>, <b>reduce</b>,
+      <b>filter</b>, <b>every</b>, <b>some</b> 和 <b>indexOf</b>.
+    </p>
+
+    <p>
+      一个完整的 <a href="test/test.html">测试组件</a> 可以给您更详细的对比.
+    </p>
+
+    <p>
+      您也可以阅读 <a href="docs/underscore.html">带注释的源码</a>.
+    </p>
+
+    <p>
+      此项目
+      <a href="http://github.com/documentcloud/underscore/">在GitHub托管</a>.
+      您可以在
+      <a href="http://github.com/documentcloud/underscore/issues">issues页面</a>报告Bug或者讨论功能,
+      或者 Freenode 上的 <tt>#documentcloud</tt> 频道,
+      或者发推到 <a href="http://twitter.com/documentcloud">@documentcloud</a>.
+    </p>
+
+    <p>
+      <i>Underscore 是一个<a href="http://documentcloud.org/">DocumentCloud</a>的开源组件.</i>
+    </p>
+
+    <h2>下载 <i style="padding-left: 12px; font-size:12px;">(右键单击, 选择 "另存为")</i></h2>
+
+    <table>
+      <tr>
+        <td><a href="underscore.js">开发版 (1.4.2)</a></td>
+        <td><i>40kb, 未压缩版, 含大量注释</i></td>
+      </tr>
+      <tr>
+        <td><a href="underscore-min.js">发布版 (1.4.2)</a></td>
+        <td><i>4kb, 最简化并用Gzip压缩</i></td>
+      </tr>
+      <tr>
+        <td colspan="2"><div class="rule"></div></td>
+      </tr>
+      <tr>
+        <td><a href="https://raw.github.com/documentcloud/underscore/master/underscore.js">不稳定版</a></td>
+        <td><i>未发布版本, 当前开发中的 <tt>master</tt> 分支, 如果您要使用, 请确保您知道自己在做什么.</i></td>
+      </tr>
+    </table>
+
+    <div id="documentation">
+
+      <h2 id="collections">集合函数 (数组或对象)</h2>
+
+      <p id="each">
+        <b class="header">each</b><code>_.each(list, iterator, [context])</code>
+        <span class="alias">别名: <b>forEach</b></span>
+        <br />
+        对一个 <b>list</b> 的所有元素进行迭代, 对每一个元素执行 <b>iterator</b>
+        函数. <b>iterator</b> 和 <b>context</b> 对象绑定, 如果传了这个参数. 每次 <b>iterator</b> 的调用将会带有三个参数:
+        <tt>(element, index, list)</tt>. 如果 <b>list</b> 是一个 JavaScript 对象, <b>iterator</b> 的参数将会是 <tt>(value, key, list)</tt>. 如果有原生的 <b>forEach</b> 函数就会用原生的代替.
+      </p>
+      <pre>
+_.each([1, 2, 3], function(num){ alert(num); });
+=&gt; 依次alert每个数字...
+_.each({one : 1, two : 2, three : 3}, function(num, key){ alert(num); });
+=&gt; 依此alert每个数字...</pre>
+
+      <p id="map">
+        <b class="header">map</b><code>_.map(list, iterator, [context])</code>
+        <span class="alias">别名: <b>collect</b></span>
+        <br />
+        映射 <b>list</b> 里的每一个值, 通过一个转换函数(<b>iterator</b>)产生一个新的数组. 如果有原生的 <b>map</b> 函数, 将用之代替. 如果 <b>list</b> 是一个 JavaScript 对象,
+        <b>iterator</b>的参数将会是 <tt>(value, key, list)</tt>.
+      </p>
+      <pre>
+_.map([1, 2, 3], function(num){ return num * 3; });
+=&gt; [3, 6, 9]
+_.map({one : 1, two : 2, three : 3}, function(num, key){ return num * 3; });
+=&gt; [3, 6, 9]</pre>
+
+      <p id="reduce">
+        <b class="header">reduce</b><code>_.reduce(list, iterator, memo, [context])</code>
+        <span class="alias">别名: <b>inject, foldl</b></span>
+        <br />
+        也被称为 <b>inject</b> 和 <b>foldl</b>, <b>reduce</b> 将一个
+        <b>list</b> 里的所有值归结到一个单独的数值. <b>Memo</b> 是归结的初始值, 而且每一步都由
+        <b>iterator</b>返回. 迭代器 iterator 会传入四个参数: <tt>memo</tt>,
+        <tt>value</tt> 和迭代的索引<tt>index</tt> (或 key), 
+        最后还有对整个 <tt>list</tt> 的一个引用.
+      </p>
+      <pre>
+var sum = _.reduce([1, 2, 3], function(memo, num){ return memo + num; }, 0);
+=&gt; 6
+</pre>
+
+      <p id="reduceRight">
+        <b class="header">reduceRight</b><code>_.reduceRight(list, iterator, memo, [context])</code>
+        <span class="alias">别名: <b>foldr</b></span>
+        <br />
+        <b>reduce</b>的右结合版本. 如果可能, 将调用
+        JavaScript 1.8 版本原生的 <b>reduceRight</b>. <b>Foldr</b>
+        在 JavaScript 中并没那么有用, 人们对它的评价并不好.
+      </p>
+      <pre>
+var list = [[0, 1], [2, 3], [4, 5]];
+var flat = _.reduceRight(list, function(a, b) { return a.concat(b); }, []);
+=&gt; [4, 5, 2, 3, 0, 1]
+</pre>
+
+      <p id="find">
+        <b class="header">find</b><code>_.find(list, iterator, [context])</code>
+        <span class="alias">别名: <b>detect</b></span>
+        <br />
+        在 <b>list</b> 里的每一项进行查找, 返回第一个符合
+        测试(<b>iterator</b>)条件的元素. 此函数只返回第一个符合条件的元素, 并不会遍历整个list.
+      </p>
+      <pre>
+var even = _.find([1, 2, 3, 4, 5, 6], function(num){ return num % 2 == 0; });
+=&gt; 2
+</pre>
+
+      <p id="filter">
+        <b class="header">filter</b><code>_.filter(list, iterator, [context])</code>
+        <span class="alias">别名: <b>select</b></span>
+        <br />
+        在 <b>list</b> 里的每一项进行查找, 返回一个符合测试 (<b>iterator</b>) 条件的所有元素的集合. 如果存在原生的 <b>filter</b> 方法, 将采用原生的.
+      </p>
+      <pre>
+var evens = _.filter([1, 2, 3, 4, 5, 6], function(num){ return num % 2 == 0; });
+=&gt; [2, 4, 6]
+</pre>
+
+      <p id="where">
+        <b class="header">where</b><code>_.where(list, properties)</code>
+        <br />
+        遍历 <b>list</b> 里的每一个值, 返回包含 <b>properties</b> 里所有
+        key-value 组合的对象的数组.
+      </p>
+      <pre>
+_.where(listOfPlays, {author: "Shakespeare", year: 1611});
+=&gt; [{title: "Cymbeline", author: "Shakespeare", year: 1611},
+    {title: "The Tempest", author: "Shakespeare", year: 1611}]
+</pre>
+
+      <p id="reject">
+        <b class="header">reject</b><code>_.reject(list, iterator, [context])</code>
+        <br />
+        返回在 <b>list</b> 不能通过测试 (<b>iterator</b>) 的所有元素的集合. 与 <b>filter</b> 相反.
+      </p>
+      <pre>
+var odds = _.reject([1, 2, 3, 4, 5, 6], function(num){ return num % 2 == 0; });
+=&gt; [1, 3, 5]
+</pre>
+
+      <p id="all">
+        <b class="header">all</b><code>_.all(list, iterator, [context])</code>
+        <span class="alias">别名: <b>every</b></span>
+        <br />
+        如果所有在 <b>list</b> 里的元素通过了 <b>iterator</b> 的测试, 返回 <i>true</i>. 
+        如果存在则使用原生的 <b>every</b> 方法.
+      </p>
+      <pre>
+_.all([true, 1, null, 'yes'], _.identity);
+=&gt; false
+</pre>
+
+      <p id="any">
+        <b class="header">any</b><code>_.any(list, [iterator], [context])</code>
+        <span class="alias">别名: <b>some</b></span>
+        <br />
+        如果任何 <b>list</b> 里的任何一个元素通过了 <b>iterator</b> 的测试, 将返回 <i>true</i>. 
+        一旦找到了符合条件的元素, 就直接中断对list的遍历. 如果存在, 将会使用原生的 <b>some</b> 方法.
+      </p>
+      <pre>
+_.any([null, 0, 'yes', false]);
+=&gt; true
+</pre>
+
+      <p id="contains">
+        <b class="header">contains</b><code>_.contains(list, value)</code>
+        <span class="alias">别名: <b>include</b></span>
+        <br />
+        如果 <b>value</b> 存在与 <b>list</b> 里, 返回 <i>true</i>.
+        如果 <b>list</b> 是一个数组, 内部会使用 <b>indexOf</b>.
+      </p>
+      <pre>
+_.contains([1, 2, 3], 3);
+=&gt; true
+</pre>
+
+      <p id="invoke">
+        <b class="header">invoke</b><code>_.invoke(list, methodName, [*arguments])</code>
+        <br />
+        在 <b>list</b> 里的每个元素上调用名为 <b>methodName</b> 的函数.
+        任何附加的函数传入, <b>invoke</b> 将会转给要调用的函数.
+      </p>
+      <pre>
+_.invoke([[5, 1, 7], [3, 2, 1]], 'sort');
+=&gt; [[1, 5, 7], [1, 2, 3]]
+</pre>
+
+      <p id="pluck">
+        <b class="header">pluck</b><code>_.pluck(list, propertyName)</code>
+        <br />
+        一个 <b>map</b> 通常用法的简便版本: 提取一个集合里指定的属性值.
+      </p>
+      <pre>
+var stooges = [{name : 'moe', age : 40}, {name : 'larry', age : 50}, {name : 'curly', age : 60}];
+_.pluck(stooges, 'name');
+=&gt; ["moe", "larry", "curly"]
+</pre>
+
+      <p id="max">
+        <b class="header">max</b><code>_.max(list, [iterator], [context])</code>
+        <br />
+        返回 <b>list</b> 里最大的元素. 如果传入了 <b>iterator</b>,
+        它将用来比较每个值.
+      </p>
+      <pre>
+var stooges = [{name : 'moe', age : 40}, {name : 'larry', age : 50}, {name : 'curly', age : 60}];
+_.max(stooges, function(stooge){ return stooge.age; });
+=&gt; {name : 'curly', age : 60};
+</pre>
+
+      <p id="min">
+        <b class="header">min</b><code>_.min(list, [iterator], [context])</code>
+        <br />
+        返回 <b>list</b> 里最小的元素. 如果传入了 <b>iterator</b>,
+        它将用来比较每个值.
+      </p>
+      <pre>
+var numbers = [10, 5, 100, 2, 1000];
+_.min(numbers);
+=&gt; 2
+</pre>
+
+      <p id="sortBy">
+        <b class="header">sortBy</b><code>_.sortBy(list, iterator, [context])</code>
+        <br />
+        返回一个经过排序的 <b>list</b> 副本, 用升序排列 <b>iterator</b> 返回的值. 
+        迭代器也可以用字符串的属性来进行比较(如<tt>length</tt>).
+      </p>
+      <pre>
+_.sortBy([1, 2, 3, 4, 5, 6], function(num){ return Math.sin(num); });
+=&gt; [5, 4, 6, 3, 1, 2]
+</pre>
+
+      <p id="groupBy">
+        <b class="header">groupBy</b><code>_.groupBy(list, iterator)</code>
+        <br />
+        把一个集合分为多个集合, 通过 <b>iterator</b> 返回的结果进行分组. 如果 <b>iterator</b>
+        是一个字符串而不是函数, 那么将使用 <b>iterator</b> 作为各元素的属性名来对比进行分组.
+      </p>
+      <pre>
+_.groupBy([1.3, 2.1, 2.4], function(num){ return Math.floor(num); });
+=&gt; {1: [1.3], 2: [2.1, 2.4]}
+
+_.groupBy(['one', 'two', 'three'], 'length');
+=&gt; {3: ["one", "two"], 5: ["three"]}
+</pre>
+
+      <p id="countBy">
+        <b class="header">countBy</b><code>_.countBy(list, iterator)</code>
+        <br />
+        把一个数组分组并返回每一组内对象个数.
+        与 <tt>groupBy</tt> 相似, 但不是返回一组值,
+        而是组内对象的个数.
+      </p>
+      <pre>
+_.countBy([1, 2, 3, 4, 5], function(num) { 
+  return num % 2 == 0 ? 'even' : 'odd'; 
+});
+=&gt; {odd: 3, even: 2}
+</pre>
+
+      <p id="shuffle">
+        <b class="header">shuffle</b><code>_.shuffle(list)</code>
+        <br />
+        返回一个随机乱序的 <b>list</b> 副本, 使用
+        <a href="http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle">Fisher-Yates shuffle</a> 来进行随机乱序.
+      </p>
+      <pre>
+_.shuffle([1, 2, 3, 4, 5, 6]);
+=&gt; [4, 1, 6, 3, 5, 2]
+</pre>
+
+      <p id="toArray">
+        <b class="header">toArray</b><code>_.toArray(list)</code>
+        <br />
+        将一个 <b>list</b> (任何可以被进行迭代的对象)转换成一个数组. 在转换 <b>arguments</b> 对象时非常有用.
+      </p>
+      <pre>
+(function(){ return _.toArray(arguments).slice(1); })(1, 2, 3, 4);
+=&gt; [2, 3, 4]
+</pre>
+
+      <p id="size">
+        <b class="header">size</b><code>_.size(list)</code>
+        <br />
+        返回 <b>list</b> 里所有元素的个数.
+      </p>
+      <pre>
+_.size({one : 1, two : 2, three : 3});
+=&gt; 3
+</pre>
+
+      <h2 id="arrays">数组函数</h2>
+
+      <p>
+        <i>
+          注意: 所有数组函数都可以用在 <b>arguments</b> 对象上.
+          然而, Underscore 函数的设计并不只是针对稀疏数组的.
+        </i>
+      </p>
+
+      <p id="first">
+        <b class="header">first</b><code>_.first(array, [n])</code>
+        <span class="alias">别名: <b>head</b></span>
+        <br />
+        返回数组 <b>array</b> 里的第一个元素. 如果传了参数 <b>n</b> 
+        将返回数组里前 <b>n</b> 个元素.
+      </p>
+      <pre>
+_.first([5, 4, 3, 2, 1]);
+=&gt; 5
+</pre>
+
+      <p id="initial">
+        <b class="header">initial</b><code>_.initial(array, [n])</code>
+        <br />
+        返回一个数组里除了最后一个元素以外的所有元素. 在arguments对象上特别有用.
+        传参 <b>n</b> 将排除数组最后的 <b>n</b> 个元素.
+      </p>
+      <pre>
+_.initial([5, 4, 3, 2, 1]);
+=&gt; [5, 4, 3, 2]
+</pre>
+
+      <p id="last">
+        <b class="header">last</b><code>_.last(array, [n])</code>
+        <br />
+        返回数组 <b>array</b> 里的最后一个元素. 传参 <b>n</b> 将返回
+        数组里的后 <b>n</b> 个元素.
+      </p>
+      <pre>
+_.last([5, 4, 3, 2, 1]);
+=&gt; 1
+</pre>
+
+      <p id="rest">
+        <b class="header">rest</b><code>_.rest(array, [index])</code>
+        <span class="alias">别名: <b>tail, drop</b></span>
+        <br />
+        返回一个数组里除了第一个以外 <b>剩余的</b> 所有元素. 传参 <b>index</b>
+        将返回除了第 <b>index</b> 个元素以外剩余的所有元素.
+      </p>
+      <pre>
+_.rest([5, 4, 3, 2, 1]);
+=&gt; [4, 3, 2, 1]
+</pre>
+
+      <p id="compact">
+        <b class="header">compact</b><code>_.compact(array)</code>
+        <br />
+        返回一个数组 <b>array</b> 除空(真值检验为false)后的副本.
+        在JavaScript里, <i>false</i>, <i>null</i>, <i>0</i>, <i>""</i>,
+        <i>undefined</i> 和 <i>NaN</i> 真值检验的结果都为false.
+      </p>
+      <pre>
+_.compact([0, 1, false, 2, '', 3]);
+=&gt; [1, 2, 3]
+</pre>
+
+      <p id="flatten">
+        <b class="header">flatten</b><code>_.flatten(array, [shallow])</code>
+        <br />
+        将一个嵌套多层的数组 <b>array</b> (嵌套可以是任何层数)转换为只有一层的数组. 
+        如果传参 <b>shallow</b> 为true, 数组只转换第一层.
+      </p>
+      <pre>
+_.flatten([1, [2], [3, [[4]]]]);
+=&gt; [1, 2, 3, 4];
+
+_.flatten([1, [2], [3, [[4]]]], true);
+=&gt; [1, 2, 3, [[4]]];
+</pre>
+
+      <p id="without">
+        <b class="header">without</b><code>_.without(array, [*values])</code>
+        <br />
+        返回一个除去所有 <b>values</b> 后的 <b>array</b> 副本.
+      </p>
+      <pre>
+_.without([1, 2, 1, 0, 3, 1, 4], 0, 1);
+=&gt; [2, 3, 4]
+</pre>
+
+      <p id="union">
+        <b class="header">union</b><code>_.union(*arrays)</code>
+        <br />
+        返回传入的多个数组 <b>arrays</b> 结合后的数组: 且所有数组元素都是唯一的,
+        传入的数组可以是一个或多个数组 <b>arrays</b>.
+      </p>
+      <pre>
+_.union([1, 2, 3], [101, 2, 1, 10], [2, 1]);
+=&gt; [1, 2, 3, 101, 10]
+</pre>
+
+      <p id="intersection">
+        <b class="header">intersection</b><code>_.intersection(*arrays)</code>
+        <br />
+        返回一个多个数组 <b>arrays</b> 的交集.
+        即返回的数组里每个元素, 都存在于参数 <b>arrays</b> 每个数组里.
+      </p>
+      <pre>
+_.intersection([1, 2, 3], [101, 2, 1, 10], [2, 1]);
+=&gt; [1, 2]
+</pre>
+
+      <p id="difference">
+        <b class="header">difference</b><code>_.difference(array, *others)</code>
+        <br />
+        跟 <b>without</b> 相似, 但是返回的数组是 <b>array</b> 里跟别的数组 <b>other</b> 里不一样的元素.
+      </p>
+      <pre>
+_.difference([1, 2, 3, 4, 5], [5, 2, 10]);
+=&gt; [1, 3, 4]
+</pre>
+
+      <p id="uniq">
+        <b class="header">uniq</b><code>_.uniq(array, [isSorted], [iterator])</code>
+        <span class="alias">别名: <b>unique</b></span>
+        <br />
+        返回 <b>array</b> 去重后的副本, 使用 <i>===</i> 做相等测试. 
+        如果您确定 <b>array</b> 已经排序,
+        给 <b>isSorted</b> 参数传如 <i>true</i>, 此函数将使用更快的算法.
+        如果要处理对象元素, 传参 <b>iterator</b> 来获取要对比的属性.
+      </p>
+      <pre>
+_.uniq([1, 2, 1, 3, 1, 4]);
+=&gt; [1, 2, 3, 4]
+</pre>
+
+      <p id="zip">
+        <b class="header">zip</b><code>_.zip(*arrays)</code>
+        <br />
+        合并 <b>arrays</b> 里每一个数组的每个元素, 并保留对应位置.
+        在合并分开保存的数据时很有用. 如果你用来处理矩阵嵌套数组时,
+        <b>zip.apply</b> 可以做类似的效果.
+      </p>
+      <pre>
+_.zip(['moe', 'larry', 'curly'], [30, 40, 50], [true, false, false]);
+=&gt; [["moe", 30, true], ["larry", 40, false], ["curly", 50, false]]
+</pre>
+
+      <p id="object">
+        <b class="header">object</b><code>_.object(list, [values])</code>
+        <br />
+        把数组转换成对象. 传一个或多个
+        <tt>[key, value]</tt> 形式的数组,
+        或者一个包含key的数组和一个包含value的数组.
+      </p>
+      <pre>
+_.object(['moe', 'larry', 'curly'], [30, 40, 50]);
+=&gt; {moe: 30, larry: 40, curly: 50}
+
+_.object([['moe', 30], ['larry', 40], ['curly', 50]]);
+=&gt; {moe: 30, larry: 40, curly: 50}
+</pre>
+
+      <p id="indexOf">
+        <b class="header">indexOf</b><code>_.indexOf(array, value, [isSorted])</code>
+        <br />
+        返回元素 <b>value</b> 在数组 <b>array</b> 里的索引位置,
+        如果元素没在数组 <b>array</b> 中, 将返回 <i>-1</i>. 此函数将使用原生的 <b>indexOf</b> 方法, 除非原生的方法无故消失或者被覆盖重写了, 才使用非原生的.
+        如果您要处理一个大型数组, 而且确定数组已经排序, 参数 <b>isSorted</b> 可以传 <tt>true</tt>, 函数将使用更快的二进制搜索来进行处理... 或者, 传一个数字作为
+        第三个参数, 以便于在指定索引之后开始寻找对应值.
+      </p>
+      <pre>
+_.indexOf([1, 2, 3], 2);
+=&gt; 1
+</pre>
+
+      <p id="lastIndexOf">
+        <b class="header">lastIndexOf</b><code>_.lastIndexOf(array, value, [fromIndex])</code>
+        <br />
+        返回元素 <b>value</b> 在数组 <b>arrry</b> 里最后一次出现的索引位置,
+        如果元素没在数组 <b>array</b> 中, 将返回 <i>-1</i>. 
+        如有可能, 此函数将使用原生的 <b>lastIndexOf</b> 方法. 传参 <b>fromIndex</b> 以便从指定索引开始寻找.
+      </p>
+      <pre>
+_.lastIndexOf([1, 2, 3, 1, 2, 3], 2);
+=&gt; 4
+</pre>
+
+      <p id="sortedIndex">
+        <b class="header">sortedIndex</b><code>_.sortedIndex(list, value, [iterator])</code>
+        <br />
+        为了保持 <b>list</b> 已经排好的顺序, 使用二进制搜索来检测 <b>value</b>
+        <i>应该</i> 插入到 <b>list</b> 里的所在位置的索引.
+        如果传入了一个 <b>iterator</b> , 它将用来计算每个值的排名, 包括所传的 <b>value</b> 参数.
+      </p>
+      <pre>
+_.sortedIndex([10, 20, 30, 40, 50], 35);
+=&gt; 3
+</pre>
+
+      <p id="range">
+        <b class="header">range</b><code>_.range([start], stop, [step])</code>
+        <br />
+        一个灵活创建范围内整数数组的函数,
+        <tt>each</tt> 和 <tt>map</tt> 循环整合的简便版本. 如果省略<b>start</b> 参数, 默认为 <i>0</i>; <b>step</b> 默认为 <i>1</i>. 返回一个数组, 包含从 <b>start</b> 到 <b>stop</b> (不包含<b>stop</b>) 范围内, 以 <b>step</b> 递增(减)的整数.
+      </p>
+      <pre>
+_.range(10);
+=&gt; [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+_.range(1, 11);
+=&gt; [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+_.range(0, 30, 5);
+=&gt; [0, 5, 10, 15, 20, 25]
+_.range(0, -10, -1);
+=&gt; [0, -1, -2, -3, -4, -5, -6, -7, -8, -9]
+_.range(0);
+=&gt; []
+</pre>
+
+      <h2 id="functions">与函数有关的函数</h2>
+
+      <p id="bind">
+        <b class="header">bind</b><code>_.bind(function, object, [*arguments])</code>
+        <br />
+        绑定函数 <b>function</b> 到对象 <b>object</b> 上, 
+        也就是无论何时函数被调用, 函数里的 <i>this</i> 都指向 <b>object</b>.
+        可选参数 <b>arguments</b> 可以绑定到函数 <b>function</b> , 可以填充函数所需要的参数,
+        这也被成为 <b>部分应用</b>.
+      </p>
+      <pre>
+var func = function(greeting){ return greeting + ': ' + this.name };
+func = _.bind(func, {name : 'moe'}, 'hi');
+func();
+=&gt; 'hi: moe'
+</pre>
+
+      <p id="bindAll">
+        <b class="header">bindAll</b><code>_.bindAll(object, [*methodNames])</code>
+        <br />
+        绑定 <b>methodNames</b> 指定的方法到 <b>object</b> 上, 当这些方法被执行时将在对象的上下文执行. 绑定函数用作事件处理时非常方便, 否则函数调用时
+        <i>this</i> 关键字根本没什么用. 如果不传 <b>methodNames</b> 参数, 对象里的所有方法都被绑定.
+      </p>
+      <pre>
+var buttonView = {
+  label   : 'underscore',
+  onClick : function(){ alert('clicked: ' + this.label); },
+  onHover : function(){ console.log('hovering: ' + this.label); }
+};
+_.bindAll(buttonView);
+jQuery('#underscore_button').bind('click', buttonView.onClick);
+=&gt; 当按钮被点击, this.label 会是buttonView里的label而不是按钮的label...
+</pre>
+
+      <p id="memoize">
+        <b class="header">memoize</b><code>_.memoize(function, [hashFunction])</code>
+        <br />
+        通过缓存计算结果使函数 <b>function</b> 具有记忆功能.
+        在优化耗时较长的算时法非常有用. 如果传了可选参数
+        <b>hashFunction</b>, 将用其返回的值作为key来保存函数的运行结果, 
+        以原始函数的参数为基础. 
+        <b>hashFunction</b> 默认使用被缓存函数的第一个参数作为key.
+      </p>
+      <pre>
+var fibonacci = _.memoize(function(n) {
+  return n &lt; 2 ? n : fibonacci(n - 1) + fibonacci(n - 2);
+});
+</pre>
+
+      <p id="delay">
+        <b class="header">delay</b><code>_.delay(function, wait, [*arguments])</code>
+        <br />
+        和 <b>setTimeout</b> 方法很像, 在 <b>wait</b> 毫秒之后调用 <b>function</b> 函数. 如果传了可选参数 <b>arguments</b>, 在函数 <b>function</b> 调用的时候会作为参数传入.
+      </p>
+      <pre>
+var log = _.bind(console.log, console);
+_.delay(log, 1000, 'logged later');
+=&gt; 'logged later' // 一秒钟后显示.
+</pre>
+
+      <p id="defer">
+        <b class="header">defer</b><code>_.defer(function, [*arguments])</code>
+        <br />
+        延迟调用 <b>function</b> 函数, 直到当前调用栈被清空为止,
+        跟使用 <b>setTimeout</b> 赋予0毫秒的延时很像. 
+        对执行高消耗算法或大型HTML呈现而不阻碍UI更新线程很有用.
+        如果传了可选参数 <b>arguments</b>, 在函数 <b>function</b> 
+        调用的时候会作为参数传入.
+      </p>
+      <pre>
+_.defer(function(){ alert('deferred'); });
+// 将在alert显示之前返回这个function
+</pre>
+
+      <p id="throttle">
+        <b class="header">throttle</b><code>_.throttle(function, wait)</code>
+        <br />
+        返回一个类似于节流阀一样的函数, 
+        当高频率的调用函数, 实际上会每隔 <b>wait</b> 毫秒才会调用一次.
+        对于高到您感觉不到的高频率执行的函数时非常有用.
+      </p>
+      <pre>
+var throttled = _.throttle(updatePosition, 100);
+$(window).scroll(throttled);
+</pre>
+
+      <p id="debounce">
+        <b class="header">debounce</b><code>_.debounce(function, wait, [immediate])</code>
+        <br />
+        返回 <b>function</b> 函数的防反跳版本,
+        将延迟函数的执行(真正的执行)在函数最后一次调用时刻的 <b>wait</b> 毫秒之后.
+        对于必须在一些输入（多是一些用户操作）停止到达<i>之后</i>执行的行为有帮助。
+        例如: 渲染一个Markdown格式的评论预览, 
+        当窗口停止改变大小之后重新计算布局, 等等.
+      </p>
+      
+      <p>
+        传参 <b>immediate</b> 为 <tt>true</tt> 会让
+        <b>debounce</b> 在 <b>wait</b> 间隔之后
+        触发最后的函数调用而不是最先的函数调用.
+        在类似不小心点了提交按钮两下而提交了两次的情况下很有用.
+      </p>
+
+      <pre>
+var lazyLayout = _.debounce(calculateLayout, 300);
+$(window).resize(lazyLayout);
+</pre>
+
+      <p id="once">
+        <b class="header">once</b><code>_.once(function)</code>
+        <br />
+        创建一个只能运行一次的函数. 重复调用此修改过的函数会没有效果, 
+        只会返回第一次执行时返回的结果. 作为初始化函数使用时非常有用,
+        不用再设一个boolean值来检查是否已经初始化完成.
+      </p>
+      <pre>
+var initialize = _.once(createApplication);
+initialize();
+initialize();
+// Application只会创建一次.
+</pre>
+
+      <p id="after">
+        <b class="header">after</b><code>_.after(count, function)</code>
+        <br />
+        创建一个函数, 只有在运行了 <b>count</b> 次之后才有效果.
+        在处理同组异步请求返回结果时, 如果你要确保同组里所有异步请求完成之后才
+        执行这个函数, 这将非常有用.
+      </p>
+      <pre>
+var renderNotes = _.after(notes.length, render);
+_.each(notes, function(note) {
+  note.asyncSave({success: renderNotes});
+});
+// renderNotes 只会运行一次, 而且是在所有 notes 保存完毕之后才执行.
+</pre>
+
+      <p id="wrap">
+        <b class="header">wrap</b><code>_.wrap(function, wrapper)</code>
+        <br />
+        将第一个函数 <b>function</b> 封装到函数 <b>wrapper</b> 里面,
+        并把函数 <b>function</b> 作为第一个参数传给 <b>wrapper</b>. 
+        这样可以让 <b>wrapper</b> 在 <b>function</b> 运行之前和之后
+        执行代码, 调整参数然后附有条件地执行.
+      </p>
+      <pre>
+var hello = function(name) { return "hello: " + name; };
+hello = _.wrap(hello, function(func) {
+  return "before, " + func("moe") + ", after";
+});
+hello();
+=&gt; 'before, hello: moe, after'
+</pre>
+
+      <p id="compose">
+        <b class="header">compose</b><code>_.compose(*functions)</code>
+        <br />
+        返回函数集 <b>functions</b> 组合后的复合函数, 
+        也就是一个函数执行完之后把返回的结果再作为参数赋给下一个函数来执行. 
+        以此类推.
+        在数学里, 把函数 <i>f()</i>, <i>g()</i>, 和 <i>h()</i> 组合起来可以得到复合函数 <i>f(g(h()))</i>.
+      </p>
+      <pre>
+var greet    = function(name){ return "hi: " + name; };
+var exclaim  = function(statement){ return statement + "!"; };
+var welcome = _.compose(exclaim, greet);
+welcome('moe');
+=&gt; 'hi: moe!'
+</pre>
+
+      <h2 id="objects">对象函数</h2>
+
+      <p id="keys">
+        <b class="header">keys</b><code>_.keys(object)</code>
+        <br />
+        获取 <b>object</b> 对象的所有属性名.
+      </p>
+      <pre>
+_.keys({one : 1, two : 2, three : 3});
+=&gt; ["one", "two", "three"]
+</pre>
+
+      <p id="values">
+        <b class="header">values</b><code>_.values(object)</code>
+        <br />
+        获取 <b>object</b> 对象的所有属性值.
+      </p>
+      <pre>
+_.values({one : 1, two : 2, three : 3});
+=&gt; [1, 2, 3]
+</pre>
+
+      <p id="pairs">
+        <b class="header">pairs</b><code>_.pairs(object)</code>
+        <br />
+        把一个对象转换成一个 <tt>[key, value]</tt> 形式的数组.
+      </p>
+      <pre>
+_.pairs({one: 1, two: 2, three: 3});
+=&gt; [["one", 1], ["two", 2], ["three", 3]]
+</pre>
+
+      <p id="invert">
+        <b class="header">invert</b><code>_.invert(object)</code>
+        <br />
+        返回一个 <b>object</b> 的副本, 并且里面键和值是对调的.
+        要使之有效, 必须确保object里所有的值都是唯一的且可以序列号成字符串.
+      </p>
+      <pre>
+_.invert({Moe: "Moses", Larry: "Louis", Curly: "Jerome"});
+=&gt; {Moses: "Moe", Louis: "Larry", Jerome: "Curly"};
+</pre>
+
+      <p id="object-functions">
+        <b class="header">functions</b><code>_.functions(object)</code>
+        <span class="alias">Alias: <b>methods</b></span>
+        <br />
+        返回一个对象里所有的方法名, 而且是已经排序的 &mdash;
+        也就是说, 对象里每个方法(属性值是一个函数)的名称.
+      </p>
+      <pre>
+_.functions(_);
+=&gt; ["all", "any", "bind", "bindAll", "clone", "compact", "compose" ...
+</pre>
+
+      <p id="extend">
+        <b class="header">extend</b><code>_.extend(destination, *sources)</code>
+        <br />
+        复制 <b>source</b> 对象的所有属性到
+        <b>destination</b> 对象上, 然后返回 <b>destination</b> 对象.
+        复制是按顺序的, 所以后面的对象属性会把前面的对象属性覆盖掉(如果有重复).
+      </p>
+      <pre>
+_.extend({name : 'moe'}, {age : 50});
+=&gt; {name : 'moe', age : 50}
+</pre>
+
+      <p id="pick">
+        <b class="header">pick</b><code>_.pick(object, *keys)</code>
+        <br />
+        返回一个 <b>object</b> 对象的副本, 过滤掉除了
+        <b>keys</b> 以外的所有属性(一个或多个).
+      </p>
+      <pre>
+_.pick({name : 'moe', age: 50, userid : 'moe1'}, 'name', 'age');
+=&gt; {name : 'moe', age : 50}
+</pre>
+
+      <p id="omit">
+        <b class="header">omit</b><code>_.omit(object, *keys)</code>
+        <br />
+        返回一个 <b>object</b> 对象的副本, 过滤掉了黑名单里的
+        <b>keys</b> (keys可以是单个key也可以是包含多个key的数组).
+      </p>
+      <pre>
+_.omit({name : 'moe', age : 50, userid : 'moe1'}, 'userid');
+=&gt; {name : 'moe', age : 50}
+</pre>
+
+      <p id="defaults">
+        <b class="header">defaults</b><code>_.defaults(object, *defaults)</code>
+        <br />
+        用 <b>defaults</b> 对象里的默认值来填充 <b>object</b>
+        对象里遗漏的属性值, 并返回 <b>object</b> 对象.
+        当属性值已被填充遗漏, 再添加属性值就没用了.
+      </p>
+      <pre>
+var iceCream = {flavor : "chocolate"};
+_.defaults(iceCream, {flavor : "vanilla", sprinkles : "lots"});
+=&gt; {flavor : "chocolate", sprinkles : "lots"}
+</pre>
+
+      <p id="clone">
+        <b class="header">clone</b><code>_.clone(object)</code>
+        <br />
+        克隆对象 <b>object</b>. 任何嵌套的对象或数组将会被引用, 而不是复制.
+      </p>
+      <pre>
+_.clone({name : 'moe'});
+=&gt; {name : 'moe'};
+</pre>
+
+      <p id="tap">
+        <b class="header">tap</b><code>_.tap(object, interceptor)</code>
+        <br />
+        用对象 <b>object</b> 作为参数来调用函数 <b>interceptor</b>, 
+        然后返回 <b>object</b> 对象. 此方法的主要意图是作为函数链式调用
+        的一环, 为了对此对象执行操作并返回对象本身.
+      </p>
+      <pre>
+_.chain([1,2,3,200])
+  .filter(function(num) { return num % 2 == 0; })
+  .tap(alert)
+  .map(function(num) { return num * num })
+  .value();
+=&gt; // [2, 200] (alerted)
+=&gt; [4, 40000]
+</pre>
+
+      <p id="has">
+        <b class="header">has</b><code>_.has(object, key)</code>
+        <br />
+        判断对象 <b>object</b> 包含指定的属性 <b>key</b> 吗? 和
+        <tt>object.hasOwnProperty(key)</tt> 相同, 但是使用了
+        <tt>hasOwnProperty</tt> 函数的安全引用, 更多请参考
+        <a href="http://www.devthought.com/2012/01/18/an-object-is-not-a-hash/">意外重写</a>.
+      </p>
+      <pre>
+_.has({a: 1, b: 2, c: 3}, "b");
+=&gt; true
+</pre>
+
+      <p id="isEqual">
+        <b class="header">isEqual</b><code>_.isEqual(object, other)</code>
+        <br />
+        执行优化过的算法来对两个对象进行深度的相等测试, 来判定两个对象是否相等(非全等).
+      </p>
+      <pre>
+var moe   = {name : 'moe', luckyNumbers : [13, 27, 34]};
+var clone = {name : 'moe', luckyNumbers : [13, 27, 34]};
+moe == clone;
+=&gt; false
+_.isEqual(moe, clone);
+=&gt; true
+</pre>
+
+      <p id="isEmpty">
+        <b class="header">isEmpty</b><code>_.isEmpty(object)</code>
+        <br />
+        如果 <b>object</b> 里没包含任何东西, 将返回 <i>true</i>.
+      </p>
+      <pre>
+_.isEmpty([1, 2, 3]);
+=&gt; false
+_.isEmpty({});
+=&gt; true
+</pre>
+
+      <p id="isElement">
+        <b class="header">isElement</b><code>_.isElement(object)</code>
+        <br />
+        如果 <b>object</b> 是一个DOM元素, 将返回 <i>true</i>.
+      </p>
+      <pre>
+_.isElement(jQuery('body')[0]);
+=&gt; true
+</pre>
+
+      <p id="isArray">
+        <b class="header">isArray</b><code>_.isArray(object)</code>
+        <br />
+        如果 <b>object</b> 是一个数组, 将返回 <i>true</i>.
+      </p>
+      <pre>
+(function(){ return _.isArray(arguments); })();
+=&gt; false
+_.isArray([1,2,3]);
+=&gt; true
+</pre>
+
+      <p id="isObject">
+        <b class="header">isObject</b><code>_.isObject(value)</code>
+        <br />
+        如果 <b>value</b> 是一个对象, 将返回 <i>true</i>. 
+        注意在JavaScript中数组和函数都是对象, 而普通的字符串和数字不是.
+      </p>
+      <pre>
+_.isObject({});
+=&gt; true
+_.isObject(1);
+=&gt; false
+</pre>
+
+      <p id="isArguments">
+        <b class="header">isArguments</b><code>_.isArguments(object)</code>
+        <br />
+        如果 <b>object</b> 是参数(Arguments)对象, 将返回 <i>true</i>.
+      </p>
+      <pre>
+(function(){ return _.isArguments(arguments); })(1, 2, 3);
+=&gt; true
+_.isArguments([1,2,3]);
+=&gt; false
+</pre>
+
+      <p id="isFunction">
+        <b class="header">isFunction</b><code>_.isFunction(object)</code>
+        <br />
+        如果 <b>object</b> 是函数, 将返回 <i>true</i>.
+      </p>
+      <pre>
+_.isFunction(alert);
+=&gt; true
+</pre>
+
+      <p id="isString">
+        <b class="header">isString</b><code>_.isString(object)</code>
+        <br />
+        如果 <b>object</b> 是字符串, 将返回 <i>true</i>.
+      </p>
+      <pre>
+_.isString("moe");
+=&gt; true
+</pre>
+
+      <p id="isNumber">
+        <b class="header">isNumber</b><code>_.isNumber(object)</code>
+        <br />
+        如果 <b>object</b> 是一个数字(包括<tt>NaN</tt>), 将返回 <i>true</i>.
+      </p>
+      <pre>
+_.isNumber(8.4 * 5);
+=&gt; true
+</pre>
+
+      <p id="isFinite">
+        <b class="header">isFinite</b><code>_.isFinite(object)</code>
+        <br />
+        如果 <b>object</b> 是一个有限的数字, 将返回 <i>true</i>.
+      </p>
+      <pre>
+_.isFinite(-101);
+=&gt; true
+
+_.isFinite(-Infinity);
+=&gt; false
+</pre>
+
+      <p id="isBoolean">
+        <b class="header">isBoolean</b><code>_.isBoolean(object)</code>
+        <br />
+        如果 <b>object</b> 是布尔值(<i>true</i> 或 <i>false</i>), 将返回 <i>true</i>.
+      </p>
+      <pre>
+_.isBoolean(null);
+=&gt; false
+</pre>
+
+      <p id="isDate">
+        <b class="header">isDate</b><code>_.isDate(object)</code>
+        <br />
+        如果 <b>object</b> 是时间对象, 将返回 <i>true</i>.
+      </p>
+      <pre>
+_.isDate(new Date());
+=&gt; true
+</pre>
+
+      <p id="isRegExp">
+        <b class="header">isRegExp</b><code>_.isRegExp(object)</code>
+        <br />
+        如果 <b>object</b> 是正则表达式对象, 将返回 <i>true</i>
+      </p>
+      <pre>
+_.isRegExp(/moe/);
+=&gt; true
+</pre>
+
+      <p id="isNaN">
+        <b class="header">isNaN</b><code>_.isNaN(object)</code>
+        <br />
+        如果 <b>object</b> 是 <i>NaN</i>, 将返回 <i>true</i>.<br /> 注意: 这与原生的 <b>isNaN</b> 函数不一样, 原生的传参即使是 <i>undefined</i> 也会返回true.
+      </p>
+      <pre>
+_.isNaN(NaN);
+=&gt; true
+isNaN(undefined);
+=&gt; true
+_.isNaN(undefined);
+=&gt; false
+</pre>
+
+      <p id="isNull">
+        <b class="header">isNull</b><code>_.isNull(object)</code>
+        <br />
+        如果 <b>object</b> 的值是 <i>null</i>, 将返回 <i>true</i>.
+      </p>
+      <pre>
+_.isNull(null);
+=&gt; true
+_.isNull(undefined);
+=&gt; false
+</pre>
+
+      <p id="isUndefined">
+        <b class="header">isUndefined</b><code>_.isUndefined(value)</code>
+        <br />
+        如果 <b>variable</b> 是 <i>undefined</i>, 将会返回 <i>true</i> .
+      </p>
+      <pre>
+_.isUndefined(window.missingVariable);
+=&gt; true
+</pre>
+
+      <h2 id="utility">实用功能</h2>
+
+      <p id="noConflict">
+        <b class="header">noConflict</b><code>_.noConflict()</code>
+        <br />
+        把 "_" 变量的控制权预留给它原有的所有者. 返回
+        一个引用给 <b>Underscore</b> 对象.
+      </p>
+      <pre>
+var underscore = _.noConflict();</pre>
+
+      <p id="identity">
+        <b class="header">identity</b><code>_.identity(value)</code>
+        <br />
+        返回与传入参数相等的值. 相当于数学里的: <tt>f(x) = x</tt><br />
+        这个函数看似无用, 但是在Underscore里被用作默认的迭代器iterator.
+      </p>
+      <pre>
+var moe = {name : 'moe'};
+moe === _.identity(moe);
+=&gt; true</pre>
+
+      <p id="times">
+        <b class="header">times</b><code>_.times(n, iterator, [context])</code>
+        <br />
+        调用指定的 iterator 函数 <b>n</b> 次.
+        <b>iterator</b> 的每一次调用都带 <tt>index</tt> 参数.
+      </p>
+      <pre>
+_(3).times(function(n){ genie.grantWishNumber(n); });</pre>
+
+      <p id="random">
+        <b class="header">random</b><code>_.random(min, max)</code>
+        <br />
+        返回一个介于 <b>min</b> 和 <b>max</b> 之间(包含)的整数.
+        如果直传一个参数, 将会返回一个介于 <tt>0</tt>
+        和参数之间的整数.
+      </p>
+      <pre>
+_.random(0, 100);
+=&gt; 42</pre>
+
+      <p id="mixin">
+        <b class="header">mixin</b><code>_.mixin(object)</code>
+        <br />
+        允许您继承 Underscore 并加入您自己的功能函数.
+        传参 <tt>{名称: 函数}</tt> 来定义您的函数, 加入到 Underscore 对象中, 就像面向对象的封装.
+      </p>
+      <pre>
+_.mixin({
+  capitalize : function(string) {
+    return string.charAt(0).toUpperCase() + string.substring(1).toLowerCase();
+  }
+});
+_("fabio").capitalize();
+=&gt; "Fabio"
+</pre>
+
+      <p id="uniqueId">
+        <b class="header">uniqueId</b><code>_.uniqueId([prefix])</code>
+        <br />
+        给客户端模型或DOM元素生成一个全局的唯一id.
+        如果传参 <b>prefix</b> , id将以此开头.
+        不传 <b>prefix</b>, 返回的是一个整数.
+      </p>
+      <pre>
+_.uniqueId('contact_');
+=&gt; 'contact_104'</pre>
+
+      <p id="escape">
+        <b class="header">escape</b><code>_.escape(string)</code>
+        <br />
+        转义HTML字符串, 替换
+        <tt>&amp;</tt>, <tt>&lt;</tt>, <tt>&gt;</tt>, <tt>&quot;</tt>, <tt>&#x27;</tt>, 和 <tt>&#x2F;</tt> 字符.
+      </p>
+      <pre>
+_.escape('Curly, Larry &amp; Moe');
+=&gt; "Curly, Larry &amp;amp; Moe"</pre>
+
+      <p id="result">
+        <b class="header">result</b><code>_.result(object, property)</code>
+        <br />
+        如果对象 <b>object</b> 中的属性 <b>property</b> 是函数,
+        则调用它, 否则, 返回它.
+      </p>
+      <pre>
+var object = {cheese: 'crumpets', stuff: function(){ return 'nonsense'; }};
+_.result(object, 'cheese');
+=&gt; "crumpets"
+_.result(object, 'stuff');
+=&gt; "nonsense"</pre>
+
+      <p id="template">
+        <b class="header">template</b><code>_.template(templateString, [data], [settings])</code>
+        <br />
+        将 JavaScript 模板编译为可以用于页面呈现的函数, 对于通过JSON数据源生成复杂的HTML并呈现出来的操作非常有用.
+        模板函数可以通过以下两种方式插入到页面中, 使用
+        <tt>&lt;%= &hellip; %&gt;</tt>, 也可以用<tt>&lt;% &hellip; %&gt;</tt>执行任意的 JavaScript 代码.
+        如果您希望插入一个值, 并让其进行HTML转义,
+        当您使用创建一个模板时使用 <tt>&lt;%- &hellip; %&gt;</tt> , 传入一个含有与模板对应属性的对象 <b>data</b>.
+        如果您要写一个一次性的, 您可以传对象 <b>data</b> 
+        作为第二个参数给模板 <b>template</b> 来直接呈现,
+        这样页面会立即呈现而不是返回一个模板函数.
+        参数 <b>settings</b> 是一个哈希表包含任何可以覆盖的设置 <tt>_.templateSettings</tt>.
+      </p>
+
+      <pre>
+var compiled = _.template("hello: &lt;%= name %&gt;");
+compiled({name : 'moe'});
+=&gt; "hello: moe"
+
+var list = "&lt;% _.each(people, function(name) { %&gt; &lt;li&gt;&lt;%= name %&gt;&lt;/li&gt; &lt;% }); %&gt;";
+_.template(list, {people : ['moe', 'curly', 'larry']});
+=&gt; "&lt;li&gt;moe&lt;/li&gt;&lt;li&gt;curly&lt;/li&gt;&lt;li&gt;larry&lt;/li&gt;"
+
+var template = _.template("&lt;b&gt;&lt;%- value %&gt;&lt;/b&gt;");
+template({value : '&lt;script&gt;'});
+=&gt; "&lt;b&gt;&amp;lt;script&amp;gt;&lt;/b&gt;"</pre>
+
+      <p>
+        您也可以在JavaScript代码中使用 <tt>print</tt>.  
+        有时候这会比使用 <tt>&lt;%= ... %&gt;</tt> 更方便.
+      </p>
+
+      <pre>
+var compiled = _.template("&lt;% print('Hello ' + epithet); %&gt;");
+compiled({epithet: "stooge"});
+=&gt; "Hello stooge."</pre>
+
+      <p>
+        如果ERB式的分隔符您不喜欢, 
+        您可以改变Underscore的模板设置, 
+        使用别的符号来嵌入代码.
+        定义一个 <b>interpolate</b> 正则表达式来逐字匹配
+        嵌入代码的语句, 如果想插入转义后的HTML代码
+        则需要定义一个 <b>escape</b> 正则表达式来匹配,
+        还有一个 <b>evaluate</b> 正则表达式来匹配
+        您想要直接一次性执行程序而不需要任何返回值的语句.
+        您可以定义或省略这三个的任意一个.
+        例如, 要执行
+        <a href="http://github.com/janl/mustache.js#readme">Mustache.js</a>
+        类型的模板:
+      </p>
+
+      <pre>
+_.templateSettings = {
+  interpolate : /\{\{(.+?)\}\}/g
+};
+
+var template = _.template("Hello {{ name }}!");
+template({name : "Mustache"});
+=&gt; "Hello Mustache!"</pre>
+
+      <p>
+        默认的, <b>template</b> 通过 <tt>with</tt> 语句
+        来取得 data 所有的值.  当然, 您也可以在 <b>variable</b> 设置里指定一个变量名. 这样能显著提升模板的渲染速度.
+      </p>
+
+      <pre>
+_.template("Using 'with': <%= data.answer %>", {answer: 'no'}, {variable: 'data'});
+=&gt; "Using 'with': no"</pre>
+
+      <p>
+        预编译模板对调试不可重现的错误很有帮助.
+        这是因为预编译的模板可以提供错误的代码行号和堆栈跟踪,
+        有些模板在客户端(浏览器)上是不能通过编译的
+        在编译好的模板函数上, 有 <b>source</b> 
+        属性可以提供简单的预编译功能.
+      </p>
+
+      <pre>&lt;script&gt;
+  JST.project = <%= _.template(jstText).source %>;
+&lt;/script&gt;</pre>
+
+
+      <h2 id="chaining">链式语法</h2>
+
+      <p>
+        您可以在面向对象或者函数的风格下使用Underscore,
+        这取决于您的个人偏好. 以下两行代码都可以
+        把一个数组里的所有数字乘以2.
+      </p>
+
+    <pre>
+_.map([1, 2, 3], function(n){ return n * 2; });
+_([1, 2, 3]).map(function(n){ return n * 2; });</pre>
+
+      <p>
+        对一个对象使用 <tt>chain</tt> 方法, 会把这个对象封装并
+        让以后每次方法的调用结束后都返回这个封装的对象, 当您完成了计算,
+        可以使用 <tt>value</tt> 函数来取得最终的值. 
+        以下是一个同时使用了 <b>map/flatten/reduce</b> 
+        的链式语法例子, 目的是计算一首歌的歌词里每一个单词出现的次数.
+      </p>
+
+<pre>
+var lyrics = [
+  {line : 1, words : "I'm a lumberjack and I'm okay"},
+  {line : 2, words : "I sleep all night and I work all day"},
+  {line : 3, words : "He's a lumberjack and he's okay"},
+  {line : 4, words : "He sleeps all night and he works all day"}
+];
+
+_.chain(lyrics)
+  .map(function(line) { return line.words.split(' '); })
+  .flatten()
+  .reduce(function(counts, word) {
+    counts[word] = (counts[word] || 0) + 1;
+    return counts;
+}, {}).value();
+
+=&gt; {lumberjack : 2, all : 4, night : 2 ... }</pre>
+
+      <p>
+        此外, <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/prototype">数组原型方法</a>
+        也通过代理加入到了链式封装的Underscore对象, 所以您可以
+        在链式语法中直接使用 <tt>reverse</tt> 或 <tt>push</tt> 方法,
+        然后再接着其他的语句.
+      </p>
+
+      <p id="chain">
+        <b class="header">chain</b><code>_.chain(obj)</code>
+        <br />
+        返回一个封装的对象. 在封装的对象上调用方法会返回封装的对象本身,
+        知道 <tt>value</tt> 方法调用为止.
+      </p>
+      <pre>
+var stooges = [{name : 'curly', age : 25}, {name : 'moe', age : 21}, {name : 'larry', age : 23}];
+var youngest = _.chain(stooges)
+  .sortBy(function(stooge){ return stooge.age; })
+  .map(function(stooge){ return stooge.name + ' is ' + stooge.age; })
+  .first()
+  .value();
+=&gt; "moe is 21"
+</pre>
+
+      <p id="value">
+        <b class="header">value</b><code>_(obj).value()</code>
+        <br />
+        提取封装对象的最终值.
+      </p>
+      <pre>
+_([1, 2, 3]).value();
+=&gt; [1, 2, 3]
+</pre>
+
+      <h2 id="links">更多链接 &amp; 推荐阅读</h2>
+
+      <p>
+        Underscore文档也有
+        <a href="http://learning.github.com/underscore/">简体中文</a> 版(其实您现在所看到的就是).
+      </p>
+
+      <p>
+        <a href="http://mirven.github.com/underscore.lua/">Underscore.lua</a>,
+        一个Lua版本的Underscore, 函数都通用.
+        包含面向对象封装和链式语法.
+        (<a href="http://github.com/mirven/underscore.lua">源码</a>)
+      </p>
+
+      <p>
+        <a href="http://underscorem.org">Underscore.m</a>, 一个 Objective-C 版本的
+        Underscore.js, 实现了大部分函数, 它的语法鼓励使用链式语法.
+        (<a href="https://github.com/robb/Underscore.m">源码</a>)
+      </p>
+
+      <p>
+        <a href="http://kmalakoff.github.com/_.m/">_.m</a>, 另一个
+        Objective-C 版本, 这个版本与原始的
+        Underscore.js API 比较相近.
+        (<a href="https://github.com/kmalakoff/_.m">源码</a>)
+      </p>
+
+      <p>
+        <a href="http://brianhaveri.github.com/Underscore.php/">Underscore.php</a>,
+        一个PHP版本的Underscore, 函数都通用.
+        包含面向对象封装和链式语法.
+        (<a href="http://github.com/brianhaveri/Underscore.php">源码</a>)
+      </p>
+
+      <p>
+        <a href="http://vti.github.com/underscore-perl/">Underscore-perl</a>,
+        一个Perl版本的Underscore, 实现了大部分功能,
+        主要针对于Perl的哈希表和数组.
+        (<a href="https://github.com/vti/underscore-perl/">源码</a>)
+      </p>
+
+      <p>
+        <a href="http://russplaysguitar.github.com/UnderscoreCF/">Underscore.cfc</a>,
+        一个 Coldfusion 版本的 Underscore.js, 实现了大部分函数.
+        (<a href="https://github.com/russplaysguitar/underscorecf">源码</a>)
+      </p>
+
+      <p>
+        <a href="https://github.com/edtsech/underscore.string">Underscore.string</a>,
+        一个Underscore的扩展, 添加了多个字符串操作的函数, 如:
+        <tt>trim</tt>, <tt>startsWith</tt>, <tt>contains</tt>, <tt>capitalize</tt>,
+        <tt>reverse</tt>, <tt>sprintf</tt>, 还有更多.
+      </p>
+
+      <p>
+        Ruby的 <a href="http://ruby-doc.org/core/classes/Enumerable.html">枚举</a> 模块.
+      </p>
+
+      <p>
+        <a href="http://www.prototypejs.org/">Prototype.js</a>, 提供类似于Ruby枚举方式的JavaScript集合函数.
+      </p>
+
+      <p>
+        Oliver Steele的
+        <a href="http://osteele.com/sources/javascript/functional/">Functional JavaScript</a>,
+        包含全面的高阶函数支持以及字符串的匿名函数.
+      </p>
+
+      <p>
+        Michael Aufreiter的 <a href="http://github.com/michael/data">Data.js</a>,
+        一个JavaScript的数据操作和持久化的类库.
+      </p>
+
+      <p>
+        Python的 <a href="http://docs.python.org/library/itertools.html">迭代工具</a>.
+      </p>
+
+      <h2 id="changelog">更新日志</h2>
+      
+      <p>
+        <b class="header">1.4.2</b> &mdash; <small><i>2012年10月1日</i></small>  &mdash; <a href="https://github.com/documentcloud/underscore/compare/1.4.1...1.4.2">比较文件</a><br />
+        <ul>
+          <li>
+            为了保证向下兼容, 恢复了 1.4.0 候选版时的一些特性
+            当传 <tt>null</tt> 到迭代函数时. 现在又变回非可选参数了.
+          </li>
+        </ul>
+      </p>
+      
+      <p>
+        <b class="header">1.4.1</b> &mdash; <small><i>Oct. 1, 2012</i></small>  &mdash; <a href="https://github.com/documentcloud/underscore/compare/1.4.0...1.4.1">比较文件</a><br />
+        <ul>
+          <li>
+            修复 1.4.0 版本里 <tt>lastIndexOf</tt> 函数的退化.
+          </li>
+        </ul>
+      </p>
+      
+      <p>
+        <b class="header">1.4.0</b> &mdash; <small><i>Sept. 27, 2012</i></small>  &mdash; <a href="https://github.com/documentcloud/underscore/compare/1.3.3...1.4.0">比较文件</a><br />
+        <ul>
+          <li>
+            增加 <tt>pairs</tt> 函数, 把一个 JavaScript 对象转换成
+            <tt>[key, value]</tt> 的组合 ... 同样地, 也有 <tt>object</tt> 
+            函数, 把 <tt>[key, value]</tt> 的数组组合转换成对象.
+          </li>
+          <li>
+            增加 <tt>countBy</tt> 函数, 可以计算数组内符合条件的对象个数.
+          </li>
+          <li>
+            增加 <tt>invert</tt> 函数, 在对象里实现一个简单的键值对调.
+          </li>
+          <li>
+            增加 <tt>where</tt> 函数, 以便于筛选出一个数组里包含指定键值的对象数组.
+          </li>
+          <li>
+            增加 <tt>omit</tt> 函数, 可以过滤掉对象里的对应key的属性.
+          </li>
+          <li>
+            增加 <tt>random</tt> 函数, 生成指定范围内的随机数.
+          </li>
+          <li>
+            用 <tt>_.debounce</tt> 创建的函数现在会返回上一次更新后的值,
+            就像 <tt>_.throttle</tt> 加工过的函数一样.
+          </li>
+          <li>
+            <tt>sortBy</tt> 函数现在使用了稳定的排序算法.
+          </li>
+          <li>
+            增加可选参数 <tt>fromIndex</tt> 到 <tt>indexOf</tt> 和
+            <tt>lastIndexOf</tt> 函数里.
+          </li>
+          <li>
+            Underscore 的迭代函数里不再支持稀疏数组.
+            请使用 <tt>for</tt> 循环来代替 (或者会更好).
+          </li>
+          <li>
+            <tt>min</tt> 和 <tt>max</tt> 函数现在可以用在
+            <i>非常</i>大的数组上.
+          </li>
+          <li>
+            模板引擎里插入变量现在可以使用 <tt>null</tt> 和
+            <tt>undefined</tt> 作为空字符串.
+          </li>
+          <li>
+            <del>Underscore 的迭代函数不再接受 <tt>null</tt> 
+            作为非可选参数. 否则您将得到一个错误提示.</del>
+          </li>
+          <li>
+            一些小幅修复和调整, 可以在此查看与之前版本的
+            <a href="https://github.com/documentcloud/underscore/compare/1.3.3...1.4.0">比较</a>.
+            <b>1.4.0</b> 可能比较不向下兼容, 这取决于您怎么使用Underscore
+            &mdash; 请在升级后进行测试。
+          </li>
+        </ul>
+      </p>
+
+      <p>
+        <b class="header">1.3.3</b> &mdash; <small><i>2012年4月10日</i></small><br />
+        <ul>
+          <li>
+            <tt>_.template</tt>的多处改进, 现在为潜在的更有效的服务器端预编译
+            提供模板的<tt>源(source)</tt>作为属性. 您现在也可以在创建模板的时候
+            设置 <tt>variable</tt> 选项, 之后可以通过这个变量名取到模板传入的数据,
+            取代了 <tt>with</tt> 语句 &mdash;
+            显著的改进了模板的渲染速度.
+          </li>
+          <li>
+            增加了 <tt>pick</tt> 函数, 它可以过滤不在所提供的白名单之内的其他属性.
+          </li>
+          <li>
+            增加 <tt>result</tt> 函数, 在与API工作时很方便,
+            允许函数属性或原始属性(非函数属性).
+          </li>
+          <li>
+            增加 <tt>isFinite</tt> 函数, 因为有时候仅仅知道某变量是一个
+            数的时候还不够, 还要知道它是否是有限的数.
+          </li>
+          <li>
+            <tt>sortBy</tt> 函数现在可以传属性名作为对象的排序标准.
+          </li>
+          <li>
+            修复 <tt>uniq</tt> 函数, 现在可以在稀疏数组上使用了.
+          </li>
+          <li>
+            <tt>difference</tt> 函数现在在对比数组差异的时候只执行浅度的flatten,
+            取代之前的深度flatten.
+          </li>
+          <li>
+            <tt>debounce</tt> 函数现在多了一个参数 <tt>immediate</tt>,
+            会影响到达时间间隔后执行的是最先的函数调用还是最后的函数调用.
+          </li>
+        </ul>
+      </p>
+
+      <p>
+        <b class="header">1.3.1</b> &mdash; <small><i>2012年1月23日</i></small><br />
+        <ul>
+          <li>
+            增加 <tt>_.has</tt> 函数, 作为 <tt>hasOwnProperty</tt> 更安全的版本.
+          </li>
+          <li>
+            增加 <tt>_.collect</tt> , 作为 <tt>_.map</tt> 的别名. 
+          </li>
+          <li>
+            恢复一个旧的修改, <tt>_.extend</tt> 将再次可以正确复制
+            拥有undefined值的属性.
+          </li>
+          <li>
+            修复在 <tt>_.template</tt> 的嵌入语句里反转义斜杠的bug.
+          </li>
+        </ul>
+      </p>
+
+      <p>
+        <b class="header">1.3.0</b> &mdash; <small><i>2012年1月11日</i></small><br />
+        <ul>
+          <li>
+            移除Underscore对AMD(RequireJS)的支持. 如果您想继续在
+            RequireJS里使用Underscore, 可以作为一个普通的script加载,
+            封装或修改您的Underscore副本, 或者下载一个Underscore别的fork版本.
+          </li>
+        </ul>
+      </p>
+
+      <p>
+        <b class="header">1.2.4</b> &mdash; <small><i>Jan. 4, 2012</i></small><br />
+        <ul>
+          <li>
+            您现在可以写 (您应该会这样用, 因为这样更简单) 
+            <tt>_.chain(list)</tt> 
+            来代替 <tt>_(list).chain()</tt>.
+          </li>
+          <li>
+            修复已反转义的字符在Underscore模板里的错误, 并增加了支持自定义支持,
+            使用<tt>_.templateSettings</tt>, 只需要定义一到两个必备的正则表达式.
+          </li>
+          <li>
+            修复以数组作为第一参数传给<tt>_.wrap</tt>函数的错误.
+          </li>
+          <li>
+            改进与ClojureScript的兼容性, 增加<tt>call</tt>
+            函数到<tt>String.prototype</tt>里.
+          </li>
+        </ul>
+      </p>
+
+      <p>
+        <b class="header">1.2.3</b> &mdash; <small><i>2011年12月7日</i></small><br />
+        <ul>
+          <li>
+            动态范围在已编译的 <tt>_.template</tt> 函数中保留,
+            所以您可以使用 <tt>this</tt> 属性, 如果您喜欢的话.
+          </li>
+          <li>
+            <tt>_.indexOf</tt> 和 <tt>_.lastIndexOf</tt> 增加对稀疏数组的支持.
+          </li>
+          <li>
+            <tt>_.reduce</tt> 和 <tt>_.reduceRight</tt> 现在都可以传一个明确的
+            <tt>undefined</tt> 值. (您为什么要这样做并没有任何原因)
+          </li>
+        </ul>
+      </p>
+
+      <p>
+        <b class="header">1.2.2</b> &mdash; <small><i>2011年11月14日</i></small><br />
+        <ul>
+          <li>
+            继续改进 <tt>_.isEqual</tt> , 要让它和语义上所说的一样. 
+            现在原生的JavaScript会一个对象与它的封装起来的对象视为相等的,
+            还有, 数组只会对比他们数字元素 <small>(#351)</small>.
+          </li>
+          <li>
+            <tt>_.escape</tt> 不再尝试在非双重转义的转义HTML实体上进行转换.
+            现在不管怎样只会反转义一次 <small>(#350)</small>.
+          </li>
+          <li>
+            在 <tt>_.template</tt> 里, 如果愿意的话您可以省略嵌入表达式后面的分号:
+            <tt>&lt;% }) %&gt;</tt> <small>(#369)</small>.
+          </li>
+          <li>
+            <tt>_.after(callback, 0)</tt> 现在会立即触发callback函数,
+            把"after"做得更易于使用在异步交互的API上 <small>(#366)</small>.
+          </li>
+        </ul>
+      </p>
+
+      <p>
+        <b class="header">1.2.1</b> &mdash; <small><i>2011年10月24日</i></small><br />
+        <ul>
+          <li>
+            <tt>_.isEqual</tt> 函数的几个重要bug修复, 
+            现在能更好地用在复杂的数组上, 和拥有 <tt>length</tt> 属性的非数组对象上了. <small>(#329)</small>
+          </li>
+          <li>
+            <b>jrburke</b> 提供了导出Underscore以便AMD模块的加载器可以加载,
+            还有 <b>tonylukasavage</b> 提供了导出Underscore给Appcelerator Titanium使用.
+            <small>(#335, #338)</small>
+          </li>
+          <li>
+            您现在可以使用 <tt>_.groupBy(list, 'property')</tt> 作为
+            以指定的共同属性来分组的快捷方法.
+          </li>
+          <li>
+            <tt>_.throttle</tt> 函数现在调用的时候会立即自行一次,
+            此后才是再每隔指定时间再执行一次 <small>(#170, #266)</small>.
+          </li>
+          <li>
+            大多数 <tt>_.is[类型]</tt> 函数不再使用ducktype写法(详见Ruby的duck type).
+          </li>
+          <li>
+            <tt>_.bind</tt> 函数现在在构造函数(constructor)也能用了, 兼容ECMAScript 5标准.
+            不过您可能永远也用不到 <tt>_.bind</tt> 来绑定一个构造函数.
+          </li>
+          <li>
+            <tt>_.clone</tt> 函数不再封装对象里的非对象属性.
+          </li>
+          <li>
+            <tt>_.find</tt> 和 <tt>_.filter</tt> 现在作为
+            <tt>_.detect</tt> 和 <tt>_.select</tt> 的首选函数名.
+          </li>
+        </ul>
+      </p>
+
+      <p>
+        <b class="header">1.2.0</b> &mdash; <small><i>2011年10月5日</i></small><br />
+        <ul>
+          <li>
+            <tt>_.isEqual</tt> 函数现在支持深度相等性对比, 
+            检测循环结构, 感谢Kit Cambridge.
+          </li>
+          <li>
+            Underscore模版现在支持嵌入HTML转义字符了, 使用
+            <tt>&lt;%- ... %&gt;</tt> 语句.
+          </li>
+          <li>
+            Ryan Tenney 提供了 <tt>_.shuffle</tt> 函数, 它使用
+            Fisher-Yates算法的修改版, 返回一个乱序后的数组副本.
+          </li>
+          <li>
+            <tt>_.uniq</tt> 现在可以传一个可选的迭代器iterator, 用来确定一个数组以什么样的标准来确定它是否唯一的.
+          </li>
+          <li>
+            <tt>_.last</tt> 现在增加了一个可选参数, 可以设置返回集合里的最后N个元素.
+          </li>
+          <li>
+            增加了一个新函数 <tt>_.initial</tt>, 
+            与 <tt>_.rest</tt> 函数相对,
+            它会返回一个列表除了最后N个元素以外的所有元素.
+          </li>
+        </ul>
+      </p>
+
+      <p>
+        <b class="header">1.1.7</b> &mdash; <small><i>2011年7月13日</i></small><br />
+        增加 <tt>_.groupBy</tt>, 它可以将一个集合里的元素进行分组.
+        增加 <tt>_.union</tt> 和 <tt>_.difference</tt>, 用来补充
+        (重命名过的) <tt>_.intersection</tt> 函数.
+        多方面的改进以支持稀疏数组. <tt>_.toArray</tt> 现在如果直接传数组时,
+        将会返回此数组的副本. 
+        <tt>_.functions</tt> 现在会返回存在于原型链中的函数名.
+      </p>
+
+      <p>
+        <b class="header">1.1.6</b> &mdash; <small><i>2011年4月18日</i></small><br />
+        增加 <tt>_.after</tt> 函数, 被它改造过的函数只有在执行指定次数之后才会生效.
+        <tt>_.invoke</tt> 现在将使用函数的直接引用.
+        <tt>_.every</tt> 现在必须传如迭代器函数, 为了符合ECMAScript 5标准.
+        <tt>_.extend</tt> 当值为undefined的时候不再复制键值.
+        <tt>_.bind</tt> 现在如果试图绑定一个undefined值的时候将报错.
+      </p>
+
+      <p>
+        <b class="header">1.1.5</b> &mdash; <small><i>2011年3月20日</i></small><br />
+        增加 <tt>_.defaults</tt> 函数, 用来合并JavaScript对象,
+        一般用来做生成默认值使用.
+        增加 <tt>_.once</tt> 函数, 用来把函数改造成只能运行一次的函数.
+        <tt>_.bind</tt> 函数现在委托原生的ECMAScript 5版本(如可用).
+        <tt>_.keys</tt> 现在传非对象的值时, 将会抛出一个错误, 
+        就和ECMAScript 5标准里的一样.
+        修复了 <tt>_.keys</tt> 函数在传入稀疏数组时的bug.
+      </p>
+
+      <p>
+        <b class="header">1.1.4</b> &mdash; <small><i>2011年1月9日</i></small><br />
+        改进所有数组函数当传值 <tt>null</tt> 时候的行为, 
+        以符合ECMAScript 5标准. <tt>_.wrap</tt> 函数现在能正确地
+        给封装的函数设置 <tt>this</tt> 关键字了.
+        <tt>_.indexOf</tt> 函数增加了可选参数isSorted,
+        寻找索引的时候会将数组作为已排序处理, 将使用更快的二进制搜索.
+        避免使用 <tt>.callee</tt>, 保证 <tt>_.isArray</tt> 函数
+        在ECMAScript 5严格模式下能正常使用.
+      </p>
+
+      <p>
+        <b class="header">1.1.3</b> &mdash; <small><i>2010年12月1日</i></small><br />
+        在CommonJS里, Underscore可以像这样引入: <br />
+        <tt>var _ = require("underscore")</tt>.
+        增加 <tt>_.throttle</tt> 和 <tt>_.debounce</tt> 函数.
+        移除 <tt>_.breakLoop</tt> 函数, 为了符合ECMAScript 5标准里所说的每一种实现形式都是不能<i>break</i>的
+        &mdash; 这将去掉try/catch块, 
+        现在, 您遇到Underscore迭代器的抛出的异常时,
+        将会有更完善的堆栈跟踪来检查错误所在之处.
+        改进 <b>isType</b> 一类函数, 以便更好地兼容Internet Explorer浏览器.
+        <tt>_.template</tt> 函数现在可以正确的反转义模板中的反斜杠了.
+        改进 <tt>_.reduce</tt> 函数以兼容ECMAScript 5标准:
+        如果您不传初始值, 将使用集合里的第一项作为初始值.
+        <tt>_.each</tt> 不再返回迭代后的集合, 为了与ECMAScript 5的 <tt>forEach</tt> 保持一致.
+      </p>
+
+      <p>
+        <b class="header">1.1.2</b><br />
+        修复 <tt>_.contains</tt> 指向 <tt>_.intersect</tt> 函数的错误, 
+        应该是指向 <tt>_.include</tt> 函数(_.cotains应该是_.include的别名),
+        增加 <tt>_.unique</tt>, 作为 <tt>_.uniq</tt> 函数的别名.
+      </p>
+
+      <p>
+        <b class="header">1.1.1</b><br />
+        改进 <tt>_.template</tt> 函数的运行速度, 和处理多行插入值的性能.
+        Ryan Tenney 提供了许多Underscore函数的优化方案.
+        增加了带注释版本的源代码.
+      </p>
+
+      <p>
+        <b class="header">1.1.0</b><br />
+        修改了 <tt>_.reduce</tt> 函数以符合ECMAScript 5规范, 
+        取代了之前Ruby/Prototype.js版本的 <tt>_.reduce</tt>.
+        这是一个不向下兼容的修改. <tt>_.template</tt> 函数现在可以不传参了, 并保留空格.
+        <tt>_.contains</tt> 是一个 <tt>_.include</tt> 函数新的别名.
+      </p>
+
+      <p>
+        <b class="header">1.0.4</b><br />
+        <a href="http://themoell.com/">Andri Möll</a> 提供了 <tt>_.memoize</tt>函数, 
+        以缓存计算结果, 来优化的耗时较长的函数, 使得运行速度变快.
+      </p>
+
+      <p>
+        <b class="header">1.0.3</b><br />
+        修复了 <tt>_.isEqual</tt> 函数在对比包含 <tt>NaN</tt> 的对象时返回 <tt>false</tt> 的问题.
+        技术上改良后理论上是正确的, 但是语义上似乎有矛盾, 所以要注意避免对比含有NaN的对象.
+      </p>
+
+      <p>
+        <b class="header">1.0.2</b><br />
+        修复 <tt>_.isArguments</tt> 在新版本Opera浏览器里的bug, 
+        Opera里会把arguments对象当作数组.
+      </p>
+
+      <p>
+        <b class="header">1.0.1</b><br />
+        修复了 <tt>_.isEqual</tt> 函数的bug: 
+        这个bug出现在当对比特定因素两个对象时, 
+        这两个对象有着相同个数的值为undefined的key, 但不同名.
+      </p>
+
+      <p>
+        <b class="header">1.0.0</b><br />
+        Underscore在这几个月里算是相对稳定了, 所以现在打算出测试版, 版本号为<b>1.0</b>.
+        从<b>0.6</b>版本开始进行改进, 包括<tt>_.isBoolean</tt>的改进,
+        和<tt>_.extend</tt>允许传多个source对象.
+      </p>
+
+      <p>
+        <b class="header">0.6.0</b><br />
+        主要版本, 整合了一系列的功能函数, 包括
+        <a href="http://github.com/ratbeard">Mile Frawley</a>写的在保留援用功能的基础上, 对集合函数进行重构, 内部代码更加简洁.
+        新的 <tt>_.mixin</tt> 函数, 允许您自己的功能函数继承Underscore对象.
+        增加 <tt>_.times</tt> 函数, 跟Ruby或Prototype.js里的times的功能一样.
+        对ECMAScript 5的 <tt>Array.isArray</tt>函数提供原生支持, 还有<tt>Object.keys</tt>.
+      </p>
+
+      <p>
+        <b class="header">0.5.8</b><br />
+        修复了Underscore的集合函数, 以便可以用于DOM的
+        <a href="https://developer.mozilla.org/En/DOM/NodeList">节点列表(NodeList)</a> 和
+        <a href="https://developer.mozilla.org/En/DOM/HTMLCollection">HTML集合(HTMLCollection)</a>
+        再一次地感谢
+        <a href="http://github.com/jmtulloss">Justin Tulloss</a>.
+      </p>
+
+      <p>
+        <b class="header">0.5.7</b><br />
+        修改 <tt>_.isArguments</tt> 函数, 使用了更安全的实现方式, 还有
+        加快了 <tt>_.isNumber</tt> 的运行速度,<br /> 感谢
+        <a href="http://jedschmidt.com/">Jed Schmidt</a>.
+      </p>
+
+      <p>
+        <b class="header">0.5.6</b><br />
+        增加了 <tt>_.template</tt> 对自定义分隔符的支持, 由
+        <a href="http://github.com/iamnoah">Noah Sloan</a>提供.
+      </p>
+
+      <p>
+        <b class="header">0.5.5</b><br />
+        修复了一个在移动版Safari里关于arguments对象的面向对象封装的bug.
+      </p>
+
+      <p>
+        <b class="header">0.5.4</b><br />
+        修复了<tt>_.template</tt>函数里多个单引号在模板里造成的错误. 了解更多请阅读:
+        <a href="http://www.west-wind.com/Weblog/posts/509108.aspx">Rick Strahl的博客文章</a>.
+      </p>
+
+      <p>
+        <b class="header">0.5.2</b><br />
+        几个函数的重写: <tt>isArray</tt>, <tt>isDate</tt>, <tt>isFunction</tt>,
+        <tt>isNumber</tt>, <tt>isRegExp</tt>, 和 <tt>isString</tt>, 
+        感谢<a href="http://www.broofa.com/">Robert Kieffer</a>提供的建议.
+        取代了 <tt>Object#toString</tt> 的对比方式, 现在以属性来进行对比, 
+        虽然说安全性有所降低, 但是速度比以前快了有一个数量级. 
+        因此其他大多数的Underscore函数也有小幅度的速度提升.
+        增加了 <tt>_.tap</tt> 函数, 由<a href="http://dolzhenko.org/">Evgeniy Dolzhenko</a> 提供, 与<a href="http://ruby-doc.org/core-1.9.3/Object.html#method-i-tap">Ruby 1.9</a>的tap方法相似,
+        对链式语法里嵌入其他功能(如登录)很方便.
+      </p>
+
+      <p>
+        <b class="header">0.5.1</b><br />
+        增加了 <tt>_.isArguments</tt> 函数. 许多小的安全检查和优化由
+        <a href="http://github.com/iamnoah/">Noah Sloan</a> 和
+        <a href="http://themoell.com/">Andri Möll</a>提供.
+      </p>
+
+      <p>
+        <b class="header">0.5.0</b><br />
+        <b>[API变更]</b> <tt>_.bindAll</tt> 现在会将context对象作为第一个参数.
+        如果不传方法名, context对象的所有方法都会绑定到context, 支持链式语法和简易绑定.
+        <tt>_.functions</tt> 现在只要一个参数, 然后返回所有的方法名(类型为Function的属性).
+        调用 <tt>_.functions(_)</tt> 会列出所有的Underscore函数.
+        增加 <tt>_.isRegExp</tt> 函数, <tt>isEqual</tt> 现在也可以检测两个RegExp对象是否相等了.
+        所有以"is"开头的函数已经缩减到同一个定义里面, 由<a href="http://github.com/grayrest/">Karl Guertin</a> 提供的解决方案.
+      </p>
+
+      <p>
+        <b class="header">0.4.7</b><br />
+        增加 <tt>isDate</tt>, <tt>isNaN</tt>, 和 <tt>isNull</tt>.
+        优化 <tt>isEqual</tt> 函数对比两个数组或两个时间对象时的性能.
+        优化了 <tt>_.keys</tt> 函数, 现在的运行速度比以前加快了<small><i><b>25%&ndash;2倍</b></i></small> (取决于您所使用的浏览器)会加速其所依赖的函数, 如 <tt>_.each</tt>.
+      </p>
+
+      <p>
+        <b class="header">0.4.6</b><br />
+        增加 <tt>range</tt> 函数, <a href="http://docs.python.org/library/functions.html#range">Python里同名函数range</a> 的移植版,
+        用于生成灵活的整型数组. 原始版由<a href="http://github.com/kylichuku">Kirill Ishanov</a>提供.
+      </p>
+
+      <p>
+        <b class="header">0.4.5</b><br />
+        增加 <tt>rest</tt> 函数, 可以对数组和arguments对象使用, 增加了两个函数的别名,
+        <tt>first</tt> 的别名为 <tt>head</tt>, 
+        还有 <tt>rest</tt> 的别名为 <tt>tail</tt>,
+        感谢 <a href="http://github.com/lukesutton/">Luke Sutton</a>的解决方案.
+        增加测试文件, 以确保所有Underscore的数组函数都可以在用在 <i>arguments</i> 对象上.
+      </p>
+
+      <p>
+        <b class="header">0.4.4</b><br />
+        增加 <tt>isString</tt>, 和 <tt>isNumber</tt> 函数. 修复了
+        <tt>_.isEqual(NaN, NaN)</tt> 会返回 <i>true</i> 的问题.
+      </p>
+
+      <p>
+        <b class="header">0.4.3</b><br />
+        开始使用原生的 <tt>StopIteration</tt> 浏览器对象(如果浏览器支持).
+        修复Underscore在CommonJS环境上的安装.
+      </p>
+
+      <p>
+        <b class="header">0.4.2</b><br />
+        把解除封装的函数unwrapping改名为<tt>value</tt>, 更清晰.
+      </p>
+
+      <p>
+        <b class="header">0.4.1</b><br />
+        链式语法封装的Underscore对象支持函数原型方法的调用,
+        您可以在封装的数组上连续调用任意函数.
+        增加 <tt>breakLoop</tt> 方法, 可以随时在Underscore的迭代中
+        <b>中断</b> 并跳出迭代. 增加 <tt>isEmpty</tt> 函数, 在数组和对象上都有用.
+      </p>
+
+      <p>
+        <b class="header">0.4.0</b><br />
+        现在所有的Underscore函数都可以用面向对象的风格来调用了,
+        比如: <tt>_([1, 2, 3]).map(...);</tt>. 
+        <a href="http://macournoyer.com/">Marc-André Cournoyer</a> 提供了原始的解决方案.
+        封装对象可以用链式语法连续调用函数. 添加了 <a href="#object-functions"><tt>functions</tt></a> 方法,
+        能以正序方式列出所有的Underscore函数.
+      </p>
+
+      <p>
+        <b class="header">0.3.3</b><br />
+        增加JavaScript 1.8的函数 <tt>reduceRight</tt>. 别名为
+        <tt>foldr</tt>, 另外 <tt>reduce</tt> 的别名为 <tt>foldl</tt>.
+      </p>
+
+      <p>
+        <b class="header">0.3.2</b><br />
+        可以在 <a href="http://www.mozilla.org/rhino/">Rhino</a> 上运行了.
+        只要在编译器里输入: <tt>load("underscore.js")</tt>.
+        增加功能函数 <a href="#identity"><tt>identity</tt></a>.
+      </p>
+
+      <p>
+        <b class="header">0.3.1</b><br />
+        所有迭代器在原始集合里现在都作为第三个参数传入,
+        和JavaScript 1.6的 <b>forEach</b> 一致.
+        迭代一个对象现在会以 <tt>(value, key, collection)</tt> 来调用, 更多详情, 请查看 <a href="#each"><tt>_.each</tt></a>.
+      </p>
+
+      <p>
+        <b class="header">0.3.0</b><br />
+        增加 <a href="http://github.com/dmitryBaranovskiy">Dmitry Baranovskiy</a>的
+        综合优化, 合并
+        <a href="http://github.com/kriskowal/">Kris Kowal</a>的解决方案让Underscore符合
+        <a href="http://wiki.commonjs.org/wiki/CommonJS">CommonJS</a> 标准,并和
+        <a href="http://narwhaljs.org/">Narwhal</a> 兼容.
+      </p>
+
+      <p>
+        <b class="header">0.2.0</b><br />
+        添加 <tt>compose</tt> 和 <tt>lastIndexOf</tt>, 重命名 <tt>inject</tt> 为
+        <tt>reduce</tt>, 添加 <tt>inject</tt>, <tt>filter</tt>,
+        <tt>every</tt>, <tt>some</tt>, 和 <tt>forEach</tt> 的别名.
+      </p>
+
+      <p>
+        <b class="header">0.1.1</b><br />
+        添加 <tt>noConflict</tt>, 以便 "Underscore" 对象可以分配给其他变量.
+      </p>
+
+      <p>
+        <b class="header">0.1.0</b><br />
+        Underscore.js 首次发布.
+      </p>
+
+      <p>
+        <a href="http://documentcloud.org/" title="A DocumentCloud Project" style="background:none;">
+          <img src="http://jashkenas.s3.amazonaws.com/images/a_documentcloud_project.png" alt="A DocumentCloud Project" />
+        </a>
+      </p>
+
+    </div>
+
+  </div>
+
+  <!-- 引入Underscore, 这样您就可以在控制台里把玩了. -->
+  <script type="text/javascript" src="underscore.js"></script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32163560-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+</body>
+</html>
